@@ -57,8 +57,8 @@ limitation, budget policy). Business logic is Python (`src/`).
 | `finance` | Print the expense report; maintain categories and payment methods |
 | `administrator` | Maintain categories and payment methods |
 
-New sign-ups default to `employee`. Adjust the grants under **Access** after
-importing to fit your organization.
+New sign-ups default to `employee`. After importing, adjust the role grants to fit
+your organization.
 
 ## After importing
 
