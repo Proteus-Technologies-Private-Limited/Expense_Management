@@ -1,0 +1,127 @@
+{
+  "table_name": "EXPTRACK_TRIP",
+  "objects": [
+    {
+      "object_name": "exptrack_expense_report",
+      "form_no": "1",
+      "usage_type": "M",
+      "referred_columns": [
+        "TRIP_ID",
+        "TRIP_NAME"
+      ],
+      "join_info": {
+        "column": "TRIP_ID",
+        "join_table": "EXPTRACK_EXPENSE_REPORT",
+        "join_column": "TRIP"
+      }
+    },
+    {
+      "object_name": "exptrack_approve_expense_report",
+      "form_no": "1",
+      "usage_type": "M",
+      "referred_columns": [
+        "TRIP_ID",
+        "TRIP_NAME"
+      ],
+      "join_info": {
+        "column": "TRIP_ID",
+        "join_table": "EXPTRACK_EXPENSE_REPORT",
+        "join_column": "TRIP"
+      }
+    },
+    {
+      "object_name": "exptrack_trip",
+      "form_no": "1",
+      "usage_type": "M",
+      "referred_columns": [
+        "STATUS",
+        "CREATED_DATE",
+        "DESTINATION",
+        "CHG_USER",
+        "TOTAL_EXPENSE_AMOUNT",
+        "EMPLOYEE",
+        "PURPOSE",
+        "TRIP_ID",
+        "CHG_DATE",
+        "S_NO",
+        "START_DATE",
+        "ADD_TERM",
+        "CHG_TERM",
+        "TRIP_NAME",
+        "SERIAL_NO",
+        "ADD_USER",
+        "END_DATE"
+      ]
+    },
+    {
+      "object_name": "exptrack_finance_payment",
+      "form_no": "1",
+      "usage_type": "R",
+      "referred_columns": [
+        "TRIP_NAME",
+        "TRIP_ID"
+      ],
+      "join_info": {
+        "column": "TRIP_ID",
+        "join_table": "EXPTRACK_EXPENSE_REPORT",
+        "join_column": "TRIP"
+      }
+    },
+    {
+      "object_name": "exptrack_approval_activity",
+      "form_no": "1",
+      "usage_type": "R",
+      "referred_columns": [
+        "TRIP_NAME",
+        "TRIP_ID"
+      ],
+      "join_info": {
+        "column": "TRIP_ID",
+        "join_table": "EXPTRACK_EXPENSE_REPORT",
+        "join_column": "TRIP"
+      }
+    },
+    {
+      "object_name": "exptrack_manage_approval",
+      "form_no": "1",
+      "usage_type": "R",
+      "referred_columns": [
+        "TRIP_ID",
+        "TRIP_NAME"
+      ],
+      "join_info": {
+        "column": "TRIP_ID",
+        "join_table": "EXPTRACK_EXPENSE_REPORT",
+        "join_column": "TRIP"
+      }
+    },
+    {
+      "object_name": "exptrack_manage_approval_new_txn",
+      "form_no": "1",
+      "usage_type": "R",
+      "referred_columns": [
+        "TRIP_ID",
+        "TRIP_NAME"
+      ],
+      "join_info": {
+        "column": "TRIP_ID",
+        "join_table": "EXPTRACK_MANAGE_APPROVAL_NEW_TXN",
+        "join_column": "TRIP"
+      }
+    },
+    {
+      "object_name": "exptrack_manage_approval_v2",
+      "form_no": "1",
+      "usage_type": "R",
+      "referred_columns": [
+        "TRIP_ID",
+        "TRIP_NAME"
+      ],
+      "join_info": {
+        "column": "TRIP_ID",
+        "join_table": "EXPTRACK_EXPENSE_REPORT",
+        "join_column": "TRIP"
+      }
+    }
+  ]
+}

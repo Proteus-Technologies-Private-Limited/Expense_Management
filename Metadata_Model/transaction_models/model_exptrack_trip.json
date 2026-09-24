@@ -1,0 +1,582 @@
+{
+  "transaction": {
+    "obj_name": "exptrack_trip",
+    "sql_models": [
+      {
+        "sql_model": {
+          "form_title": "Manage Trip",
+          "form_descr": "Record a business trip grouping related expenses",
+          "form_no": "1",
+          "main_table": "EXPTRACK_TRIP",
+          "columns": [
+            {
+              "column": {
+                "name": "trip_id",
+                "db_name": "TRIP_ID",
+                "group_name": "Others",
+                "col_type": "VARCHAR",
+                "heading": "Trip Id",
+                "descr": "System auto-generated trip identifier (TRIP-00001)",
+                "key": true,
+                "mandatory": true,
+                "protect": "1",
+                "default_value": "auto_generate_prefixed()",
+                "series": {
+                  "parts": [
+                    {
+                      "source": "const",
+                      "text": "TRIP-"
+                    }
+                  ],
+                  "separator": "",
+                  "width": 5
+                },
+                "validations": [
+                  {
+                    "type": "builtin",
+                    "name": "Trip Id unique",
+                    "error_code": "TRIP_ID_DUP",
+                    "message": "Trip Id {form.trip_id} already exists.",
+                    "builtin": {
+                      "kind": "must_be_unique"
+                    }
+                  }
+                ],
+                "x": "80",
+                "y": "80",
+                "col_id": "1",
+                "table_name": "EXPTRACK_TRIP",
+                "table_display_name": "Trip master table",
+                "db_size": "20",
+                "width": 200,
+                "hidden": "",
+                "format": "",
+                "default_function": "",
+                "expression": "",
+                "edit_mask": "",
+                "lookup": "",
+                "item_change": {
+                  "mode": "business_logic",
+                  "business_logic": {
+                    "method": "",
+                    "description": ""
+                  }
+                }
+              }
+            },
+            {
+              "column": {
+                "name": "trip_name",
+                "db_name": "TRIP_NAME",
+                "group_name": "Basic",
+                "col_type": "VARCHAR",
+                "heading": "Trip Name",
+                "descr": "Name of the business trip",
+                "mandatory": true,
+                "x": "10",
+                "y": "10",
+                "col_id": "2",
+                "table_name": "EXPTRACK_TRIP",
+                "table_display_name": "Trip master table",
+                "db_size": "100",
+                "width": 500,
+                "key": false,
+                "hidden": "",
+                "format": "",
+                "default_function": "",
+                "default_value": "",
+                "expression": "",
+                "edit_mask": "",
+                "protect": "",
+                "validations": "",
+                "lookup": ""
+              }
+            },
+            {
+              "column": {
+                "name": "destination",
+                "db_name": "DESTINATION",
+                "group_name": "Basic",
+                "col_type": "VARCHAR",
+                "heading": "Destination",
+                "descr": "Destination of the trip",
+                "mandatory": true,
+                "x": "20",
+                "y": "20",
+                "col_id": "3",
+                "table_name": "EXPTRACK_TRIP",
+                "table_display_name": "Trip master table",
+                "db_size": "100",
+                "width": 500,
+                "key": false,
+                "hidden": "",
+                "format": "",
+                "default_function": "",
+                "default_value": "",
+                "expression": "",
+                "edit_mask": "",
+                "protect": "",
+                "validations": "",
+                "lookup": ""
+              }
+            },
+            {
+              "column": {
+                "name": "purpose",
+                "db_name": "PURPOSE",
+                "group_name": "Basic",
+                "col_type": "VARCHAR",
+                "heading": "Purpose",
+                "descr": "Purpose of the trip",
+                "x": "30",
+                "y": "30",
+                "col_id": "4",
+                "table_name": "EXPTRACK_TRIP",
+                "table_display_name": "Trip master table",
+                "db_size": "250",
+                "width": 500,
+                "key": false,
+                "mandatory": false,
+                "hidden": "",
+                "format": "",
+                "default_function": "",
+                "default_value": "",
+                "expression": "",
+                "edit_mask": "",
+                "protect": "",
+                "validations": "",
+                "lookup": ""
+              }
+            },
+            {
+              "column": {
+                "name": "start_date",
+                "db_name": "START_DATE",
+                "group_name": "Basic",
+                "col_type": "DATE",
+                "heading": "Start Date",
+                "descr": "Trip start date",
+                "mandatory": true,
+                "x": "40",
+                "y": "40",
+                "col_id": "5",
+                "table_name": "EXPTRACK_TRIP",
+                "table_display_name": "Trip master table",
+                "db_size": "",
+                "width": 50,
+                "key": false,
+                "hidden": "",
+                "format": "",
+                "default_function": "",
+                "default_value": "",
+                "expression": "",
+                "edit_mask": "",
+                "protect": "",
+                "validations": "",
+                "lookup": ""
+              }
+            },
+            {
+              "column": {
+                "name": "end_date",
+                "db_name": "END_DATE",
+                "group_name": "Basic",
+                "col_type": "DATE",
+                "heading": "End Date",
+                "descr": "Trip end date",
+                "mandatory": true,
+                "validations": [
+                  {
+                    "type": "expression",
+                    "name": "End date on/after start date",
+                    "error_code": "END_BEFORE_START",
+                    "message": "End Date must be on or after Start Date.",
+                    "expression": "{form.end_date} >= {form.start_date}"
+                  }
+                ],
+                "x": "50",
+                "y": "50",
+                "col_id": "6",
+                "table_name": "EXPTRACK_TRIP",
+                "table_display_name": "Trip master table",
+                "db_size": "",
+                "width": 50,
+                "key": false,
+                "hidden": "",
+                "format": "",
+                "default_function": "",
+                "default_value": "",
+                "expression": "",
+                "edit_mask": "",
+                "protect": "",
+                "lookup": ""
+              }
+            },
+            {
+              "column": {
+                "name": "employee",
+                "db_name": "EMPLOYEE",
+                "group_name": "Basic",
+                "col_type": "VARCHAR",
+                "heading": "Employee",
+                "descr": "Employee the trip belongs to",
+                "mandatory": true,
+                "default_value": "logged_in_user()",
+                "x": "60",
+                "y": "60",
+                "col_id": "7",
+                "table_name": "EXPTRACK_TRIP",
+                "table_display_name": "Trip master table",
+                "db_size": "10",
+                "width": 100,
+                "key": false,
+                "hidden": "",
+                "format": "",
+                "default_function": "",
+                "expression": "",
+                "edit_mask": "",
+                "protect": "",
+                "validations": "",
+                "lookup": ""
+              }
+            },
+            {
+              "column": {
+                "name": "status",
+                "db_name": "STATUS",
+                "group_name": "Basic",
+                "col_type": "VARCHAR",
+                "heading": "Status",
+                "descr": "Trip status (Planned / Upcoming / Completed). Closed is system-only, applied only by the Close-trip action.",
+                "mandatory": true,
+                "default_value": "Planned",
+                "edit_mask": {
+                  "mask": "ddlb",
+                  "values": [
+                    {
+                      "data": "Planned",
+                      "display": "Planned"
+                    },
+                    {
+                      "data": "Upcoming",
+                      "display": "Upcoming"
+                    },
+                    {
+                      "data": "Completed",
+                      "display": "Completed"
+                    }
+                  ]
+                },
+                "validations": [
+                  {
+                    "type": "expression",
+                    "name": "Manual status must not be Closed",
+                    "error_code": "STATUS_NO_MANUAL_CLOSE",
+                    "message": "Closed is a system-only status; it cannot be selected manually. Use the Close-trip action instead.",
+                    "expression": "{form.status} != \"Closed\""
+                  }
+                ],
+                "x": "70",
+                "y": "70",
+                "col_id": "8",
+                "table_name": "EXPTRACK_TRIP",
+                "table_display_name": "Trip master table",
+                "db_size": "20",
+                "width": 200,
+                "key": false,
+                "hidden": "",
+                "format": "",
+                "default_function": "",
+                "expression": "",
+                "protect": "",
+                "lookup": ""
+              }
+            },
+            {
+              "column": {
+                "name": "serial_no",
+                "db_name": "SERIAL_NO",
+                "group_name": "Others",
+                "col_type": "NUMBER",
+                "heading": "Serial Number",
+                "descr": "Serial number entered manually by the user (not auto-generated)",
+                "x": "90",
+                "y": "90",
+                "col_id": "9",
+                "table_name": "EXPTRACK_TRIP",
+                "table_display_name": "Trip master table",
+                "db_size": "",
+                "width": 50,
+                "key": false,
+                "mandatory": false,
+                "hidden": "",
+                "format": "",
+                "default_function": "",
+                "default_value": "",
+                "expression": "",
+                "edit_mask": "",
+                "protect": "",
+                "validations": "",
+                "lookup": ""
+              }
+            },
+            {
+              "column": {
+                "name": "s_no",
+                "db_name": "S_NO",
+                "group_name": "Others",
+                "col_type": "NUMBER",
+                "heading": "S No",
+                "descr": "Internal sequence number",
+                "hidden": 1,
+                "x": "100",
+                "y": "100",
+                "col_id": "10",
+                "table_name": "EXPTRACK_TRIP",
+                "table_display_name": "Trip master table",
+                "db_size": "",
+                "width": 50,
+                "key": false,
+                "mandatory": false,
+                "format": "",
+                "default_function": "",
+                "default_value": "",
+                "expression": "",
+                "edit_mask": "",
+                "protect": "",
+                "validations": "",
+                "lookup": ""
+              }
+            },
+            {
+              "column": {
+                "name": "total_expense_amount",
+                "db_name": "TOTAL_EXPENSE_AMOUNT",
+                "group_name": "Others",
+                "col_type": "NUMBER",
+                "heading": "Total Expense Amount",
+                "descr": "Total expense amount for the trip. No longer auto-calculated (trip-expense linking removed).",
+                "x": "110",
+                "y": "110",
+                "col_id": "11",
+                "table_name": "EXPTRACK_TRIP",
+                "table_display_name": "Trip master table",
+                "db_size": "14,2",
+                "width": 150,
+                "key": false,
+                "mandatory": false,
+                "hidden": "",
+                "format": "",
+                "default_function": "",
+                "default_value": "",
+                "expression": "",
+                "edit_mask": "",
+                "protect": "",
+                "validations": "",
+                "lookup": ""
+              }
+            },
+            {
+              "column": {
+                "name": "created_date",
+                "db_name": "CREATED_DATE",
+                "group_name": "Others",
+                "col_type": "DATETIME",
+                "heading": "Created Date",
+                "descr": "Date the trip record was created",
+                "protect": "1",
+                "default_value": ":audit_add_date",
+                "x": "120",
+                "y": "120",
+                "col_id": "12",
+                "table_name": "EXPTRACK_TRIP",
+                "table_display_name": "Trip master table",
+                "db_size": "",
+                "width": 50,
+                "key": false,
+                "mandatory": false,
+                "hidden": "",
+                "format": "",
+                "default_function": "",
+                "expression": "",
+                "edit_mask": "",
+                "validations": "",
+                "lookup": ""
+              }
+            },
+            {
+              "column": {
+                "name": "add_user",
+                "db_name": "ADD_USER",
+                "group_name": "Others",
+                "col_type": "VARCHAR",
+                "heading": "Added By",
+                "protect": "1",
+                "hidden": 1,
+                "default_value": ":audit_add_user",
+                "x": "130",
+                "y": "130",
+                "col_id": "13",
+                "table_name": "EXPTRACK_TRIP",
+                "table_display_name": "Trip master table",
+                "db_size": "10",
+                "width": 100,
+                "key": false,
+                "mandatory": false,
+                "descr": "",
+                "format": "",
+                "default_function": "",
+                "expression": "",
+                "edit_mask": "",
+                "validations": "",
+                "lookup": ""
+              }
+            },
+            {
+              "column": {
+                "name": "add_term",
+                "db_name": "ADD_TERM",
+                "group_name": "Others",
+                "col_type": "VARCHAR",
+                "heading": "Added Terminal",
+                "protect": "1",
+                "hidden": 1,
+                "default_value": ":audit_add_terminal",
+                "x": "140",
+                "y": "140",
+                "col_id": "14",
+                "table_name": "EXPTRACK_TRIP",
+                "table_display_name": "Trip master table",
+                "db_size": "15",
+                "width": 150,
+                "key": false,
+                "mandatory": false,
+                "descr": "",
+                "format": "",
+                "default_function": "",
+                "expression": "",
+                "edit_mask": "",
+                "validations": "",
+                "lookup": ""
+              }
+            },
+            {
+              "column": {
+                "name": "chg_date",
+                "db_name": "CHG_DATE",
+                "group_name": "Others",
+                "col_type": "DATETIME",
+                "heading": "Changed Date",
+                "protect": "1",
+                "hidden": 1,
+                "default_value": ":audit_chg_date",
+                "x": "150",
+                "y": "150",
+                "col_id": "15",
+                "table_name": "EXPTRACK_TRIP",
+                "table_display_name": "Trip master table",
+                "db_size": "",
+                "width": 50,
+                "key": false,
+                "mandatory": false,
+                "descr": "",
+                "format": "",
+                "default_function": "",
+                "expression": "",
+                "edit_mask": "",
+                "validations": "",
+                "lookup": ""
+              }
+            },
+            {
+              "column": {
+                "name": "chg_user",
+                "db_name": "CHG_USER",
+                "group_name": "Others",
+                "col_type": "VARCHAR",
+                "heading": "Changed By",
+                "protect": "1",
+                "hidden": 1,
+                "default_value": ":audit_chg_user",
+                "x": "160",
+                "y": "160",
+                "col_id": "16",
+                "table_name": "EXPTRACK_TRIP",
+                "table_display_name": "Trip master table",
+                "db_size": "10",
+                "width": 100,
+                "key": false,
+                "mandatory": false,
+                "descr": "",
+                "format": "",
+                "default_function": "",
+                "expression": "",
+                "edit_mask": "",
+                "validations": "",
+                "lookup": ""
+              }
+            },
+            {
+              "column": {
+                "name": "chg_term",
+                "db_name": "CHG_TERM",
+                "group_name": "Others",
+                "col_type": "VARCHAR",
+                "heading": "Changed Terminal",
+                "protect": "1",
+                "hidden": 1,
+                "default_value": ":audit_chg_terminal",
+                "x": "170",
+                "y": "170",
+                "col_id": "17",
+                "table_name": "EXPTRACK_TRIP",
+                "table_display_name": "Trip master table",
+                "db_size": "15",
+                "width": 150,
+                "key": false,
+                "mandatory": false,
+                "descr": "",
+                "format": "",
+                "default_function": "",
+                "expression": "",
+                "edit_mask": "",
+                "validations": "",
+                "lookup": ""
+              }
+            }
+          ],
+          "joins": {
+            "join_predicates": {
+              "joins": [
+                {
+                  "table": "EXPTRACK_TRIP",
+                  "main_table": true,
+                  "table_descr": "Trip master table"
+                }
+              ]
+            }
+          },
+          "actions": []
+        }
+      }
+    ],
+    "actions": [],
+    "cross_updates": [],
+    "pre_commit": [],
+    "post_commit": [],
+    "attach_docs": [],
+    "follow_up_actions": [],
+    "vector_search": {
+      "enabled": true,
+      "columns": [
+        "trip_name",
+        "status"
+      ],
+      "key_column": "trip_id",
+      "display_column": "trip_name",
+      "allow_alias": true,
+      "auto": true,
+      "reason": "looked up by exptrack_approve_expense_report, exptrack_expense, exptrack_expense_report, exptrack_finance_payment; searched by trip_name plus status so same-named records stay distinguishable"
+    }
+  }
+}

@@ -1,0 +1,37 @@
+{
+  "object_name": "exptrack_finance_payment",
+  "tables": {
+    "EXPTRACK_EXPENSE_REPORT": [
+      "CHG_TERM",
+      "ADD_USER",
+      "PERIOD_TO",
+      "EMPLOYEE",
+      "APPROVER_COMMENTS",
+      "REPORT_TITLE",
+      "ADD_TERM",
+      "PERIOD_FROM",
+      "APPROVAL_DATE",
+      "DESCRIPTION",
+      "CURRENCY",
+      "PAYMENT_STATUS",
+      "REPORT_DATE",
+      "ADD_DATE",
+      "CHG_USER",
+      "PAYMENT_DATE",
+      "TOTAL_AMOUNT",
+      "PAYMENT_REFERENCE",
+      "CHG_DATE",
+      "RECEIPT_ATTACHMENT",
+      "APPROVER",
+      "PAYMENT_METHOD_NAME",
+      "REPORT_ID",
+      "CATEGORY_NAME",
+      "TRIP",
+      "STATUS"
+    ],
+    "EXPTRACK_TRIP": [
+      "TRIP_NAME",
+      "TRIP_ID"
+    ]
+  }
+}

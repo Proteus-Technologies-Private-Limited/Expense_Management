@@ -1,0 +1,91 @@
+{
+  "table_name": "EXPTRACK_BUDGET_LIMITATION",
+  "table_description": "",
+  "project": "Expense_Management",
+  "columns": [
+    {
+      "column_name": "BUDGET_LIMITATION_ID",
+      "data_type": "VARCHAR",
+      "size": "20",
+      "key": true,
+      "description": "System generated unique identifier",
+      "sequence": 1,
+      "mandatory": true
+    },
+    {
+      "column_name": "FINANCE_NAME",
+      "data_type": "VARCHAR",
+      "size": "100",
+      "key": false,
+      "description": "Name of the finance owner responsible for this budget",
+      "sequence": 2,
+      "mandatory": true
+    },
+    {
+      "column_name": "DEPARTMENT",
+      "data_type": "VARCHAR",
+      "size": "100",
+      "key": false,
+      "description": "Department this budget applies to",
+      "sequence": 3,
+      "mandatory": true
+    },
+    {
+      "column_name": "BUDGET_DOCUMENT",
+      "data_type": "VARCHAR",
+      "size": "500",
+      "key": false,
+      "description": "Uploaded document supporting the budget/limitation",
+      "sequence": 4,
+      "mandatory": true
+    },
+    {
+      "column_name": "ADD_DATE",
+      "data_type": "DATETIME",
+      "size": "",
+      "key": false,
+      "description": "",
+      "sequence": 5
+    },
+    {
+      "column_name": "ADD_USER",
+      "data_type": "VARCHAR",
+      "size": "10",
+      "key": false,
+      "description": "",
+      "sequence": 6
+    },
+    {
+      "column_name": "ADD_TERM",
+      "data_type": "VARCHAR",
+      "size": "15",
+      "key": false,
+      "description": "",
+      "sequence": 7
+    },
+    {
+      "column_name": "CHG_DATE",
+      "data_type": "DATETIME",
+      "size": "",
+      "key": false,
+      "description": "",
+      "sequence": 8
+    },
+    {
+      "column_name": "CHG_USER",
+      "data_type": "VARCHAR",
+      "size": "10",
+      "key": false,
+      "description": "",
+      "sequence": 9
+    },
+    {
+      "column_name": "CHG_TERM",
+      "data_type": "VARCHAR",
+      "size": "15",
+      "key": false,
+      "description": "",
+      "sequence": 10
+    }
+  ]
+}

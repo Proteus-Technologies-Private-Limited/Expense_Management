@@ -1,0 +1,175 @@
+{
+  "table_name": "EXPTRACK_PAYMENT_PROCESS",
+  "table_description": "",
+  "project": "Expense_Management",
+  "columns": [
+    {
+      "column_name": "PAYMENT_ID",
+      "data_type": "VARCHAR",
+      "size": "20",
+      "key": true,
+      "description": "System auto-generated unique identifier",
+      "sequence": 1,
+      "mandatory": true
+    },
+    {
+      "column_name": "EXPENSE_REPORT",
+      "data_type": "VARCHAR",
+      "size": "20",
+      "key": false,
+      "description": "The approved expense report being paid",
+      "sequence": 2,
+      "mandatory": true,
+      "lookup": {
+        "table": "EXPTRACK_EXPENSE_REPORT",
+        "display_column": "REPORT_TITLE",
+        "value_column": "REPORT_ID"
+      }
+    },
+    {
+      "column_name": "EXPENSE_ID",
+      "data_type": "VARCHAR",
+      "size": "20",
+      "key": false,
+      "description": "Source expense record this payment relates to, copied from Manage Approval",
+      "sequence": 3,
+      "mandatory": true
+    },
+    {
+      "column_name": "TRIP",
+      "data_type": "VARCHAR",
+      "size": "20",
+      "key": false,
+      "description": "Trip linked to the source expense, copied from Manage Approval",
+      "sequence": 4,
+      "mandatory": true
+    },
+    {
+      "column_name": "CATEGORY",
+      "data_type": "VARCHAR",
+      "size": "20",
+      "key": false,
+      "description": "Expense category, copied from Manage Approval",
+      "sequence": 5,
+      "mandatory": true
+    },
+    {
+      "column_name": "EXPENSE_DATE",
+      "data_type": "DATE",
+      "size": "",
+      "key": false,
+      "description": "Date the source expense was incurred, copied from Manage Approval",
+      "sequence": 6,
+      "mandatory": true
+    },
+    {
+      "column_name": "PAYMENT_METHOD",
+      "data_type": "VARCHAR",
+      "size": "20",
+      "key": false,
+      "description": "Payment method used for the expense, copied from Manage Approval",
+      "sequence": 7,
+      "mandatory": true
+    },
+    {
+      "column_name": "REPORT_TITLE",
+      "data_type": "VARCHAR",
+      "size": "150",
+      "key": false,
+      "description": "Reference detail auto-filled from the selected Expense Report",
+      "sequence": 8
+    },
+    {
+      "column_name": "REPORT_EMPLOYEE",
+      "data_type": "VARCHAR",
+      "size": "10",
+      "key": false,
+      "description": "Reference detail auto-filled from the selected Expense Report",
+      "sequence": 9,
+      "mandatory": true
+    },
+    {
+      "column_name": "REPORT_TOTAL_AMOUNT",
+      "data_type": "NUMBER",
+      "size": "14,2",
+      "key": false,
+      "description": "Reference detail auto-filled from the selected Expense Report",
+      "sequence": 10,
+      "mandatory": true
+    },
+    {
+      "column_name": "REPORT_STATUS",
+      "data_type": "VARCHAR",
+      "size": "20",
+      "key": false,
+      "description": "Reference detail auto-filled from the selected Expense Report",
+      "sequence": 11,
+      "mandatory": true
+    },
+    {
+      "column_name": "PAYMENT_DATE",
+      "data_type": "DATE",
+      "size": "",
+      "key": false,
+      "description": "Date the payment was processed",
+      "sequence": 12,
+      "mandatory": true
+    },
+    {
+      "column_name": "PAYMENT_AMOUNT",
+      "data_type": "NUMBER",
+      "size": "14,2",
+      "key": false,
+      "description": "Amount paid against the expense report",
+      "sequence": 13,
+      "mandatory": true
+    },
+    {
+      "column_name": "PAYMENT_REFERENCE",
+      "data_type": "VARCHAR",
+      "size": "100",
+      "key": false,
+      "description": "Optional reference/transaction number for the payment",
+      "sequence": 14
+    },
+    {
+      "column_name": "STATUS",
+      "data_type": "VARCHAR",
+      "size": "20",
+      "key": false,
+      "description": "Payment processing status",
+      "sequence": 15,
+      "mandatory": true,
+      "allowed_values": [
+        {
+          "value": "Pending",
+          "label": "Pending"
+        },
+        {
+          "value": "Paid",
+          "label": "Paid"
+        },
+        {
+          "value": "Failed",
+          "label": "Failed"
+        }
+      ]
+    },
+    {
+      "column_name": "CREATED_BY",
+      "data_type": "VARCHAR",
+      "size": "10",
+      "key": false,
+      "description": "Logged-in user who created this payment record",
+      "sequence": 16
+    },
+    {
+      "column_name": "CREATED_DATE",
+      "data_type": "DATETIME",
+      "size": "",
+      "key": false,
+      "description": "Timestamp when this payment record was created",
+      "sequence": 17
+    }
+  ]
+}

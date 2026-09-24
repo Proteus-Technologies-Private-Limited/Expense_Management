@@ -1,0 +1,21 @@
+{
+  "object_name": "exptrack_approval_rules",
+  "tables": {
+    "EXPTRACK_APPROVAL_RULES": [
+      "MIN_AMOUNT",
+      "STATUS",
+      "CREATED_BY",
+      "MAX_AMOUNT",
+      "RULE_ID",
+      "APPROVER_ROLE",
+      "CATEGORY",
+      "CREATED_DATE",
+      "CHG_DATE",
+      "CHG_USER"
+    ],
+    "EXPTRACK_EXPENSE_CATEGORY": [
+      "CATEGORY_CODE",
+      "CATEGORY_NAME"
+    ]
+  }
+}

@@ -1,0 +1,586 @@
+{
+  "transaction": {
+    "obj_name": "exptrack_budget_policy",
+    "sql_models": [
+      {
+        "sql_model": {
+          "form_title": "Budget Policy",
+          "form_descr": "Finance-managed budget policy tiers per department. The spending-limit tier and monthly/quarterly budget cap values are recorded in the uploaded Budget Policy Document rather than as typed fields. Screen opens blank - no records are fetched until the user runs Search or starts an Add, and no field carries a pre-populated default.",
+          "form_no": "1",
+          "main_table": "EXPTRACK_BUDGET_POLICY",
+          "columns": [
+            {
+              "column": {
+                "name": "BUDGET_POLICY_ID",
+                "db_name": "BUDGET_POLICY_ID",
+                "table_name": "EXPTRACK_BUDGET_POLICY",
+                "group_name": "Basic",
+                "col_type": "VARCHAR",
+                "heading": "Budget Policy ID",
+                "descr": "System auto-generated identifier in the format BGT-00001. Read-only; stamped on Add only, so the field is blank until the user starts a new record.",
+                "key": true,
+                "mandatory": true,
+                "protect": "1",
+                "default_value": "auto_generate_prefixed()",
+                "series": {
+                  "parts": [
+                    {
+                      "source": "const",
+                      "text": "BGT-"
+                    }
+                  ],
+                  "separator": "",
+                  "width": 5
+                },
+                "validations": [
+                  {
+                    "type": "builtin",
+                    "name": "Budget policy id unique",
+                    "error_code": "BGT_DUP",
+                    "message": "Budget Policy ID {form.BUDGET_POLICY_ID} already exists.",
+                    "builtin": {
+                      "kind": "must_be_unique"
+                    }
+                  }
+                ],
+                "x": "10",
+                "y": "10",
+                "col_id": "1",
+                "table_display_name": "Budget policy tier master (department budget and spending-limit tiers)",
+                "db_size": "20",
+                "width": 200,
+                "hidden": "",
+                "format": "",
+                "default_function": "",
+                "expression": "",
+                "edit_mask": "",
+                "lookup": ""
+              }
+            },
+            {
+              "column": {
+                "name": "DEPARTMENT",
+                "db_name": "DEPARTMENT",
+                "table_name": "EXPTRACK_BUDGET_POLICY",
+                "group_name": "Basic",
+                "col_type": "VARCHAR",
+                "heading": "Department",
+                "descr": "Free-text department name. The application has no Department master today, so this is entered manually and is not validated against another table.",
+                "mandatory": true,
+                "x": "20",
+                "y": "20",
+                "col_id": "2",
+                "table_display_name": "Budget policy tier master (department budget and spending-limit tiers)",
+                "db_size": "100",
+                "width": 500,
+                "key": false,
+                "hidden": "",
+                "format": "",
+                "default_function": "",
+                "default_value": "",
+                "expression": "",
+                "edit_mask": "",
+                "protect": "",
+                "validations": "",
+                "lookup": ""
+              }
+            },
+            {
+              "column": {
+                "name": "TIER_NAME",
+                "db_name": "TIER_NAME",
+                "table_name": "EXPTRACK_BUDGET_POLICY",
+                "group_name": "Basic",
+                "col_type": "VARCHAR",
+                "heading": "Tier Name",
+                "descr": "Spending limit tier for this department (e.g. Tier 1, Tier 2, Tier 3).",
+                "mandatory": true,
+                "x": "30",
+                "y": "30",
+                "col_id": "3",
+                "table_display_name": "Budget policy tier master (department budget and spending-limit tiers)",
+                "db_size": "100",
+                "width": 500,
+                "key": false,
+                "hidden": "",
+                "format": "",
+                "default_function": "",
+                "default_value": "",
+                "expression": "",
+                "edit_mask": "",
+                "protect": "",
+                "validations": "",
+                "lookup": ""
+              }
+            },
+            {
+              "column": {
+                "name": "STATUS",
+                "db_name": "STATUS",
+                "table_name": "EXPTRACK_BUDGET_POLICY",
+                "group_name": "Basic",
+                "col_type": "VARCHAR",
+                "heading": "Status",
+                "descr": "Active or Inactive. No default is pre-populated - the screen opens blank and Finance selects the value. Setting the tier Inactive locks the Budget Utilized and Budget Policy Document fields.",
+                "mandatory": true,
+                "edit_mask": {
+                  "mask": "ddlb",
+                  "values": [
+                    {
+                      "data": "A",
+                      "display": "Active"
+                    },
+                    {
+                      "data": "I",
+                      "display": "Inactive"
+                    }
+                  ]
+                },
+                "item_change": {
+                  "mode": "rule",
+                  "fill": [
+                    {
+                      "form_col": "BUDGET_UTILIZED",
+                      "expr": "{form.BUDGET_UTILIZED}"
+                    },
+                    {
+                      "form_col": "BUDGET_POLICY_DOCUMENT",
+                      "expr": "{form.BUDGET_POLICY_DOCUMENT}"
+                    }
+                  ],
+                  "protect": [
+                    {
+                      "form_col": "BUDGET_UTILIZED",
+                      "when": "{form.STATUS} == \"I\""
+                    },
+                    {
+                      "form_col": "BUDGET_POLICY_DOCUMENT",
+                      "when": "{form.STATUS} == \"I\""
+                    }
+                  ]
+                },
+                "display": {
+                  "type": "status_tag",
+                  "map": [
+                    {
+                      "when": "A",
+                      "color": "green",
+                      "icon": "\u2713",
+                      "label": "Active"
+                    },
+                    {
+                      "when": "I",
+                      "color": "grey",
+                      "icon": "\u2298",
+                      "label": "Inactive"
+                    }
+                  ],
+                  "defaultColor": "grey"
+                },
+                "x": "40",
+                "y": "40",
+                "col_id": "4",
+                "table_display_name": "Budget policy tier master (department budget and spending-limit tiers)",
+                "db_size": "1",
+                "width": 50,
+                "key": false,
+                "hidden": "",
+                "format": "",
+                "default_function": "",
+                "default_value": "",
+                "expression": "",
+                "protect": "",
+                "validations": "",
+                "lookup": ""
+              }
+            },
+            {
+              "column": {
+                "name": "BUDGET_POLICY_DOCUMENT",
+                "db_name": "BUDGET_POLICY_DOCUMENT",
+                "table_name": "EXPTRACK_BUDGET_POLICY",
+                "group_name": "Policy Document",
+                "col_type": "VARCHAR",
+                "heading": "Budget Policy Document",
+                "descr": "Uploaded document recording this tier's spending limit and monthly/quarterly budget cap values. Finance uploads, views and removes it; Employees view/download the same current file read-only. Stores the uploaded file URL.",
+                "edit_mask": {
+                  "mask": "document"
+                },
+                "display": {
+                  "type": "file",
+                  "label": "Policy Document"
+                },
+                "x": "50",
+                "y": "50",
+                "col_id": "5",
+                "table_display_name": "Budget policy tier master (department budget and spending-limit tiers)",
+                "db_size": "500",
+                "width": 500,
+                "key": false,
+                "mandatory": false,
+                "hidden": "",
+                "format": "",
+                "default_function": "",
+                "default_value": "",
+                "expression": "",
+                "protect": "",
+                "validations": "",
+                "lookup": ""
+              }
+            },
+            {
+              "column": {
+                "name": "BUDGET_UTILIZED",
+                "db_name": "BUDGET_UTILIZED",
+                "table_name": "EXPTRACK_BUDGET_POLICY",
+                "group_name": "Utilization",
+                "col_type": "NUMBER",
+                "heading": "Budget Utilized",
+                "descr": "Budget utilization entered manually by Finance (expenses are tracked by Employee, not by Department, so this is not auto-calculated).",
+                "validations": [
+                  {
+                    "type": "builtin",
+                    "name": "Budget utilized not negative",
+                    "error_code": "BGT_UTIL_NEG",
+                    "message": "Budget Utilized cannot be negative.",
+                    "builtin": {
+                      "kind": "value_in_range",
+                      "min": {
+                        "source": "const",
+                        "value": "0"
+                      }
+                    }
+                  }
+                ],
+                "display": {
+                  "type": "number",
+                  "numberStyle": "decimal",
+                  "decimals": 2
+                },
+                "x": "60",
+                "y": "60",
+                "col_id": "6",
+                "table_display_name": "Budget policy tier master (department budget and spending-limit tiers)",
+                "db_size": "14,2",
+                "width": 150,
+                "key": false,
+                "mandatory": false,
+                "hidden": "",
+                "format": "",
+                "default_function": "",
+                "default_value": "",
+                "expression": "",
+                "edit_mask": "",
+                "protect": "",
+                "lookup": ""
+              }
+            },
+            {
+              "column": {
+                "name": "CREATED_BY",
+                "db_name": "CREATED_BY",
+                "table_name": "EXPTRACK_BUDGET_POLICY",
+                "group_name": "Others",
+                "col_type": "VARCHAR",
+                "heading": "Created By",
+                "descr": "User who created the budget policy tier (stamped on create).",
+                "default_value": "logged_in_user()",
+                "protect": "1",
+                "x": "70",
+                "y": "70",
+                "col_id": "7",
+                "table_display_name": "Budget policy tier master (department budget and spending-limit tiers)",
+                "db_size": "10",
+                "width": 100,
+                "key": false,
+                "mandatory": false,
+                "hidden": "",
+                "format": "",
+                "default_function": "",
+                "expression": "",
+                "edit_mask": "",
+                "validations": "",
+                "lookup": ""
+              }
+            },
+            {
+              "column": {
+                "name": "CREATED_DATE",
+                "db_name": "CREATED_DATE",
+                "table_name": "EXPTRACK_BUDGET_POLICY",
+                "group_name": "Others",
+                "col_type": "DATETIME",
+                "heading": "Created Date",
+                "descr": "Date and time the budget policy tier was created (stamped on create).",
+                "default_value": "now()",
+                "protect": "1",
+                "x": "80",
+                "y": "80",
+                "col_id": "8",
+                "table_display_name": "Budget policy tier master (department budget and spending-limit tiers)",
+                "db_size": "",
+                "width": 50,
+                "key": false,
+                "mandatory": false,
+                "hidden": "",
+                "format": "",
+                "default_function": "",
+                "expression": "",
+                "edit_mask": "",
+                "validations": "",
+                "lookup": ""
+              }
+            },
+            {
+              "column": {
+                "name": "ADD_DATE",
+                "db_name": "ADD_DATE",
+                "table_name": "EXPTRACK_BUDGET_POLICY",
+                "group_name": "Others",
+                "col_type": "DATETIME",
+                "heading": "Add Date",
+                "descr": "Audit: record insert timestamp.",
+                "default_value": ":audit_add_date",
+                "protect": "1",
+                "x": "90",
+                "y": "90",
+                "col_id": "9",
+                "table_display_name": "Budget policy tier master (department budget and spending-limit tiers)",
+                "db_size": "",
+                "width": 50,
+                "key": false,
+                "mandatory": false,
+                "hidden": "",
+                "format": "",
+                "default_function": "",
+                "expression": "",
+                "edit_mask": "",
+                "validations": "",
+                "lookup": ""
+              }
+            },
+            {
+              "column": {
+                "name": "ADD_USER",
+                "db_name": "ADD_USER",
+                "table_name": "EXPTRACK_BUDGET_POLICY",
+                "group_name": "Others",
+                "col_type": "VARCHAR",
+                "heading": "Add User",
+                "descr": "Audit: user who inserted the record.",
+                "default_value": ":audit_add_user",
+                "protect": "1",
+                "x": "100",
+                "y": "100",
+                "col_id": "10",
+                "table_display_name": "Budget policy tier master (department budget and spending-limit tiers)",
+                "db_size": "10",
+                "width": 100,
+                "key": false,
+                "mandatory": false,
+                "hidden": "",
+                "format": "",
+                "default_function": "",
+                "expression": "",
+                "edit_mask": "",
+                "validations": "",
+                "lookup": ""
+              }
+            },
+            {
+              "column": {
+                "name": "ADD_TERM",
+                "db_name": "ADD_TERM",
+                "table_name": "EXPTRACK_BUDGET_POLICY",
+                "group_name": "Others",
+                "col_type": "VARCHAR",
+                "heading": "Add Terminal",
+                "descr": "Audit: terminal the record was inserted from.",
+                "default_value": ":audit_add_terminal",
+                "protect": "1",
+                "x": "110",
+                "y": "110",
+                "col_id": "11",
+                "table_display_name": "Budget policy tier master (department budget and spending-limit tiers)",
+                "db_size": "15",
+                "width": 150,
+                "key": false,
+                "mandatory": false,
+                "hidden": "",
+                "format": "",
+                "default_function": "",
+                "expression": "",
+                "edit_mask": "",
+                "validations": "",
+                "lookup": ""
+              }
+            },
+            {
+              "column": {
+                "name": "CHG_DATE",
+                "db_name": "CHG_DATE",
+                "table_name": "EXPTRACK_BUDGET_POLICY",
+                "group_name": "Others",
+                "col_type": "DATETIME",
+                "heading": "Change Date",
+                "descr": "Audit: last update timestamp.",
+                "default_value": ":audit_chg_date",
+                "protect": "1",
+                "x": "120",
+                "y": "120",
+                "col_id": "12",
+                "table_display_name": "Budget policy tier master (department budget and spending-limit tiers)",
+                "db_size": "",
+                "width": 50,
+                "key": false,
+                "mandatory": false,
+                "hidden": "",
+                "format": "",
+                "default_function": "",
+                "expression": "",
+                "edit_mask": "",
+                "validations": "",
+                "lookup": ""
+              }
+            },
+            {
+              "column": {
+                "name": "CHG_USER",
+                "db_name": "CHG_USER",
+                "table_name": "EXPTRACK_BUDGET_POLICY",
+                "group_name": "Others",
+                "col_type": "VARCHAR",
+                "heading": "Change User",
+                "descr": "Audit: user who last updated the record.",
+                "default_value": ":audit_chg_user",
+                "protect": "1",
+                "x": "130",
+                "y": "130",
+                "col_id": "13",
+                "table_display_name": "Budget policy tier master (department budget and spending-limit tiers)",
+                "db_size": "10",
+                "width": 100,
+                "key": false,
+                "mandatory": false,
+                "hidden": "",
+                "format": "",
+                "default_function": "",
+                "expression": "",
+                "edit_mask": "",
+                "validations": "",
+                "lookup": ""
+              }
+            },
+            {
+              "column": {
+                "name": "CHG_TERM",
+                "db_name": "CHG_TERM",
+                "table_name": "EXPTRACK_BUDGET_POLICY",
+                "group_name": "Others",
+                "col_type": "VARCHAR",
+                "heading": "Change Terminal",
+                "descr": "Audit: terminal of the last update.",
+                "default_value": ":audit_chg_terminal",
+                "protect": "1",
+                "x": "140",
+                "y": "140",
+                "col_id": "14",
+                "table_display_name": "Budget policy tier master (department budget and spending-limit tiers)",
+                "db_size": "15",
+                "width": 150,
+                "key": false,
+                "mandatory": false,
+                "hidden": "",
+                "format": "",
+                "default_function": "",
+                "expression": "",
+                "edit_mask": "",
+                "validations": "",
+                "lookup": ""
+              }
+            }
+          ],
+          "validations": [
+            {
+              "type": "expression",
+              "name": "Department required",
+              "error_code": "BGT_DEPT_REQ",
+              "message": "Department is mandatory.",
+              "expression": "not_empty({form.DEPARTMENT})"
+            },
+            {
+              "type": "expression",
+              "name": "Tier name required",
+              "error_code": "BGT_TIER_REQ",
+              "message": "Tier Name is mandatory.",
+              "expression": "not_empty({form.TIER_NAME})"
+            },
+            {
+              "type": "expression",
+              "name": "Status must be Active or Inactive",
+              "error_code": "BGT_STATUS",
+              "message": "Status must be Active or Inactive.",
+              "expression": "in_list({form.STATUS}, \"A,I\")"
+            }
+          ],
+          "actions": [],
+          "cross_updates": [],
+          "joins": {
+            "join_predicates": {
+              "joins": [
+                {
+                  "table": "EXPTRACK_BUDGET_POLICY",
+                  "main_table": true,
+                  "table_descr": "Budget policy tier master (department budget and spending-limit tiers)"
+                }
+              ]
+            }
+          }
+        }
+      }
+    ],
+    "actions": [
+      {
+        "name": "Remove Document",
+        "handler": "item_change",
+        "scope": "row",
+        "business_logic": {
+          "method": "remove_budget_policy_document",
+          "description": "Remove the uploaded budget policy document",
+          "spec": "Clear the uploaded Budget Policy Document from the current EXPTRACK_BUDGET_POLICY record: UPDATE EXPTRACK_BUDGET_POLICY SET BUDGET_POLICY_DOCUMENT = NULL, CHG_DATE = current timestamp, CHG_USER = the acting user WHERE BUDGET_POLICY_ID = the payload's BUDGET_POLICY_ID. Return {\"updates\": {\"BUDGET_POLICY_DOCUMENT\": \"\"}} so the form field clears immediately. If the record carries no document, return {\"error\": \"No budget policy document is attached to this tier.\"}."
+        },
+        "visible_when": "not_empty({form.BUDGET_POLICY_DOCUMENT})",
+        "validations": [
+          {
+            "type": "expression",
+            "name": "Document must exist",
+            "error_code": "BGT_NO_DOC",
+            "message": "There is no budget policy document to remove on {form.BUDGET_POLICY_ID}.",
+            "expression": "not_empty({form.BUDGET_POLICY_DOCUMENT})"
+          }
+        ],
+        "confirmation": {
+          "mode": "reconfirm",
+          "message": "Remove the budget policy document from {form.DEPARTMENT} / {form.TIER_NAME}?"
+        }
+      },
+      {
+        "name": "Delete",
+        "handler": "system",
+        "system_op": "delete",
+        "scope": "row",
+        "confirmation": {
+          "mode": "reconfirm",
+          "message": "Delete budget policy tier {form.BUDGET_POLICY_ID} ({form.DEPARTMENT} / {form.TIER_NAME})?"
+        }
+      }
+    ],
+    "cross_updates": [],
+    "pre_commit": [],
+    "post_commit": [],
+    "follow_up_actions": [],
+    "attach_docs": [
+      "Budget Policy Document"
+    ]
+  }
+}

@@ -1,0 +1,99 @@
+{
+  "DASHBOARD": {
+    "DASHBOARD_ID": "EXPTRACK_ADMIN_DASHBOARD",
+    "DASHBOARD_TYPE": "S",
+    "DASHBOARD_NAME": "Administrator Dashboard",
+    "DASHBOARD_DESCR": "System-wide operational analytics",
+    "CREATED_BY": "admin",
+    "CREATED_DATE": "2026-08-19",
+    "REFRESH_INTERVAL_SECONDS": 0,
+
+    "GLOBAL_CRITERIA": [
+      {
+        "PARAM_NAME": "FROM_DATE",
+        "PROMPT_LABEL": "From Date",
+        "DEFAULT_VALUE": ":calendar_month_start",
+        "DATA_TYPE": "date",
+        "OPERATOR": ">=",
+        "BROADCAST_TO": ["VIS_TOTAL_TRIPS", "VIS_TOTAL_EXPENSES_LOGGED", "VIS_TOTAL_ACTIVITIES", "VIS_ACTIVITIES_BY_TYPE", "VIS_SYSTEM_ACTIVITY_TREND"]
+      },
+      {
+        "PARAM_NAME": "TO_DATE",
+        "PROMPT_LABEL": "To Date",
+        "DEFAULT_VALUE": ":calendar_today",
+        "DATA_TYPE": "date",
+        "OPERATOR": "<=",
+        "BROADCAST_TO": ["VIS_TOTAL_TRIPS", "VIS_TOTAL_EXPENSES_LOGGED", "VIS_TOTAL_ACTIVITIES", "VIS_ACTIVITIES_BY_TYPE", "VIS_SYSTEM_ACTIVITY_TREND"]
+      }
+    ],
+
+    "VISUALS": [
+      {
+        "VISUAL_ID": "VIS_TOTAL_TRIPS",
+        "VISUAL_NAME": "Total Trips",
+        "POSITION": { "X": 0, "Y": 0, "WIDTH": 3, "HEIGHT": 2 },
+        "VISUAL_CONFIG_REF": "model_exptrack_total_trips.json",
+        "CRITERIA_BINDINGS": [
+          { "VISUAL_PARAM": "from_date", "BIND_TYPE": "global", "GLOBAL_PARAM": "FROM_DATE" },
+          { "VISUAL_PARAM": "to_date", "BIND_TYPE": "global", "GLOBAL_PARAM": "TO_DATE" }
+        ]
+      },
+      {
+        "VISUAL_ID": "VIS_TOTAL_EXPENSES_LOGGED",
+        "VISUAL_NAME": "Total Expenses Logged",
+        "POSITION": { "X": 3, "Y": 0, "WIDTH": 3, "HEIGHT": 2 },
+        "VISUAL_CONFIG_REF": "model_exptrack_total_expenses_logged.json",
+        "CRITERIA_BINDINGS": [
+          { "VISUAL_PARAM": "from_date", "BIND_TYPE": "global", "GLOBAL_PARAM": "FROM_DATE" },
+          { "VISUAL_PARAM": "to_date", "BIND_TYPE": "global", "GLOBAL_PARAM": "TO_DATE" }
+        ]
+      },
+      {
+        "VISUAL_ID": "VIS_TOTAL_ACTIVITIES",
+        "VISUAL_NAME": "Total Activity Log Entries",
+        "POSITION": { "X": 6, "Y": 0, "WIDTH": 3, "HEIGHT": 2 },
+        "VISUAL_CONFIG_REF": "model_exptrack_activity_log_total.json",
+        "CRITERIA_BINDINGS": [
+          { "VISUAL_PARAM": "from_date", "BIND_TYPE": "global", "GLOBAL_PARAM": "FROM_DATE" },
+          { "VISUAL_PARAM": "to_date", "BIND_TYPE": "global", "GLOBAL_PARAM": "TO_DATE" }
+        ]
+      },
+      {
+        "VISUAL_ID": "VIS_ACTIVITIES_BY_TYPE",
+        "VISUAL_NAME": "Activities by Type",
+        "POSITION": { "X": 0, "Y": 2, "WIDTH": 6, "HEIGHT": 4 },
+        "VISUAL_CONFIG_REF": "model_exptrack_activity_by_type.json",
+        "CRITERIA_BINDINGS": [
+          { "VISUAL_PARAM": "from_date", "BIND_TYPE": "global", "GLOBAL_PARAM": "FROM_DATE" },
+          { "VISUAL_PARAM": "to_date", "BIND_TYPE": "global", "GLOBAL_PARAM": "TO_DATE" }
+        ]
+      },
+      {
+        "VISUAL_ID": "VIS_SYSTEM_ACTIVITY_TREND",
+        "VISUAL_NAME": "System Activity Trend",
+        "POSITION": { "X": 6, "Y": 2, "WIDTH": 6, "HEIGHT": 4 },
+        "VISUAL_CONFIG_REF": "model_exptrack_system_activity_trend.json",
+        "CRITERIA_BINDINGS": [
+          { "VISUAL_PARAM": "from_date", "BIND_TYPE": "global", "GLOBAL_PARAM": "FROM_DATE" },
+          { "VISUAL_PARAM": "to_date", "BIND_TYPE": "global", "GLOBAL_PARAM": "TO_DATE" }
+        ]
+      },
+      {
+        "VISUAL_ID": "VIS_MASTER_DATA_SUMMARY",
+        "VISUAL_NAME": "Master Data Summary",
+        "POSITION": { "X": 0, "Y": 6, "WIDTH": 12, "HEIGHT": 4 },
+        "VISUAL_CONFIG_REF": "model_exptrack_master_data_summary.json",
+        "CRITERIA_BINDINGS": []
+      }
+    ],
+
+    "DRILL_THROUGH": [
+      {
+        "SOURCE_VISUAL_ID": "VIS_ACTIVITIES_BY_TYPE",
+        "TARGET_TYPE": "dashboard",
+        "TARGET_DASHBOARD_ID": "EXPTRACK_ACTIVITY_LOG_DASHBOARD",
+        "PARAM_MAPPING": { "ACTIVITY_TYPE": "ACTIVITY_TYPE", "FROM_DATE": "FROM_DATE", "TO_DATE": "TO_DATE" }
+      }
+    ]
+  }
+}

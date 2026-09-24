@@ -1,0 +1,111 @@
+{
+  "DATA_SOURCE_MODE": "sql",
+  "SQLMODEL": {
+    "SQLModel": { "COLUMNS": [ { "COLUMN": [] } ] },
+    "CRITERIA": {
+      "query": {
+        "condition": "and",
+        "rules": [
+          {
+            "id": "Criteria_1",
+            "field": "PAYMENT_PROCESS_STATUS",
+            "DBNAME": "PAYMENT_PROCESS_STATUS",
+            "tableName": "EXPTRACK_EXPENSE",
+            "COLTYPE": "string",
+            "currentFieldType": "string",
+            "operator": "like",
+            "queryOption": "P",
+            "prevOption": "P",
+            "customValue": "FixedValue",
+            "promptLabel": "Payment Process Status",
+            "promptVar": "status_filter",
+            "value": "%",
+            "chipValue": [],
+            "options": [
+              { "data": "Proceed", "display": "Proceed" },
+              { "data": "Not Proceed", "display": "Not Proceed" }
+            ]
+          }
+        ]
+      }
+    },
+    "VISUAL_NAME": "Column",
+    "SCHEMA_NAME": "EXPTRACK_PAYMENT_PROCESS_STATUS_COUNT",
+    "SCHEMA_DESCR": "Payment Process Status Count",
+    "SCHEMA_TYPE": "S",
+    "OUTPUT_TYPE": "JSON",
+    "DATABASE_TYPE": "1",
+    "DATABASE_DETAIL": { "DATABASE_NAME": "PostgreSQL", "TYPE": 1 }
+  },
+  "LAYOUT_DATA": {
+    "visualLayout": {
+      "ID": "column",
+      "VisualName": "Column",
+      "VisualType": "Standard",
+      "VisualIcon": "Column.svg",
+      "DisplayOrder": "1",
+      "className": "InsightColumnChart",
+      "linkOptions": "",
+      "OutputType": "JSON",
+      "options": [
+        { "optionId": 1, "optionName": "showGrandTotals", "optionHeading": "Show Grand Totals", "dataType": "string", "defaultValue": "off", "listOfValues": "off,on", "allowChange": "true", "optionType": "inner" },
+        { "optionId": 2, "optionName": "showTotals", "optionHeading": "Show Totals", "dataType": "string", "defaultValue": "off", "listOfValues": "off,on", "allowChange": "true", "optionType": "inner" },
+        { "optionId": 3, "optionName": "showDataLabels", "optionHeading": "Show Data Labels", "dataType": "boolean", "defaultValue": "true", "listOfValues": "true,false", "allowChange": "true", "optionType": "inner" },
+        { "optionId": 4, "optionName": "showAxisTitle", "optionHeading": "Show Axis Title", "dataType": "boolean", "defaultValue": "true", "listOfValues": "true,false", "allowChange": "true", "optionType": "inner" },
+        { "optionId": 5, "optionName": "toolbar", "optionHeading": "Toolbar", "dataType": "boolean", "defaultValue": "true", "listOfValues": "true,false", "allowChange": "true", "optionType": "inner" },
+        { "optionId": 6, "optionName": "autoRefreshSeconds", "optionHeading": "Auto Refresh Seconds", "dataType": "number", "defaultValue": "0", "listOfValues": "", "allowChange": "true", "optionType": "inner" }
+      ],
+      "ColumnGroups": [
+        {
+          "GroupID": 1, "GroupName": "Rows", "StandardName": "Rows",
+          "AllowedColumnTypes": "ANY", "MinColumns": 0, "MaxColumns": 0,
+          "COLUMNS": [
+            {
+              "COLID": 2, "NAME": "PAYMENT_PROCESS_STATUS",
+              "DBTABLE": "EXPTRACK_EXPENSE", "DBNAME": "PAYMENT_PROCESS_STATUS",
+              "tableName": "EXPTRACK_EXPENSE", "tableDisplayName": "Expense",
+              "content": "Payment Process Status", "name": "Payment Process Status",
+              "descr": "Payment process status of the expense",
+              "type": "string", "JAVATYPE": "java.lang.String", "COLTYPE": "CHAR",
+              "NATIVETYPE": "VARCHAR2", "DBSIZE": 20, "EXPRESSIONTYPE": "C",
+              "DEFAULTFUNCTION": "", "FUNCTION": "", "FEILD_TYPE": "TEXTBOX",
+              "ALIGNMENT": 1, "alignment": "", "WIDTH": 150, "FONT": "TIMES NEW ROMAN",
+              "FONTSIZE": 12, "FGCOLOR": "#000000", "BGCOLOR": "", "BOLD": 0,
+              "ITALIC": 0, "UNDERLINE": 0, "HIDDEN": "", "KEY": false, "CAPS": false,
+              "ADV_FORMAT": "", "expression": "", "value": "",
+              "groupName": "Rows", "StandardName": "Rows", "checked": true
+            }
+          ]
+        },
+        {
+          "GroupID": 2, "GroupName": "Columns", "StandardName": "Columns",
+          "AllowedColumnTypes": "ANY", "MinColumns": 0, "MaxColumns": 0,
+          "COLUMNS": []
+        },
+        {
+          "GroupID": 3, "GroupName": "Values", "StandardName": "Values",
+          "AllowedColumnTypes": "ANY", "MinColumns": 0, "MaxColumns": 0,
+          "COLUMNS": [
+            {
+              "COLID": 3, "NAME": "EXPENSE_COUNT",
+              "DBTABLE": "EXPTRACK_EXPENSE", "DBNAME": "EXPENSE_ID",
+              "tableName": "EXPTRACK_EXPENSE", "tableDisplayName": "Expense",
+              "content": "Expense Count", "name": "Expense Count",
+              "descr": "Count of expense records",
+              "type": "number", "JAVATYPE": "java.lang.Integer", "COLTYPE": "NUMBER",
+              "NATIVETYPE": "NUMBER", "DBSIZE": 20, "EXPRESSIONTYPE": "G",
+              "DEFAULTFUNCTION": "COUNT", "FUNCTION": "COUNT", "FEILD_TYPE": "TEXTBOX",
+              "ALIGNMENT": 2, "alignment": "", "WIDTH": 120, "FONT": "TIMES NEW ROMAN",
+              "FONTSIZE": 12, "FGCOLOR": "#000000", "BGCOLOR": "", "BOLD": 0,
+              "ITALIC": 0, "UNDERLINE": 0, "HIDDEN": "", "KEY": false, "CAPS": false,
+              "ADV_FORMAT": "", "expression": "", "value": "",
+              "groupName": "Values", "StandardName": "Values", "checked": true
+            }
+          ]
+        }
+      ]
+    },
+    "layoutdata": {}
+  },
+  "SOURCE_SQL": "SELECT payment_process_status AS PAYMENT_PROCESS_STATUS, COUNT(expense_id) AS EXPENSE_COUNT FROM exptrack_expense WHERE payment_process_status LIKE ?.status_filter GROUP BY payment_process_status"
+}

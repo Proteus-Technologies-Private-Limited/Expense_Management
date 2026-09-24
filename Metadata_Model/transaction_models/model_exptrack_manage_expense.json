@@ -1,0 +1,14 @@
+{
+  "transaction": {
+    "obj_name": "exptrack_manage_expense",
+    "deleted": true,
+    "deleted_note": "Screen-only removal. The Manage Expense screen (exptrack_manage_expense) has been withdrawn. The underlying tables EXPTRACK_EXPENSE_REPORT and EXPTRACK_EXPENSE and all of their columns and data are PRESERVED and are still used by exptrack_approval_expense, exptrack_finance_payment, exptrack_finance_processing, exptrack_manage_reports and exptrack_expense. No table or column may be dropped or altered as a result of this removal.",
+    "sql_models": [],
+    "actions": [],
+    "cross_updates": [],
+    "pre_commit": [],
+    "post_commit": [],
+    "follow_up_actions": [],
+    "attach_docs": []
+  }
+}

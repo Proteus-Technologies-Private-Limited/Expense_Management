@@ -1,0 +1,237 @@
+{
+  "transaction": {
+    "obj_name": "exptrack_expense_category",
+    "sql_models": [
+      {
+        "sql_model": {
+          "form_title": "Expense Category",
+          "form_descr": "Maintain the standard list of expense categories used to classify expenses",
+          "form_no": "1",
+          "main_table": "EXPTRACK_EXPENSE_CATEGORY",
+          "columns": [
+            {
+              "column": {
+                "name": "category_code",
+                "db_name": "CATEGORY_CODE",
+                "group_name": "Basic",
+                "col_type": "VARCHAR",
+                "heading": "Category Code",
+                "descr": "Unique code identifying the expense category",
+                "key": true,
+                "mandatory": true,
+                "validations": [
+                  {
+                    "type": "builtin",
+                    "name": "Category code unique",
+                    "error_code": "CAT_CODE_DUP",
+                    "message": "Category code {form.category_code} already exists.",
+                    "builtin": {
+                      "kind": "must_be_unique"
+                    }
+                  }
+                ],
+                "x": "10",
+                "y": "10",
+                "col_id": "1",
+                "table_name": "EXPTRACK_EXPENSE_CATEGORY",
+                "table_display_name": "Expense category master",
+                "db_size": "20",
+                "width": 200,
+                "hidden": "",
+                "format": "",
+                "default_function": "",
+                "default_value": "",
+                "expression": "",
+                "edit_mask": "",
+                "protect": "",
+                "lookup": ""
+              }
+            },
+            {
+              "column": {
+                "name": "category_name",
+                "db_name": "CATEGORY_NAME",
+                "group_name": "Basic",
+                "col_type": "VARCHAR",
+                "heading": "Category Name",
+                "descr": "Name of the expense category, e.g. Travel, Lodging, Meals",
+                "mandatory": true,
+                "x": "20",
+                "y": "20",
+                "col_id": "2",
+                "table_name": "EXPTRACK_EXPENSE_CATEGORY",
+                "table_display_name": "Expense category master",
+                "db_size": "100",
+                "width": 500,
+                "key": false,
+                "hidden": "",
+                "format": "",
+                "default_function": "",
+                "default_value": "",
+                "expression": "",
+                "edit_mask": "",
+                "protect": "",
+                "validations": "",
+                "lookup": ""
+              }
+            },
+            {
+              "column": {
+                "name": "description",
+                "db_name": "DESCRIPTION",
+                "group_name": "Basic",
+                "col_type": "VARCHAR",
+                "heading": "Description",
+                "descr": "Optional additional detail about this category",
+                "x": "30",
+                "y": "30",
+                "col_id": "3",
+                "table_name": "EXPTRACK_EXPENSE_CATEGORY",
+                "table_display_name": "Expense category master",
+                "db_size": "250",
+                "width": 500,
+                "key": false,
+                "mandatory": false,
+                "hidden": "",
+                "format": "",
+                "default_function": "",
+                "default_value": "",
+                "expression": "",
+                "edit_mask": "",
+                "protect": "",
+                "validations": "",
+                "lookup": ""
+              }
+            },
+            {
+              "column": {
+                "name": "status",
+                "db_name": "STATUS",
+                "group_name": "Basic",
+                "col_type": "VARCHAR",
+                "heading": "Status",
+                "descr": "Active categories are selectable on Manage Expense; Inactive categories are retired but remain visible on historical records and Visuals",
+                "default_value": "A",
+                "mandatory": true,
+                "edit_mask": {
+                  "mask": "ddlb",
+                  "values": [
+                    {
+                      "data": "A",
+                      "display": "Active"
+                    },
+                    {
+                      "data": "I",
+                      "display": "Inactive"
+                    }
+                  ]
+                },
+                "x": "40",
+                "y": "40",
+                "col_id": "4",
+                "table_name": "EXPTRACK_EXPENSE_CATEGORY",
+                "table_display_name": "Expense category master",
+                "db_size": "1",
+                "width": 50,
+                "key": false,
+                "hidden": "",
+                "format": "",
+                "default_function": "",
+                "expression": "",
+                "protect": "",
+                "validations": "",
+                "lookup": ""
+              }
+            },
+            {
+              "column": {
+                "name": "created_by",
+                "db_name": "CREATED_BY",
+                "group_name": "Others",
+                "col_type": "VARCHAR",
+                "heading": "Created By",
+                "descr": "User who created this category record",
+                "default_value": "logged_in_user()",
+                "protect": "1",
+                "x": "50",
+                "y": "50",
+                "col_id": "5",
+                "table_name": "EXPTRACK_EXPENSE_CATEGORY",
+                "table_display_name": "Expense category master",
+                "db_size": "10",
+                "width": 100,
+                "key": false,
+                "mandatory": false,
+                "hidden": "",
+                "format": "",
+                "default_function": "",
+                "expression": "",
+                "edit_mask": "",
+                "validations": "",
+                "lookup": ""
+              }
+            },
+            {
+              "column": {
+                "name": "created_date",
+                "db_name": "CREATED_DATE",
+                "group_name": "Others",
+                "col_type": "DATETIME",
+                "heading": "Created Date",
+                "descr": "Date/time this category record was created",
+                "default_value": ":audit_add_date",
+                "protect": "1",
+                "x": "60",
+                "y": "60",
+                "col_id": "6",
+                "table_name": "EXPTRACK_EXPENSE_CATEGORY",
+                "table_display_name": "Expense category master",
+                "db_size": "",
+                "width": 50,
+                "key": false,
+                "mandatory": false,
+                "hidden": "",
+                "format": "",
+                "default_function": "",
+                "expression": "",
+                "edit_mask": "",
+                "validations": "",
+                "lookup": ""
+              }
+            }
+          ],
+          "joins": {
+            "join_predicates": {
+              "joins": [
+                {
+                  "table": "EXPTRACK_EXPENSE_CATEGORY",
+                  "main_table": true,
+                  "table_descr": "Expense category master"
+                }
+              ]
+            }
+          },
+          "actions": []
+        }
+      }
+    ],
+    "actions": [],
+    "cross_updates": [],
+    "pre_commit": [],
+    "post_commit": [],
+    "follow_up_actions": [],
+    "attach_docs": [],
+    "vector_search": {
+      "enabled": true,
+      "columns": [
+        "category_name",
+        "status"
+      ],
+      "key_column": "category_code",
+      "display_column": "category_name",
+      "allow_alias": true,
+      "auto": true,
+      "reason": "looked up by exptrack_approval_expense, exptrack_approval_rules, exptrack_expense, exptrack_expense_report_new; searched by category_name plus status so same-named records stay distinguishable"
+    }
+  }
+}

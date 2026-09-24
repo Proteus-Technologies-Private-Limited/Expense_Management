@@ -1,0 +1,43 @@
+{
+  "DASHBOARD": {
+    "DASHBOARD_ID": "EXPTRACK_MANAGE_APPROVAL_DASHBOARD",
+    "DASHBOARD_TYPE": "S",
+    "DASHBOARD_NAME": "Manage Approval Analysis",
+    "DASHBOARD_DESCR": "Analysis dashboard for Manage Approval submitted expense records - approval status breakdown, total expense amount, category breakdown and approver breakdown.",
+    "CREATED_BY": "admin",
+    "CREATED_DATE": "2026-09-24",
+    "REFRESH_INTERVAL_SECONDS": 0,
+    "GLOBAL_CRITERIA": [],
+    "VISUALS": [
+      {
+        "VISUAL_ID": "VIS_001",
+        "VISUAL_NAME": "Total Approved Expense Amount",
+        "POSITION": { "X": 0, "Y": 0, "WIDTH": 3, "HEIGHT": 2 },
+        "VISUAL_CONFIG_REF": "model_exptrack_approval_total_amount.json",
+        "CRITERIA_BINDINGS": []
+      },
+      {
+        "VISUAL_ID": "VIS_002",
+        "VISUAL_NAME": "Expense Approval Status Count",
+        "POSITION": { "X": 3, "Y": 0, "WIDTH": 9, "HEIGHT": 4 },
+        "VISUAL_CONFIG_REF": "model_exptrack_approval_status_count.json",
+        "CRITERIA_BINDINGS": []
+      },
+      {
+        "VISUAL_ID": "VIS_003",
+        "VISUAL_NAME": "Approval by Category",
+        "POSITION": { "X": 0, "Y": 4, "WIDTH": 6, "HEIGHT": 4 },
+        "VISUAL_CONFIG_REF": "model_exptrack_approval_by_category.json",
+        "CRITERIA_BINDINGS": []
+      },
+      {
+        "VISUAL_ID": "VIS_004",
+        "VISUAL_NAME": "Approval by Approver",
+        "POSITION": { "X": 6, "Y": 4, "WIDTH": 6, "HEIGHT": 4 },
+        "VISUAL_CONFIG_REF": "model_exptrack_approval_by_approver.json",
+        "CRITERIA_BINDINGS": []
+      }
+    ],
+    "DRILL_THROUGH": []
+  }
+}

@@ -1,0 +1,27 @@
+{
+  "OBJ_NAME": "exptrack_expense_report_pdf",
+  "OBJ_TYPE": "R",
+  "TITLE": "exptrack_expense_report_pdf",
+  "REPORT": {
+    "MAIN_JRXML": "report.jrxml",
+    "JRXML_FILES": [
+      "report.jrxml"
+    ],
+    "DEFAULT_OUTPUT_FORMAT": "pdf",
+    "OUTPUT_FORMATS": [
+      "pdf"
+    ],
+    "PARAMETERS": []
+  },
+  "SQLMODEL": {
+    "DATABASE_DETAIL": {
+      "CONNECTION_ID": ""
+    },
+    "CRITERIA": {
+      "query": {
+        "rules": [],
+        "condition": "and"
+      }
+    }
+  }
+}

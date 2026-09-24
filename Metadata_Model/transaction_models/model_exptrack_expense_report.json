@@ -1,0 +1,1165 @@
+{
+  "transaction": {
+    "obj_name": "exptrack_expense_report",
+    "deleted": true,
+    "sql_models": [
+      {
+        "sql_model": {
+          "form_title": "Manage Expense Report",
+          "form_descr": "Compile one or more of the employee's expenses into a single expense report and route it through submission for single-approver approval",
+          "form_no": "1",
+          "main_table": "EXPTRACK_EXPENSE_REPORT",
+          "columns": [
+            {
+              "column": {
+                "name": "report_id",
+                "db_name": "REPORT_ID",
+                "group_name": "Others",
+                "col_type": "VARCHAR",
+                "heading": "Report ID",
+                "descr": "System-generated unique expense report identifier",
+                "key": true,
+                "default_value": "auto_generate()",
+                "protect": "1",
+                "mandatory": true,
+                "x": "180",
+                "y": "180",
+                "col_id": "1",
+                "table_name": "EXPTRACK_EXPENSE_REPORT",
+                "table_display_name": "Expense report main table",
+                "db_size": "20",
+                "width": 200,
+                "hidden": "",
+                "format": "",
+                "default_function": "",
+                "expression": "",
+                "edit_mask": "",
+                "validations": "",
+                "lookup": ""
+              }
+            },
+            {
+              "column": {
+                "name": "report_title",
+                "db_name": "REPORT_TITLE",
+                "group_name": "Basic",
+                "col_type": "VARCHAR",
+                "heading": "Report Title",
+                "descr": "Short title identifying this expense report",
+                "mandatory": true,
+                "x": "10",
+                "y": "10",
+                "col_id": "2",
+                "table_name": "EXPTRACK_EXPENSE_REPORT",
+                "table_display_name": "Expense report main table",
+                "db_size": "150",
+                "width": 500,
+                "key": false,
+                "hidden": "",
+                "format": "",
+                "default_function": "",
+                "default_value": "",
+                "expression": "",
+                "edit_mask": "",
+                "protect": "",
+                "validations": "",
+                "lookup": ""
+              }
+            },
+            {
+              "column": {
+                "name": "employee",
+                "db_name": "EMPLOYEE",
+                "group_name": "Basic",
+                "col_type": "VARCHAR",
+                "heading": "Employee",
+                "descr": "Employee who owns this expense report",
+                "default_value": "logged_in_user()",
+                "protect": "1",
+                "mandatory": true,
+                "x": "20",
+                "y": "20",
+                "col_id": "3",
+                "table_name": "EXPTRACK_EXPENSE_REPORT",
+                "table_display_name": "Expense report main table",
+                "db_size": "10",
+                "width": 100,
+                "key": false,
+                "hidden": "",
+                "format": "",
+                "default_function": "",
+                "expression": "",
+                "edit_mask": "",
+                "validations": "",
+                "lookup": ""
+              }
+            },
+            {
+              "column": {
+                "name": "trip",
+                "db_name": "TRIP",
+                "group_name": "Basic",
+                "col_type": "VARCHAR",
+                "heading": "Trip",
+                "descr": "Optional trip this expense report relates to",
+                "lookup": "EXPTRACK_TRIP(TRIP_NAME, TRIP_ID)",
+                "must_exist_in": "EXPTRACK_TRIP",
+                "item_change": {
+                  "mode": "rule",
+                  "source_table": "EXPTRACK_TRIP",
+                  "match_table_col": "TRIP_ID",
+                  "fill": [
+                    {
+                      "form_col": "trip_name_display",
+                      "table_col": "TRIP_NAME"
+                    }
+                  ]
+                },
+                "x": "30",
+                "y": "30",
+                "col_id": "4",
+                "table_name": "EXPTRACK_EXPENSE_REPORT",
+                "table_display_name": "Expense report main table",
+                "db_size": "20",
+                "width": 200,
+                "key": false,
+                "mandatory": false,
+                "hidden": "",
+                "format": "",
+                "default_function": "",
+                "default_value": "",
+                "expression": "",
+                "edit_mask": "",
+                "protect": "",
+                "validations": ""
+              }
+            },
+            {
+              "column": {
+                "name": "trip_name_display",
+                "db_name": "TRIP_NAME",
+                "table_name": "EXPTRACK_TRIP",
+                "group_name": "Basic",
+                "col_type": "VARCHAR",
+                "heading": "Trip Name",
+                "descr": "Trip name from the Trip master (display only)",
+                "protect": "1",
+                "x": "40",
+                "y": "40",
+                "col_id": "5",
+                "table_display_name": "Trip master (lookup display)",
+                "db_size": "100",
+                "width": 500,
+                "key": false,
+                "mandatory": false,
+                "hidden": "",
+                "format": "",
+                "default_function": "",
+                "default_value": "",
+                "expression": "",
+                "edit_mask": "",
+                "validations": "",
+                "lookup": ""
+              }
+            },
+            {
+              "column": {
+                "name": "report_date",
+                "db_name": "REPORT_DATE",
+                "group_name": "Basic",
+                "col_type": "DATE",
+                "heading": "Report Date",
+                "descr": "Date the expense report was created",
+                "default_value": "today()",
+                "mandatory": true,
+                "x": "50",
+                "y": "50",
+                "col_id": "6",
+                "table_name": "EXPTRACK_EXPENSE_REPORT",
+                "table_display_name": "Expense report main table",
+                "db_size": "",
+                "width": 50,
+                "key": false,
+                "hidden": "",
+                "format": "",
+                "default_function": "",
+                "expression": "",
+                "edit_mask": "",
+                "protect": "",
+                "validations": "",
+                "lookup": ""
+              }
+            },
+            {
+              "column": {
+                "name": "period_from",
+                "db_name": "PERIOD_FROM",
+                "group_name": "Basic",
+                "col_type": "DATE",
+                "heading": "Period From",
+                "descr": "Start date of the period this report covers",
+                "x": "60",
+                "y": "60",
+                "col_id": "7",
+                "table_name": "EXPTRACK_EXPENSE_REPORT",
+                "table_display_name": "Expense report main table",
+                "db_size": "",
+                "width": 50,
+                "key": false,
+                "mandatory": false,
+                "hidden": "",
+                "format": "",
+                "default_function": "",
+                "default_value": "",
+                "expression": "",
+                "edit_mask": "",
+                "protect": "",
+                "validations": "",
+                "lookup": ""
+              }
+            },
+            {
+              "column": {
+                "name": "period_to",
+                "db_name": "PERIOD_TO",
+                "group_name": "Basic",
+                "col_type": "DATE",
+                "heading": "Period To",
+                "descr": "End date of the period this report covers; must not be before Period From",
+                "validations": [
+                  {
+                    "type": "expression",
+                    "name": "Period To not before Period From",
+                    "error_code": "REPORT_PERIOD_RANGE",
+                    "message": "Period To ({form.period_to}) cannot be before Period From ({form.period_from}).",
+                    "expression": "is_empty({form.period_from}) or is_empty({form.period_to}) or {form.period_to} >= {form.period_from}"
+                  }
+                ],
+                "x": "70",
+                "y": "70",
+                "col_id": "8",
+                "table_name": "EXPTRACK_EXPENSE_REPORT",
+                "table_display_name": "Expense report main table",
+                "db_size": "",
+                "width": 50,
+                "key": false,
+                "mandatory": false,
+                "hidden": "",
+                "format": "",
+                "default_function": "",
+                "default_value": "",
+                "expression": "",
+                "edit_mask": "",
+                "protect": "",
+                "lookup": ""
+              }
+            },
+            {
+              "column": {
+                "name": "status",
+                "db_name": "STATUS",
+                "group_name": "Basic",
+                "col_type": "VARCHAR",
+                "heading": "Status",
+                "descr": "Current expense report status",
+                "default_value": "Draft",
+                "protect": "1",
+                "mandatory": true,
+                "edit_mask": {
+                  "mask": "ddlb",
+                  "values": [
+                    {
+                      "data": "Draft",
+                      "display": "Draft"
+                    },
+                    {
+                      "data": "Submitted",
+                      "display": "Submitted"
+                    },
+                    {
+                      "data": "Approved",
+                      "display": "Approved"
+                    },
+                    {
+                      "data": "Rejected",
+                      "display": "Rejected"
+                    },
+                    {
+                      "data": "Cancelled",
+                      "display": "Cancelled"
+                    }
+                  ]
+                },
+                "display": {
+                  "type": "status_tag",
+                  "map": [
+                    {
+                      "when": "Draft",
+                      "color": "grey"
+                    },
+                    {
+                      "when": "Submitted",
+                      "color": "amber"
+                    },
+                    {
+                      "when": "Approved",
+                      "color": "green"
+                    },
+                    {
+                      "when": "Rejected",
+                      "color": "red"
+                    },
+                    {
+                      "when": "Cancelled",
+                      "color": "blue"
+                    }
+                  ],
+                  "defaultColor": "grey"
+                },
+                "x": "80",
+                "y": "80",
+                "col_id": "9",
+                "table_name": "EXPTRACK_EXPENSE_REPORT",
+                "table_display_name": "Expense report main table",
+                "db_size": "20",
+                "width": 200,
+                "key": false,
+                "hidden": "",
+                "format": "",
+                "default_function": "",
+                "expression": "",
+                "validations": "",
+                "lookup": ""
+              }
+            },
+            {
+              "column": {
+                "name": "total_amount",
+                "db_name": "TOTAL_AMOUNT",
+                "group_name": "Basic",
+                "col_type": "NUMBER",
+                "heading": "Total Amount",
+                "descr": "Sum of AMOUNT across all expense lines included in this report; recalculated on line add/remove",
+                "default_value": "0",
+                "protect": "1",
+                "x": "90",
+                "y": "90",
+                "col_id": "10",
+                "table_name": "EXPTRACK_EXPENSE_REPORT",
+                "table_display_name": "Expense report main table",
+                "db_size": "14,2",
+                "width": 150,
+                "key": false,
+                "mandatory": false,
+                "hidden": "",
+                "format": "",
+                "default_function": "",
+                "expression": "",
+                "edit_mask": "",
+                "validations": "",
+                "lookup": ""
+              }
+            },
+            {
+              "column": {
+                "name": "category_name",
+                "db_name": "CATEGORY_NAME",
+                "group_name": "Basic",
+                "col_type": "VARCHAR",
+                "heading": "Category",
+                "descr": "Expense category name, copied from the source expense at submission",
+                "protect": "1",
+                "x": "100",
+                "y": "100",
+                "col_id": "11",
+                "table_name": "EXPTRACK_EXPENSE_REPORT",
+                "table_display_name": "Expense report main table",
+                "db_size": "100",
+                "width": 500,
+                "key": false,
+                "mandatory": false,
+                "hidden": "",
+                "format": "",
+                "default_function": "",
+                "default_value": "",
+                "expression": "",
+                "edit_mask": "",
+                "validations": "",
+                "lookup": ""
+              }
+            },
+            {
+              "column": {
+                "name": "payment_method_name",
+                "db_name": "PAYMENT_METHOD_NAME",
+                "group_name": "Basic",
+                "col_type": "VARCHAR",
+                "heading": "Payment Method",
+                "descr": "Payment method name, copied from the source expense at submission",
+                "protect": "1",
+                "x": "110",
+                "y": "110",
+                "col_id": "12",
+                "table_name": "EXPTRACK_EXPENSE_REPORT",
+                "table_display_name": "Expense report main table",
+                "db_size": "100",
+                "width": 500,
+                "key": false,
+                "mandatory": false,
+                "hidden": "",
+                "format": "",
+                "default_function": "",
+                "default_value": "",
+                "expression": "",
+                "edit_mask": "",
+                "validations": "",
+                "lookup": ""
+              }
+            },
+            {
+              "column": {
+                "name": "currency",
+                "db_name": "CURRENCY",
+                "group_name": "Basic",
+                "col_type": "VARCHAR",
+                "heading": "Currency",
+                "descr": "Currency the Total Amount is denominated in, copied from the source expense",
+                "protect": "1",
+                "x": "120",
+                "y": "120",
+                "col_id": "13",
+                "table_name": "EXPTRACK_EXPENSE_REPORT",
+                "table_display_name": "Expense report main table",
+                "db_size": "10",
+                "width": 100,
+                "key": false,
+                "mandatory": false,
+                "hidden": "",
+                "format": "",
+                "default_function": "",
+                "default_value": "",
+                "expression": "",
+                "edit_mask": "",
+                "validations": "",
+                "lookup": ""
+              }
+            },
+            {
+              "column": {
+                "name": "receipt_attachment",
+                "db_name": "RECEIPT_ATTACHMENT",
+                "group_name": "Basic",
+                "col_type": "VARCHAR",
+                "heading": "Receipt Attachment",
+                "descr": "Receipt document copied from the source expense",
+                "protect": "1",
+                "edit_mask": {
+                  "mask": "document"
+                },
+                "x": "130",
+                "y": "130",
+                "col_id": "14",
+                "table_name": "EXPTRACK_EXPENSE_REPORT",
+                "table_display_name": "Expense report main table",
+                "db_size": "500",
+                "width": 500,
+                "key": false,
+                "mandatory": false,
+                "hidden": "",
+                "format": "",
+                "default_function": "",
+                "default_value": "",
+                "expression": "",
+                "validations": "",
+                "lookup": ""
+              }
+            },
+            {
+              "column": {
+                "name": "description",
+                "db_name": "DESCRIPTION",
+                "group_name": "Basic",
+                "col_type": "VARCHAR",
+                "heading": "Description",
+                "descr": "Description copied from the source expense",
+                "protect": "1",
+                "x": "140",
+                "y": "140",
+                "col_id": "15",
+                "table_name": "EXPTRACK_EXPENSE_REPORT",
+                "table_display_name": "Expense report main table",
+                "db_size": "250",
+                "width": 500,
+                "key": false,
+                "mandatory": false,
+                "hidden": "",
+                "format": "",
+                "default_function": "",
+                "default_value": "",
+                "expression": "",
+                "edit_mask": "",
+                "validations": "",
+                "lookup": ""
+              }
+            },
+            {
+              "column": {
+                "name": "approver",
+                "db_name": "APPROVER",
+                "group_name": "Approval",
+                "col_type": "VARCHAR",
+                "heading": "Approver",
+                "descr": "The single designated approver for this report",
+                "x": "150",
+                "y": "150",
+                "col_id": "16",
+                "table_name": "EXPTRACK_EXPENSE_REPORT",
+                "table_display_name": "Expense report main table",
+                "db_size": "10",
+                "width": 100,
+                "key": false,
+                "mandatory": false,
+                "hidden": "",
+                "format": "",
+                "default_function": "",
+                "default_value": "",
+                "expression": "",
+                "edit_mask": "",
+                "protect": "",
+                "validations": "",
+                "lookup": ""
+              }
+            },
+            {
+              "column": {
+                "name": "approval_date",
+                "db_name": "APPROVAL_DATE",
+                "group_name": "Approval",
+                "col_type": "DATETIME",
+                "heading": "Approval Date",
+                "descr": "Date/time the approver recorded their decision",
+                "protect": "1",
+                "x": "160",
+                "y": "160",
+                "col_id": "17",
+                "table_name": "EXPTRACK_EXPENSE_REPORT",
+                "table_display_name": "Expense report main table",
+                "db_size": "",
+                "width": 50,
+                "key": false,
+                "mandatory": false,
+                "hidden": "",
+                "format": "",
+                "default_function": "",
+                "default_value": "",
+                "expression": "",
+                "edit_mask": "",
+                "validations": "",
+                "lookup": ""
+              }
+            },
+            {
+              "column": {
+                "name": "approver_comments",
+                "db_name": "APPROVER_COMMENTS",
+                "group_name": "Approval",
+                "col_type": "VARCHAR",
+                "heading": "Approver Comments",
+                "descr": "Comments recorded by the approver (mandatory on reject); cleared on resubmission after rejection",
+                "protect": "1",
+                "x": "170",
+                "y": "170",
+                "col_id": "18",
+                "table_name": "EXPTRACK_EXPENSE_REPORT",
+                "table_display_name": "Expense report main table",
+                "db_size": "500",
+                "width": 500,
+                "key": false,
+                "mandatory": false,
+                "hidden": "",
+                "format": "",
+                "default_function": "",
+                "default_value": "",
+                "expression": "",
+                "edit_mask": "",
+                "validations": "",
+                "lookup": ""
+              }
+            },
+            {
+              "column": {
+                "name": "add_date",
+                "db_name": "ADD_DATE",
+                "group_name": "Others",
+                "col_type": "DATETIME",
+                "heading": "Added Date",
+                "descr": "Date the record was created",
+                "default_value": ":audit_add_date",
+                "protect": "1",
+                "x": "190",
+                "y": "190",
+                "col_id": "19",
+                "table_name": "EXPTRACK_EXPENSE_REPORT",
+                "table_display_name": "Expense report main table",
+                "db_size": "",
+                "width": 50,
+                "key": false,
+                "mandatory": false,
+                "hidden": "",
+                "format": "",
+                "default_function": "",
+                "expression": "",
+                "edit_mask": "",
+                "validations": "",
+                "lookup": ""
+              }
+            },
+            {
+              "column": {
+                "name": "add_user",
+                "db_name": "ADD_USER",
+                "group_name": "Others",
+                "col_type": "VARCHAR",
+                "heading": "Added By",
+                "descr": "User who created the record",
+                "default_value": ":audit_add_user",
+                "protect": "1",
+                "x": "200",
+                "y": "200",
+                "col_id": "20",
+                "table_name": "EXPTRACK_EXPENSE_REPORT",
+                "table_display_name": "Expense report main table",
+                "db_size": "10",
+                "width": 100,
+                "key": false,
+                "mandatory": false,
+                "hidden": "",
+                "format": "",
+                "default_function": "",
+                "expression": "",
+                "edit_mask": "",
+                "validations": "",
+                "lookup": ""
+              }
+            },
+            {
+              "column": {
+                "name": "add_term",
+                "db_name": "ADD_TERM",
+                "group_name": "Others",
+                "col_type": "VARCHAR",
+                "heading": "Added Terminal",
+                "descr": "Terminal/IP that created the record",
+                "default_value": ":audit_add_terminal",
+                "protect": "1",
+                "hidden": 1,
+                "x": "210",
+                "y": "210",
+                "col_id": "21",
+                "table_name": "EXPTRACK_EXPENSE_REPORT",
+                "table_display_name": "Expense report main table",
+                "db_size": "15",
+                "width": 150,
+                "key": false,
+                "mandatory": false,
+                "format": "",
+                "default_function": "",
+                "expression": "",
+                "edit_mask": "",
+                "validations": "",
+                "lookup": ""
+              }
+            },
+            {
+              "column": {
+                "name": "chg_date",
+                "db_name": "CHG_DATE",
+                "group_name": "Others",
+                "col_type": "DATETIME",
+                "heading": "Changed Date",
+                "descr": "Date the record was last changed",
+                "default_value": ":audit_chg_date",
+                "protect": "1",
+                "x": "220",
+                "y": "220",
+                "col_id": "22",
+                "table_name": "EXPTRACK_EXPENSE_REPORT",
+                "table_display_name": "Expense report main table",
+                "db_size": "",
+                "width": 50,
+                "key": false,
+                "mandatory": false,
+                "hidden": "",
+                "format": "",
+                "default_function": "",
+                "expression": "",
+                "edit_mask": "",
+                "validations": "",
+                "lookup": ""
+              }
+            },
+            {
+              "column": {
+                "name": "chg_user",
+                "db_name": "CHG_USER",
+                "group_name": "Others",
+                "col_type": "VARCHAR",
+                "heading": "Changed By",
+                "descr": "User who last changed the record",
+                "default_value": ":audit_chg_user",
+                "protect": "1",
+                "x": "230",
+                "y": "230",
+                "col_id": "23",
+                "table_name": "EXPTRACK_EXPENSE_REPORT",
+                "table_display_name": "Expense report main table",
+                "db_size": "10",
+                "width": 100,
+                "key": false,
+                "mandatory": false,
+                "hidden": "",
+                "format": "",
+                "default_function": "",
+                "expression": "",
+                "edit_mask": "",
+                "validations": "",
+                "lookup": ""
+              }
+            },
+            {
+              "column": {
+                "name": "chg_term",
+                "db_name": "CHG_TERM",
+                "group_name": "Others",
+                "col_type": "VARCHAR",
+                "heading": "Changed Terminal",
+                "descr": "Terminal/IP that last changed the record",
+                "default_value": ":audit_chg_terminal",
+                "protect": "1",
+                "hidden": 1,
+                "x": "240",
+                "y": "240",
+                "col_id": "24",
+                "table_name": "EXPTRACK_EXPENSE_REPORT",
+                "table_display_name": "Expense report main table",
+                "db_size": "15",
+                "width": 150,
+                "key": false,
+                "mandatory": false,
+                "format": "",
+                "default_function": "",
+                "expression": "",
+                "edit_mask": "",
+                "validations": "",
+                "lookup": ""
+              }
+            }
+          ],
+          "joins": {
+            "join_predicates": {
+              "joins": [
+                {
+                  "table": "EXPTRACK_EXPENSE_REPORT",
+                  "main_table": true,
+                  "table_descr": "Expense report main table"
+                },
+                {
+                  "table": "EXPTRACK_TRIP",
+                  "main_table": false,
+                  "table_descr": "Trip master (lookup display)",
+                  "column": "TRIP_ID",
+                  "join_table": "EXPTRACK_EXPENSE_REPORT",
+                  "join_column": "TRIP",
+                  "join_type": "left"
+                }
+              ]
+            }
+          },
+          "validations": [
+            {
+              "type": "business_logic",
+              "name": "Editable only while Draft or Rejected",
+              "error_code": "REPORT_NOT_EDITABLE",
+              "message": "This expense report cannot be changed: it is editable by its owner only while its status is Draft or Rejected.",
+              "business_logic": {
+                "method": "check_report_editable",
+                "description": "Block edits to a report that is not Draft or Rejected",
+                "spec": "Payload carries _action ('add'|'edit') and, on edit, the merged existing row including REPORT_ID and STATUS. If _action = 'add', return NULL (pass) - a new report always starts as Draft. On _action = 'edit', re-read the CURRENT stored STATUS for this REPORT_ID directly from EXPTRACK_EXPENSE_REPORT: if it is not 'Draft' and not 'Rejected', return an error 'This expense report cannot be edited: it is editable only while its status is Draft or Rejected (current status: <STATUS>). Once Submitted, the report is locked from edit until the Approver acts.' Otherwise return NULL (pass)."
+              }
+            }
+          ],
+          "actions": [
+            {
+              "name": "Submit for Approval",
+              "handler": "message",
+              "scope": "row",
+              "business_logic": {
+                "method": "submit_expense_report",
+                "description": "Submit the report for approval: lock its lines, set STATUS=Submitted, and log the activity",
+                "spec": "Payload carries this report's REPORT_ID, STATUS, EMPLOYEE, APPROVER. Validate STATUS is 'Draft' or 'Rejected' - if not, return {\"error\": \"Only a Draft or Rejected report can be submitted for approval.\"}. Validate at least one expense line exists: SELECT COUNT(*) FROM EXPTRACK_EXPENSE WHERE EXPENSE_REPORT = this REPORT_ID; if zero, return {\"error\": \"At least one expense line is required before this report can be submitted.\"}. If the report's current STATUS was 'Rejected' (a resubmission), clear the prior decision: UPDATE EXPTRACK_EXPENSE_REPORT SET APPROVER_COMMENTS = NULL, APPROVAL_DATE = NULL WHERE REPORT_ID = this REPORT_ID. UPDATE EXPTRACK_EXPENSE_REPORT SET STATUS = 'Submitted' WHERE REPORT_ID = this REPORT_ID. Lock all linked lines: UPDATE EXPTRACK_EXPENSE SET STATUS = 'Submitted' WHERE EXPENSE_REPORT = this REPORT_ID. Write an Activity Log entry: DATE = current timestamp, ACTIVITY_DETAILS = this REPORT_ID, ACTION_TYPE = 'Updated', DESCRIPTION = '<EMPLOYEE> submitted Report <REPORT_ID> for approval', ACTOR = the payload's EMPLOYEE (align the insert to the Activity Log object's actual table once it is modeled in this project; never let a logging failure block the submit). Return a confirmation message 'Report <REPORT_ID> submitted for approval.'"
+              },
+              "validations": [
+                {
+                  "type": "expression",
+                  "name": "Must be Draft or Rejected to submit",
+                  "error_code": "REPORT_SUBMIT_STATUS",
+                  "message": "Only a Draft or Rejected report can be submitted for approval (current status {form.status}).",
+                  "expression": "{form.status} == \"Draft\" or {form.status} == \"Rejected\""
+                },
+                {
+                  "type": "builtin",
+                  "name": "At least one expense line required",
+                  "error_code": "REPORT_NO_LINES",
+                  "message": "At least one expense line is required before this report can be submitted.",
+                  "builtin": {
+                    "kind": "child_form_has_entry",
+                    "child_form": "2",
+                    "min_rows": 1
+                  }
+                }
+              ]
+            },
+            {
+              "name": "Cancel",
+              "handler": "message",
+              "scope": "row",
+              "business_logic": {
+                "method": "cancel_expense_report",
+                "description": "Cancel the report and release its linked expenses back to Draft",
+                "spec": "Payload carries this report's REPORT_ID, STATUS, EMPLOYEE. Validate STATUS is 'Draft' or 'Submitted' - if not (e.g. Approved/Rejected/Cancelled already), return {\"error\": \"Only a Draft or Submitted report can be cancelled.\"}. UPDATE EXPTRACK_EXPENSE_REPORT SET STATUS = 'Cancelled' WHERE REPORT_ID = this REPORT_ID. Release linked expenses: UPDATE EXPTRACK_EXPENSE SET STATUS = 'Draft', EXPENSE_REPORT = NULL WHERE EXPENSE_REPORT = this REPORT_ID. Write an Activity Log entry: DATE = current timestamp, ACTIVITY_DETAILS = this REPORT_ID, ACTION_TYPE = 'Updated', DESCRIPTION = '<EMPLOYEE> cancelled Report <REPORT_ID>', ACTOR = the payload's EMPLOYEE (align to the Activity Log object's actual table once modeled; never block the cancel on a logging failure). Return a confirmation message 'Report <REPORT_ID> cancelled and its expenses released to Draft.'"
+              },
+              "validations": [
+                {
+                  "type": "expression",
+                  "name": "Must be Draft or Submitted to cancel",
+                  "error_code": "REPORT_CANCEL_STATUS",
+                  "message": "Only a Draft or Submitted report can be cancelled (current status {form.status}).",
+                  "expression": "{form.status} == \"Draft\" or {form.status} == \"Submitted\""
+                }
+              ],
+              "confirmation": {
+                "mode": "reconfirm",
+                "message": "Cancel report {form.report_id}? Linked expenses will be released back to Draft."
+              }
+            }
+          ]
+        }
+      },
+      {
+        "sql_model": {
+          "form_title": "Expense Lines",
+          "form_descr": "Expenses currently included in this expense report (read-only reference to Manage Expense)",
+          "form_no": "2",
+          "parent_form_no": "1",
+          "main_table": "EXPTRACK_EXPENSE",
+          "parent_key_col": "EXPENSE_REPORT",
+          "columns": [
+            {
+              "column": {
+                "name": "expense_id",
+                "db_name": "EXPENSE_ID",
+                "group_name": "Basic",
+                "col_type": "VARCHAR",
+                "heading": "Expense ID",
+                "descr": "The linked expense's identifier",
+                "key": true,
+                "protect": "1",
+                "mandatory": true,
+                "x": "10",
+                "y": "10",
+                "col_id": "1",
+                "table_name": "EXPTRACK_EXPENSE",
+                "table_display_name": "Expense lines referenced by this report",
+                "db_size": "20",
+                "width": 200,
+                "hidden": "",
+                "format": "",
+                "default_function": "",
+                "default_value": "",
+                "expression": "",
+                "edit_mask": "",
+                "validations": "",
+                "lookup": ""
+              }
+            },
+            {
+              "column": {
+                "name": "expense_date",
+                "db_name": "EXPENSE_DATE",
+                "group_name": "Basic",
+                "col_type": "DATE",
+                "heading": "Expense Date",
+                "descr": "Date the expense was incurred",
+                "protect": "1",
+                "x": "20",
+                "y": "20",
+                "col_id": "2",
+                "table_name": "EXPTRACK_EXPENSE",
+                "table_display_name": "Expense lines referenced by this report",
+                "db_size": "",
+                "width": 50,
+                "key": false,
+                "mandatory": false,
+                "hidden": "",
+                "format": "",
+                "default_function": "",
+                "default_value": "",
+                "expression": "",
+                "edit_mask": "",
+                "validations": "",
+                "lookup": ""
+              }
+            },
+            {
+              "column": {
+                "name": "category",
+                "db_name": "CATEGORY",
+                "group_name": "Basic",
+                "col_type": "VARCHAR",
+                "heading": "Category",
+                "descr": "Expense category code",
+                "protect": "1",
+                "x": "30",
+                "y": "30",
+                "col_id": "3",
+                "table_name": "EXPTRACK_EXPENSE",
+                "table_display_name": "Expense lines referenced by this report",
+                "db_size": "20",
+                "width": 200,
+                "key": false,
+                "mandatory": false,
+                "hidden": "",
+                "format": "",
+                "default_function": "",
+                "default_value": "",
+                "expression": "",
+                "edit_mask": "",
+                "validations": "",
+                "lookup": ""
+              }
+            },
+            {
+              "column": {
+                "name": "category_name_display",
+                "db_name": "CATEGORY_NAME",
+                "table_name": "EXPTRACK_EXPENSE_CATEGORY",
+                "group_name": "Basic",
+                "col_type": "VARCHAR",
+                "heading": "Category Name",
+                "descr": "Category description from the master (display only)",
+                "protect": "1",
+                "x": "40",
+                "y": "40",
+                "col_id": "4",
+                "table_display_name": "Expense category master (lookup display)",
+                "db_size": "100",
+                "width": 500,
+                "key": false,
+                "mandatory": false,
+                "hidden": "",
+                "format": "",
+                "default_function": "",
+                "default_value": "",
+                "expression": "",
+                "edit_mask": "",
+                "validations": "",
+                "lookup": ""
+              }
+            },
+            {
+              "column": {
+                "name": "amount",
+                "db_name": "AMOUNT",
+                "group_name": "Basic",
+                "col_type": "NUMBER",
+                "heading": "Amount",
+                "descr": "Expense amount",
+                "protect": "1",
+                "x": "50",
+                "y": "50",
+                "col_id": "5",
+                "table_name": "EXPTRACK_EXPENSE",
+                "table_display_name": "Expense lines referenced by this report",
+                "db_size": "14,2",
+                "width": 150,
+                "key": false,
+                "mandatory": false,
+                "hidden": "",
+                "format": "",
+                "default_function": "",
+                "default_value": "",
+                "expression": "",
+                "edit_mask": "",
+                "validations": "",
+                "lookup": ""
+              }
+            },
+            {
+              "column": {
+                "name": "payment_method",
+                "db_name": "PAYMENT_METHOD",
+                "group_name": "Basic",
+                "col_type": "VARCHAR",
+                "heading": "Payment Method",
+                "descr": "How the expense was paid",
+                "protect": "1",
+                "x": "60",
+                "y": "60",
+                "col_id": "6",
+                "table_name": "EXPTRACK_EXPENSE",
+                "table_display_name": "Expense lines referenced by this report",
+                "db_size": "20",
+                "width": 200,
+                "key": false,
+                "mandatory": false,
+                "hidden": "",
+                "format": "",
+                "default_function": "",
+                "default_value": "",
+                "expression": "",
+                "edit_mask": "",
+                "validations": "",
+                "lookup": ""
+              }
+            },
+            {
+              "column": {
+                "name": "payment_method_name_display",
+                "db_name": "PAYMENT_METHOD_NAME",
+                "table_name": "EXPTRACK_PAYMENT_METHOD",
+                "group_name": "Basic",
+                "col_type": "VARCHAR",
+                "heading": "Payment Method Name",
+                "descr": "Payment method description from the master (display only)",
+                "protect": "1",
+                "x": "70",
+                "y": "70",
+                "col_id": "7",
+                "table_display_name": "Payment method master (lookup display)",
+                "db_size": "100",
+                "width": 500,
+                "key": false,
+                "mandatory": false,
+                "hidden": "",
+                "format": "",
+                "default_function": "",
+                "default_value": "",
+                "expression": "",
+                "edit_mask": "",
+                "validations": "",
+                "lookup": ""
+              }
+            },
+            {
+              "column": {
+                "name": "description",
+                "db_name": "DESCRIPTION",
+                "group_name": "Basic",
+                "col_type": "VARCHAR",
+                "heading": "Description",
+                "descr": "Free-text description of the expense",
+                "protect": "1",
+                "x": "80",
+                "y": "80",
+                "col_id": "8",
+                "table_name": "EXPTRACK_EXPENSE",
+                "table_display_name": "Expense lines referenced by this report",
+                "db_size": "250",
+                "width": 500,
+                "key": false,
+                "mandatory": false,
+                "hidden": "",
+                "format": "",
+                "default_function": "",
+                "default_value": "",
+                "expression": "",
+                "edit_mask": "",
+                "validations": "",
+                "lookup": ""
+              }
+            }
+          ],
+          "joins": {
+            "join_predicates": {
+              "joins": [
+                {
+                  "table": "EXPTRACK_EXPENSE",
+                  "main_table": true,
+                  "table_descr": "Expense lines referenced by this report"
+                },
+                {
+                  "table": "EXPTRACK_EXPENSE_CATEGORY",
+                  "main_table": false,
+                  "table_descr": "Expense category master (lookup display)",
+                  "column": "CATEGORY_CODE",
+                  "join_table": "EXPTRACK_EXPENSE",
+                  "join_column": "CATEGORY",
+                  "join_type": "left"
+                },
+                {
+                  "table": "EXPTRACK_PAYMENT_METHOD",
+                  "main_table": false,
+                  "table_descr": "Payment method master (lookup display)",
+                  "column": "PAYMENT_METHOD_CODE",
+                  "join_table": "EXPTRACK_EXPENSE",
+                  "join_column": "PAYMENT_METHOD",
+                  "join_type": "left"
+                }
+              ]
+            }
+          },
+          "actions": [
+            {
+              "name": "Add Expense Line",
+              "handler": "select_grid",
+              "scope": "form",
+              "business_logic": {
+                "method": "list_addable_expenses_for_report",
+                "description": "List the employee's own Draft/Rejected expenses that are not yet linked to any report, as candidates to add to this report",
+                "spec": "Payload carries the header report's REPORT_ID and EMPLOYEE (via header). Return the candidate rows as {\"rows\": [...]} where each row is one EXPTRACK_EXPENSE record with STATUS in ('Draft','Rejected'), EMPLOYEE = the header's EMPLOYEE, and EXPENSE_REPORT is NULL/blank (not already linked to any report) - i.e. SELECT EXPENSE_ID, EXPENSE_DATE, CATEGORY, AMOUNT, PAYMENT_METHOD, DESCRIPTION FROM EXPTRACK_EXPENSE WHERE EMPLOYEE = <header employee> AND STATUS IN ('Draft','Rejected') AND (EXPENSE_REPORT IS NULL OR EXPENSE_REPORT = ''). The caller presents these rows in a picker modal; when the user selects one or more and confirms, for EACH selected EXPENSE_ID run: UPDATE EXPTRACK_EXPENSE SET EXPENSE_REPORT = <header REPORT_ID>, STATUS = 'Added-to-Report' WHERE EXPENSE_ID = <selected id>. After linking, recalculate the report total: UPDATE EXPTRACK_EXPENSE_REPORT SET TOTAL_AMOUNT = (SELECT COALESCE(SUM(AMOUNT),0) FROM EXPTRACK_EXPENSE WHERE EXPENSE_REPORT = <header REPORT_ID>) WHERE REPORT_ID = <header REPORT_ID>. Write one Activity Log entry per line added (or a single combined entry) describing '<EMPLOYEE> added Expense <EXPENSE_ID> to Report <REPORT_ID>' (align to the Activity Log object's actual table once modeled)."
+              },
+              "validations": [
+                {
+                  "type": "expression",
+                  "name": "Report must be Draft or Rejected to add lines",
+                  "error_code": "REPORT_ADD_LINE_STATUS",
+                  "message": "Expense lines can only be added while the report is Draft or Rejected (current status {header.status}).",
+                  "expression": "{header.status} == \"Draft\" or {header.status} == \"Rejected\""
+                }
+              ]
+            },
+            {
+              "name": "Remove Expense Line",
+              "handler": "message",
+              "scope": "row",
+              "business_logic": {
+                "method": "remove_expense_line_from_report",
+                "description": "Unlink one expense line from this report, revert it to Draft, and recalculate the report total",
+                "spec": "Payload carries this line's EXPENSE_ID and the header REPORT_ID/STATUS. Validate the header report's STATUS is 'Draft' or 'Rejected' - if not, return {\"error\": \"Expense lines can only be removed while the report is Draft or Rejected.\"}. UPDATE EXPTRACK_EXPENSE SET EXPENSE_REPORT = NULL, STATUS = 'Draft' WHERE EXPENSE_ID = this line's EXPENSE_ID. UPDATE EXPTRACK_EXPENSE_REPORT SET TOTAL_AMOUNT = (SELECT COALESCE(SUM(AMOUNT),0) FROM EXPTRACK_EXPENSE WHERE EXPENSE_REPORT = <header REPORT_ID>) WHERE REPORT_ID = <header REPORT_ID>. Write an Activity Log entry describing the line being removed from the report (align to the Activity Log object's actual table once modeled). Return a confirmation message 'Expense <EXPENSE_ID> removed from report <REPORT_ID>.'"
+              },
+              "validations": [
+                {
+                  "type": "expression",
+                  "name": "Report must be Draft or Rejected to remove lines",
+                  "error_code": "REPORT_REMOVE_LINE_STATUS",
+                  "message": "Expense lines can only be removed while the report is Draft or Rejected (current status {header.status}).",
+                  "expression": "{header.status} == \"Draft\" or {header.status} == \"Rejected\""
+                }
+              ],
+              "confirmation": {
+                "mode": "reconfirm",
+                "message": "Remove expense {form.expense_id} from this report?"
+              }
+            }
+          ]
+        }
+      }
+    ],
+    "actions": [],
+    "cross_updates": [],
+    "pre_commit": [],
+    "post_commit": [],
+    "attach_docs": [],
+    "follow_up_actions": []
+  }
+}

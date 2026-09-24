@@ -1,0 +1,425 @@
+{
+  "transaction": {
+    "obj_name": "exptrack_manage_approval_v2",
+    "sql_models": [
+      {
+        "sql_model": {
+          "form_title": "Manage Approval",
+          "form_descr": "Read-only list of existing submitted expense records for reference in the Management folder.",
+          "form_no": "1",
+          "main_table": "EXPTRACK_EXPENSE",
+          "columns": [
+            {
+              "column": {
+                "name": "expense_id",
+                "db_name": "EXPENSE_ID",
+                "group_name": "Basic",
+                "col_type": "VARCHAR",
+                "heading": "Expense ID",
+                "descr": "Unique identifier of the submitted expense record",
+                "key": true,
+                "mandatory": true,
+                "protect": "1",
+                "x": "10",
+                "y": "10",
+                "col_id": "1",
+                "table_name": "EXPTRACK_EXPENSE",
+                "table_display_name": "Expense records",
+                "db_size": "20",
+                "width": 200,
+                "hidden": "",
+                "format": "",
+                "default_function": "",
+                "default_value": "",
+                "expression": "",
+                "edit_mask": "",
+                "validations": "",
+                "lookup": ""
+              }
+            },
+            {
+              "column": {
+                "name": "employee",
+                "db_name": "EMPLOYEE",
+                "group_name": "Basic",
+                "col_type": "VARCHAR",
+                "heading": "Employee",
+                "descr": "Employee who raised the expense",
+                "mandatory": true,
+                "protect": "1",
+                "x": "20",
+                "y": "20",
+                "col_id": "2",
+                "table_name": "EXPTRACK_EXPENSE",
+                "table_display_name": "Expense records",
+                "db_size": "10",
+                "width": 100,
+                "key": false,
+                "hidden": "",
+                "format": "",
+                "default_function": "",
+                "default_value": "",
+                "expression": "",
+                "edit_mask": "",
+                "validations": "",
+                "lookup": ""
+              }
+            },
+            {
+              "column": {
+                "name": "trip",
+                "db_name": "TRIP",
+                "table_name": "EXPTRACK_EXPENSE_REPORT",
+                "group_name": "Basic",
+                "col_type": "VARCHAR",
+                "heading": "Trip",
+                "descr": "Trip linked to the expense, from the linked expense report",
+                "mandatory": true,
+                "protect": "1",
+                "x": "30",
+                "y": "30",
+                "col_id": "3",
+                "table_display_name": "Expense report master, for Trip and Total Expense Amount",
+                "db_size": "20",
+                "width": 200,
+                "key": false,
+                "hidden": false,
+                "format": "",
+                "default_function": "",
+                "default_value": "",
+                "expression": "",
+                "edit_mask": {
+                  "mask": "",
+                  "values": []
+                },
+                "validations": "",
+                "lookup": ""
+              }
+            },
+            {
+              "column": {
+                "name": "category",
+                "db_name": "CATEGORY",
+                "group_name": "Basic",
+                "col_type": "VARCHAR",
+                "heading": "Category",
+                "descr": "Expense category",
+                "mandatory": true,
+                "protect": "1",
+                "x": "40",
+                "y": "40",
+                "col_id": "4",
+                "table_name": "EXPTRACK_EXPENSE",
+                "table_display_name": "Expense records",
+                "db_size": "20",
+                "width": 200,
+                "key": false,
+                "hidden": "",
+                "format": "",
+                "default_function": "",
+                "default_value": "",
+                "expression": "",
+                "edit_mask": "",
+                "validations": "",
+                "lookup": ""
+              }
+            },
+            {
+              "column": {
+                "name": "expense_date",
+                "db_name": "EXPENSE_DATE",
+                "group_name": "Basic",
+                "col_type": "DATE",
+                "heading": "Expense Date",
+                "descr": "Date the expense was incurred",
+                "mandatory": true,
+                "protect": "1",
+                "x": "50",
+                "y": "50",
+                "col_id": "5",
+                "table_name": "EXPTRACK_EXPENSE",
+                "table_display_name": "Expense records",
+                "db_size": "",
+                "width": 50,
+                "key": false,
+                "hidden": "",
+                "format": "",
+                "default_function": "",
+                "default_value": "",
+                "expression": "",
+                "edit_mask": "",
+                "validations": "",
+                "lookup": ""
+              }
+            },
+            {
+              "column": {
+                "name": "total_amount",
+                "db_name": "TOTAL_AMOUNT",
+                "table_name": "EXPTRACK_EXPENSE_REPORT",
+                "group_name": "Basic",
+                "col_type": "NUMBER",
+                "heading": "Total Expense Amount",
+                "descr": "Total amount of the linked expense report",
+                "mandatory": true,
+                "protect": "1",
+                "x": "60",
+                "y": "60",
+                "col_id": "6",
+                "table_display_name": "Expense report master, for Trip and Total Expense Amount",
+                "db_size": "14,2",
+                "width": 150,
+                "key": false,
+                "hidden": "1",
+                "format": "",
+                "default_function": "",
+                "default_value": "",
+                "expression": "",
+                "edit_mask": "",
+                "validations": "",
+                "lookup": ""
+              }
+            },
+            {
+              "column": {
+                "name": "payment_method",
+                "db_name": "PAYMENT_METHOD",
+                "group_name": "Basic",
+                "col_type": "VARCHAR",
+                "heading": "Payment Method",
+                "descr": "Payment method used for the expense",
+                "mandatory": true,
+                "protect": "1",
+                "x": "70",
+                "y": "70",
+                "col_id": "7",
+                "table_name": "EXPTRACK_EXPENSE",
+                "table_display_name": "Expense records",
+                "db_size": "20",
+                "width": 200,
+                "key": false,
+                "hidden": "",
+                "format": "",
+                "default_function": "",
+                "default_value": "",
+                "expression": "",
+                "edit_mask": "",
+                "validations": "",
+                "lookup": ""
+              }
+            },
+            {
+              "column": {
+                "name": "status",
+                "db_name": "STATUS",
+                "group_name": "Basic",
+                "col_type": "VARCHAR",
+                "heading": "Status",
+                "descr": "Current status of the expense",
+                "mandatory": true,
+                "protect": "0",
+                "x": "80",
+                "y": "80",
+                "col_id": "8",
+                "table_name": "EXPTRACK_EXPENSE",
+                "table_display_name": "Expense records",
+                "db_size": "20",
+                "width": 200,
+                "key": false,
+                "hidden": "",
+                "format": "",
+                "default_function": "",
+                "default_value": "",
+                "expression": "",
+                "edit_mask": {
+                  "mask": "ddlb",
+                  "values": [
+                    {
+                      "data": "Approved",
+                      "display": "Approved"
+                    },
+                    {
+                      "data": "Reject",
+                      "display": "Reject"
+                    }
+                  ]
+                },
+                "validations": "",
+                "lookup": ""
+              }
+            },
+            {
+              "column": {
+                "name": "approver",
+                "db_name": "APPROVER",
+                "group_name": "Basic",
+                "col_type": "VARCHAR",
+                "heading": "Approver Name",
+                "descr": "Name of the approver for this expense",
+                "mandatory": true,
+                "protect": "0",
+                "x": "90",
+                "y": "90",
+                "col_id": "9",
+                "table_name": "EXPTRACK_EXPENSE",
+                "table_display_name": "Expense records",
+                "db_size": "100",
+                "width": 500,
+                "key": false,
+                "hidden": "",
+                "format": "",
+                "default_function": "",
+                "default_value": "",
+                "expression": "",
+                "edit_mask": "",
+                "validations": "",
+                "lookup": ""
+              }
+            },
+            {
+              "column": {
+                "name": "trip_name",
+                "db_name": "TRIP_NAME",
+                "table_name": "EXPTRACK_TRIP",
+                "group_name": "Basic",
+                "col_type": "VARCHAR",
+                "heading": "Trip Name",
+                "descr": "Display name of the trip, from the trip master",
+                "mandatory": false,
+                "protect": "1",
+                "x": "100",
+                "y": "100",
+                "col_id": "10",
+                "table_display_name": "Trip master, for Trip Name",
+                "db_size": "100",
+                "width": 500,
+                "key": false,
+                "hidden": false,
+                "format": "",
+                "default_function": "",
+                "default_value": "",
+                "expression": "",
+                "edit_mask": "",
+                "validations": "",
+                "lookup": ""
+              }
+            },
+            {
+              "column": {
+                "name": "receipt_attachment",
+                "db_name": "RECEIPT_ATTACHMENT",
+                "group_name": "Basic",
+                "col_type": "VARCHAR",
+                "heading": "Receipt Attachment",
+                "descr": "Receipt document attached to the expense",
+                "mandatory": false,
+                "protect": "1",
+                "x": "110",
+                "y": "110",
+                "col_id": "11",
+                "table_name": "EXPTRACK_EXPENSE",
+                "table_display_name": "Expense records",
+                "db_size": "500",
+                "width": 500,
+                "key": false,
+                "hidden": "",
+                "format": "",
+                "default_function": "",
+                "default_value": "",
+                "expression": "",
+                "edit_mask": {
+                  "mask": "document"
+                },
+                "validations": "",
+                "lookup": "",
+                "display": {
+                  "type": "file",
+                  "label": "Receipt"
+                }
+              }
+            }
+          ],
+          "joins": {
+            "join_predicates": {
+              "joins": [
+                {
+                  "table": "EXPTRACK_EXPENSE",
+                  "main_table": true,
+                  "table_descr": "Expense records"
+                },
+                {
+                  "table": "EXPTRACK_EXPENSE_REPORT",
+                  "main_table": false,
+                  "table_descr": "Expense report master, for Trip and Total Expense Amount",
+                  "column": "REPORT_ID",
+                  "join_table": "EXPTRACK_EXPENSE",
+                  "join_column": "EXPENSE_REPORT",
+                  "join_type": "left"
+                },
+                {
+                  "table": "EXPTRACK_TRIP",
+                  "main_table": false,
+                  "table_descr": "Trip master, for Trip Name",
+                  "column": "TRIP_ID",
+                  "join_table": "EXPTRACK_EXPENSE_REPORT",
+                  "join_column": "TRIP",
+                  "join_type": "left"
+                }
+              ]
+            }
+          },
+          "actions": [
+            {
+              "name": "edit",
+              "handler": "system",
+              "system_op": "edit",
+              "order": 1
+            },
+            {
+              "name": "Submit",
+              "handler": "system",
+              "system_op": "save",
+              "order": 2
+            }
+          ]
+        }
+      }
+    ],
+    "actions": [],
+    "cross_updates": [],
+    "pre_commit": [],
+    "post_commit": [
+      {
+        "mode": "business_logic",
+        "business_logic": {
+          "method": "create_payment_process_record",
+          "description": "Insert a payment process record for the submitted expense",
+          "spec": "Fires after commit of this transaction (Manage Approval, header form EXPTRACK_EXPENSE, action 'Submit' / system_op 'save'). If the payload's action/txn context is not a save of the header form via the Submit action, return without doing anything. Otherwise, using the header values from the just-submitted EXPTRACK_EXPENSE record, INSERT one new row into EXPTRACK_PAYMENT_PROCESS populated ONLY from the real submitted record's own column values (never sample, random, fetched, or imported data): EXPENSE_ID = header EXPENSE_ID; EMPLOYEE = header EMPLOYEE; CATEGORY = header CATEGORY; EXPENSE_DATE = header EXPENSE_DATE; PAYMENT_METHOD = header PAYMENT_METHOD; STATUS = header STATUS; EXPENSE_REPORT = the EXPENSE_REPORT id column on the header EXPTRACK_EXPENSE row (the linked report); TRIP and TOTAL_AMOUNT = read from the EXPTRACK_EXPENSE_REPORT row identified by that EXPENSE_REPORT id (its TRIP and TOTAL_AMOUNT columns). This is a cleanup/side-effect insert only; do not block or roll back the save on failure, but log/report any error encountered."
+        }
+      },
+      {
+        "mode": "business_logic",
+        "business_logic": {
+          "method": "return_voucher_to_expense_report",
+          "description": "Return a rejected voucher to the Expense Report transaction",
+          "spec": "Fires after commit of this transaction (Manage Approval, header form EXPTRACK_EXPENSE, action 'Submit' / system_op 'save'). If the just-saved header EXPTRACK_EXPENSE.STATUS is not exactly 'Reject', return without doing anything. Otherwise check EXPTRACK_EXPENSE_REPORT_NEW for an existing row where EXPENSE_ID = the header's EXPENSE_ID. If a row already exists, UPDATE it (do not create a duplicate); if not, INSERT a new row. Populate the row using only the real submitted header EXTRACK_EXPENSE record's own column values (never sample, random, fetched, or imported data): RECORD_ID = auto_generate() on insert only; EXPENSE_ID = header EXPENSE_ID; EMPLOYEE = header EMPLOYEE; CATEGORY = header CATEGORY; EXPENSE_DATE = header EXPENSE_DATE; PAYMENT_METHOD = header PAYMENT_METHOD; APPROVER_NAME = header APPROVER; RECEIPT_ATTACHMENT = header RECEIPT_ATTACHMENT; TRIP = look up EXPTRACK_EXPENSE_REPORT.TRIP where EXPTRACK_EXPENSE_REPORT.REPORT_ID = the header's EXPENSE_REPORT column value; TRIP_NAME = look up EXPTRACK_TRIP.TRIP_NAME where EXPTRACK_TRIP.TRIP_ID = that TRIP value. If the header's EXPENSE_REPORT is null/blank, still upsert the row but leave TRIP and TRIP_NAME blank. This returns the voucher to the Expense Report screen (exptrack_expense_report_new / table EXPTRACK_EXPENSE_REPORT_NEW), where the employee can Edit it for correction (that screen has no Add action \u2014 records only appear here via this hand-off). This is a side-effect upsert only; do not block or roll back the Manage Approval save on failure, but log/report any error encountered. Also set TOTAL_AMOUNT on the upserted EXPTRACK_EXPENSE_REPORT_NEW row by looking up EXPTRACK_EXPENSE_REPORT.TOTAL_AMOUNT where EXPTRACK_EXPENSE_REPORT.REPORT_ID = the header EXPTRACK_EXPENSE record's EXPENSE_REPORT column value (the same lookup already used for TRIP/TRIP_NAME); if the header's EXPENSE_REPORT is null/blank, leave TOTAL_AMOUNT blank as well."
+        }
+      }
+    ],
+    "follow_up_actions": [],
+    "attach_docs": [],
+    "vector_search": {
+      "enabled": true,
+      "columns": [
+        "employee",
+        "category",
+        "status"
+      ],
+      "key_column": "expense_id",
+      "display_column": "employee",
+      "allow_alias": true,
+      "auto": true,
+      "reason": "looked up by exptrack_manage_approval, exptrack_manage_approval_new_txn; searched by employee plus category, status so same-named records stay distinguishable"
+    }
+  }
+}

@@ -1,0 +1,25 @@
+{
+  "object_name": "exptrack_manage_approval_v2",
+  "tables": {
+    "EXPTRACK_EXPENSE": [
+      "STATUS",
+      "EMPLOYEE",
+      "PAYMENT_METHOD",
+      "CATEGORY",
+      "EXPENSE_ID",
+      "EXPENSE_DATE",
+      "RECEIPT_ATTACHMENT",
+      "APPROVER",
+      "EXPENSE_REPORT"
+    ],
+    "EXPTRACK_EXPENSE_REPORT": [
+      "REPORT_ID",
+      "TOTAL_AMOUNT",
+      "TRIP"
+    ],
+    "EXPTRACK_TRIP": [
+      "TRIP_ID",
+      "TRIP_NAME"
+    ]
+  }
+}

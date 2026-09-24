@@ -1,0 +1,129 @@
+{
+  "table_name": "EXPTRACK_EXPENSE_CATEGORY",
+  "objects": [
+    {
+      "object_name": "exptrack_expense_report",
+      "form_no": "2",
+      "usage_type": "M",
+      "referred_columns": [
+        "CATEGORY_CODE",
+        "CATEGORY_NAME"
+      ],
+      "join_info": {
+        "column": "CATEGORY_CODE",
+        "join_table": "EXPTRACK_EXPENSE",
+        "join_column": "CATEGORY"
+      }
+    },
+    {
+      "object_name": "exptrack_payment_method",
+      "form_no": "1",
+      "usage_type": "M",
+      "referred_columns": [
+        "CATEGORY_CODE"
+      ],
+      "join_info": {
+        "column": "CATEGORY_CODE",
+        "join_table": "EXPTRACK_PAYMENT_METHOD",
+        "join_column": "CATEGORY_CODE"
+      }
+    },
+    {
+      "object_name": "exptrack_approval_expense",
+      "form_no": "2",
+      "usage_type": "R",
+      "referred_columns": [
+        "CATEGORY_NAME",
+        "CATEGORY_CODE"
+      ],
+      "join_info": {
+        "column": "CATEGORY_CODE",
+        "join_table": "EXPTRACK_EXPENSE",
+        "join_column": "CATEGORY"
+      }
+    },
+    {
+      "object_name": "exptrack_manage_reports",
+      "form_no": "2",
+      "usage_type": "R",
+      "referred_columns": [
+        "CATEGORY_NAME",
+        "CATEGORY_CODE"
+      ],
+      "join_info": {
+        "column": "CATEGORY_CODE",
+        "join_table": "EXPTRACK_EXPENSE",
+        "join_column": "CATEGORY"
+      }
+    },
+    {
+      "object_name": "exptrack_approval_rules",
+      "form_no": "1",
+      "usage_type": "R",
+      "referred_columns": [
+        "CATEGORY_CODE",
+        "CATEGORY_NAME"
+      ],
+      "join_info": {
+        "column": "CATEGORY_CODE",
+        "join_table": "EXPTRACK_APPROVAL_RULES",
+        "join_column": "CATEGORY"
+      }
+    },
+    {
+      "object_name": "exptrack_manage_approval_new",
+      "form_no": "1",
+      "usage_type": "R",
+      "referred_columns": [
+        "CATEGORY_CODE",
+        "CATEGORY_NAME"
+      ],
+      "join_info": {
+        "column": "CATEGORY_CODE",
+        "join_table": "EXPTRACK_EXPENSE",
+        "join_column": "CATEGORY"
+      }
+    },
+    {
+      "object_name": "exptrack_manage_approval",
+      "form_no": "2",
+      "usage_type": "R",
+      "referred_columns": [
+        "CATEGORY_CODE",
+        "CATEGORY_NAME"
+      ],
+      "join_info": {
+        "column": "CATEGORY_CODE",
+        "join_table": "EXPTRACK_EXPENSE",
+        "join_column": "CATEGORY"
+      }
+    },
+    {
+      "object_name": "exptrack_manage_approval_new_txn",
+      "form_no": "1",
+      "usage_type": "R",
+      "referred_columns": [
+        "CATEGORY_NAME",
+        "CATEGORY_CODE"
+      ],
+      "join_info": {
+        "column": "CATEGORY_CODE",
+        "join_table": "EXPTRACK_MANAGE_APPROVAL_NEW_TXN",
+        "join_column": "CATEGORY"
+      }
+    },
+    {
+      "object_name": "exptrack_expense_category",
+      "form_no": "1",
+      "usage_type": "M",
+      "referred_columns": [
+        "CREATED_BY",
+        "STATUS",
+        "CATEGORY_NAME",
+        "DESCRIPTION",
+        "CREATED_DATE",
+        "CATEGORY_CODE"
+      ]
+    }
+  ]
+}

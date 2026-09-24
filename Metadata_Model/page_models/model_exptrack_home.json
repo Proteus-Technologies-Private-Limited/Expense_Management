@@ -1,0 +1,184 @@
+{
+  "page": {
+    "obj_name": "exptrack_home",
+    "title": "Home",
+    "kind": "internal",
+    "pageMode": "app",
+    "pageSchemaVersion": 2,
+    "inputs": [
+      { "name": "current_user", "label": "Current user", "type": "json", "display": true,
+        "api": { "method": "GET", "url": "/api/auth/me", "autoload": true } }
+    ],
+    "actions": [],
+    "chrome": { "backToTop": false, "smoothScroll": true },
+    "sections": [
+      {
+        "id": "sec_hero",
+        "tag": "main",
+        "anchorId": "top",
+        "width": "full",
+        "style": { "background": { "kind": "gradient", "gradientFrom": "#0f172a", "gradientTo": "#1e3a8a", "gradientAngle": 135 } },
+        "blocks": [
+          {
+            "id": "hero1",
+            "type": "hero",
+            "eyebrow": "Expense Tracking & Approval",
+            "title": "Welcome back, {{current_user.json.name}}",
+            "subtitle": "Track expenses, manage trips, and keep your reports moving — all in one place.",
+            "align": "left",
+            "height": "normal",
+            "textColor": "#ffffff",
+            "primaryCta": {
+              "id": "hero_cta_primary",
+              "label": "Add Expense",
+              "variant": "primary",
+              "size": "md",
+              "on_click": { "kind": "navigate", "obj_type": "T", "obj_name": "exptrack_expense" }
+            },
+            "secondaryCta": {
+              "id": "hero_cta_secondary",
+              "label": "View Analytics",
+              "variant": "outline",
+              "size": "md",
+              "on_click": { "kind": "navigate", "obj_type": "D", "obj_name": "exptrack_employee_dashboard" }
+            },
+            "animation": { "preset": "fade-up", "on": "load", "duration": 600 }
+          }
+        ]
+      },
+      {
+        "id": "sec_quick_actions",
+        "tag": "main",
+        "anchorId": "quick-actions",
+        "blocks": [
+          { "id": "qa_heading", "type": "heading", "level": 2, "text": "Quick actions" },
+          {
+            "id": "cg_quick_actions",
+            "type": "card_grid",
+            "columns": 3,
+            "gap": 16,
+            "animation": { "preset": "fade-up", "on": "scroll", "once": true, "stagger": 90 },
+            "style": { "hover": { "translateY": -4, "shadow": "lg" }, "transition": 220 },
+            "cards": [
+              {
+                "id": "card_add_expense",
+                "title": "Add Expense",
+                "subtitle": "Record a new expense",
+                "body": "Capture an expense, attach a receipt, and tag it to a trip.",
+                "cta": {
+                  "id": "cta_add_expense",
+                  "label": "Add Expense",
+                  "variant": "primary",
+                  "on_click": { "kind": "navigate", "obj_type": "T", "obj_name": "exptrack_expense" }
+                }
+              },
+              {
+                "id": "card_create_trip",
+                "title": "Create Trip",
+                "subtitle": "Start a new business trip",
+                "body": "Group related expenses under a trip for easy tracking and totals.",
+                "cta": {
+                  "id": "cta_create_trip",
+                  "label": "Create Trip",
+                  "variant": "primary",
+                  "on_click": { "kind": "navigate", "obj_type": "T", "obj_name": "exptrack_trip" }
+                }
+              },
+              {
+                "id": "card_submit_report",
+                "title": "Submit Report",
+                "subtitle": "Compile expenses into a report",
+                "body": "Bundle your expenses into a report and route it for approval.",
+                "cta": {
+                  "id": "cta_submit_report",
+                  "label": "Submit Report",
+                  "variant": "primary",
+                  "on_click": { "kind": "navigate", "obj_type": "T", "obj_name": "exptrack_expense_report" }
+                }
+              },
+              {
+                "id": "card_pending_approvals",
+                "title": "Pending Approvals",
+                "subtitle": "For Managers/Approvers",
+                "body": "Review submitted reports awaiting your decision.",
+                "cta": {
+                  "id": "cta_pending_approvals",
+                  "label": "View Pending Approvals",
+                  "variant": "outline",
+                  "on_click": { "kind": "navigate", "obj_type": "T", "obj_name": "exptrack_approve_expense_report" }
+                }
+              },
+              {
+                "id": "card_approved_reports",
+                "title": "Approved Reports",
+                "subtitle": "For Finance",
+                "body": "Browse approved reports and export finance summaries.",
+                "cta": {
+                  "id": "cta_approved_reports",
+                  "label": "View Approved Reports",
+                  "variant": "outline",
+                  "on_click": { "kind": "navigate", "obj_type": "D", "obj_name": "exptrack_finance_dashboard" }
+                }
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "id": "sec_callout",
+        "tag": "main",
+        "blocks": [
+          {
+            "id": "callout_outstanding",
+            "type": "callout",
+            "variant": "warning",
+            "title": "Outstanding items",
+            "body": "You may have reports awaiting approval or expenses missing receipts. Check your dashboards for details.",
+            "icon": "alert-triangle",
+            "iconPosition": "left",
+            "align": "left"
+          }
+        ]
+      },
+      {
+        "id": "sec_activity_feed",
+        "tag": "main",
+        "anchorId": "activity",
+        "blocks": [
+          { "id": "activity_heading", "type": "heading", "level": 2, "text": "Recent activity" },
+          {
+            "id": "embed_activity_feed",
+            "type": "embed",
+            "embed": {
+              "obj_name": "exptrack_activity_log_detail",
+              "obj_type": "V",
+              "renderMode": "realtime",
+              "presentation": "inline"
+            }
+          },
+          {
+            "id": "bg_activity_links",
+            "type": "button_group",
+            "align": "left",
+            "gap": 8,
+            "buttons": [
+              {
+                "id": "btn_view_all_activity",
+                "label": "View All Activity",
+                "variant": "outline",
+                "on_click": { "kind": "navigate", "obj_type": "D", "obj_name": "exptrack_activity_log_dashboard" }
+              },
+              {
+                "id": "btn_view_analytics",
+                "label": "View Analytics",
+                "variant": "outline",
+                "on_click": { "kind": "navigate", "obj_type": "D", "obj_name": "exptrack_employee_dashboard" }
+              }
+            ]
+          }
+        ]
+      }
+    ],
+    "blocks": []
+  }
+}

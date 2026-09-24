@@ -1,0 +1,182 @@
+{
+  "table_name": "EXPTRACK_EXPENSE",
+  "objects": [
+    {
+      "object_name": "exptrack_expense_report",
+      "form_no": "2",
+      "usage_type": "R",
+      "referred_columns": [
+        "DESCRIPTION",
+        "AMOUNT",
+        "EXPENSE_ID",
+        "PAYMENT_METHOD",
+        "CATEGORY",
+        "EXPENSE_DATE"
+      ],
+      "join_info": {
+        "column": "PAYMENT_METHOD",
+        "join_table": "EXPTRACK_PAYMENT_METHOD",
+        "join_column": "PAYMENT_METHOD_CODE"
+      }
+    },
+    {
+      "object_name": "exptrack_approval_expense",
+      "form_no": "2",
+      "usage_type": "R",
+      "referred_columns": [
+        "CURRENCY",
+        "AMOUNT",
+        "EXPENSE_REPORT",
+        "CHG_TERM",
+        "CATEGORY",
+        "DESCRIPTION",
+        "PAYMENT_METHOD",
+        "EMPLOYEE",
+        "CHG_USER",
+        "STATUS",
+        "EXPENSE_ID",
+        "EXPENSE_DATE",
+        "APPROVER",
+        "RECEIPT_ATTACHMENT",
+        "CHG_DATE"
+      ],
+      "join_info": {
+        "column": "EXPENSE_REPORT",
+        "join_table": "EXPTRACK_EXPENSE_REPORT",
+        "join_column": "REPORT_ID"
+      }
+    },
+    {
+      "object_name": "exptrack_manage_reports",
+      "form_no": "2",
+      "usage_type": "R",
+      "referred_columns": [
+        "CURRENCY",
+        "AMOUNT",
+        "EXPENSE_REPORT",
+        "CATEGORY",
+        "DESCRIPTION",
+        "PAYMENT_METHOD",
+        "EMPLOYEE",
+        "APPROVER_COMMENTS",
+        "STATUS",
+        "APPROVAL_STATUS",
+        "EXPENSE_ID",
+        "EXPENSE_DATE",
+        "RECEIPT_ATTACHMENT"
+      ],
+      "join_info": {
+        "column": "PAYMENT_METHOD",
+        "join_table": "EXPTRACK_PAYMENT_METHOD",
+        "join_column": "PAYMENT_METHOD_CODE"
+      }
+    },
+    {
+      "object_name": "exptrack_manage_approval_new",
+      "form_no": "1",
+      "usage_type": "M",
+      "referred_columns": [
+        "STATUS",
+        "APPROVAL_STATUS",
+        "EMPLOYEE",
+        "EXPENSE_REPORT",
+        "CURRENCY",
+        "APPROVER",
+        "EXPENSE_ID",
+        "CHG_TERM",
+        "CATEGORY",
+        "AMOUNT",
+        "APPROVER_COMMENTS",
+        "ADD_DATE",
+        "CHG_DATE",
+        "RECEIPT_ATTACHMENT",
+        "CHG_USER",
+        "PAYMENT_METHOD",
+        "DESCRIPTION",
+        "EXPENSE_DATE"
+      ],
+      "join_info": {
+        "column": "PAYMENT_METHOD",
+        "join_table": "EXPTRACK_PAYMENT_METHOD",
+        "join_column": "PAYMENT_METHOD_CODE"
+      }
+    },
+    {
+      "object_name": "exptrack_manage_approval",
+      "form_no": "2",
+      "usage_type": "R",
+      "referred_columns": [
+        "STATUS",
+        "APPROVAL_STATUS",
+        "EMPLOYEE",
+        "EXPENSE_REPORT",
+        "CURRENCY",
+        "APPROVER",
+        "EXPENSE_ID",
+        "CHG_TERM",
+        "CATEGORY",
+        "AMOUNT",
+        "APPROVER_COMMENTS",
+        "CHG_DATE",
+        "RECEIPT_ATTACHMENT",
+        "CHG_USER",
+        "PAYMENT_METHOD",
+        "DESCRIPTION",
+        "EXPENSE_DATE"
+      ],
+      "join_info": {
+        "column": "PAYMENT_METHOD",
+        "join_table": "EXPTRACK_PAYMENT_METHOD",
+        "join_column": "PAYMENT_METHOD_CODE"
+      }
+    },
+    {
+      "object_name": "exptrack_payment_process_new",
+      "form_no": "1",
+      "usage_type": "M",
+      "referred_columns": [
+        "CATEGORY",
+        "CHG_TERM",
+        "PAYMENT_METHOD",
+        "ADD_DATE",
+        "CHG_DATE",
+        "APPROVER",
+        "EMPLOYEE",
+        "STATUS",
+        "FINANCE_NAME",
+        "EXPENSE_DATE",
+        "CHG_USER",
+        "EXPENSE_REPORT",
+        "PAYMENT_PROCESS_STATUS",
+        "RECEIPT_ATTACHMENT",
+        "EXPENSE_ID"
+      ],
+      "join_info": {
+        "column": "EXPENSE_REPORT",
+        "join_table": "EXPTRACK_EXPENSE_REPORT",
+        "join_column": "REPORT_ID"
+      }
+    },
+    {
+      "object_name": "exptrack_manage_approval_v2",
+      "form_no": "1",
+      "usage_type": "R",
+      "referred_columns": [
+        "STATUS",
+        "EMPLOYEE",
+        "PAYMENT_METHOD",
+        "CATEGORY",
+        "EXPENSE_ID",
+        "EXPENSE_DATE",
+        "RECEIPT_ATTACHMENT",
+        "APPROVER",
+        "EXPENSE_REPORT"
+      ],
+      "join_info": {
+        "column": "EXPENSE_REPORT",
+        "join_table": "EXPTRACK_EXPENSE_REPORT",
+        "join_column": "REPORT_ID"
+      }
+    }
+  ]
+}

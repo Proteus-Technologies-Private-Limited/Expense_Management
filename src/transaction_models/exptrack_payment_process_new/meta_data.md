@@ -1,0 +1,1 @@
+[1] Payment Processing: expense_id(V20), employee(V10), trip(V20), category(V20), expense_date(D), total_amount(N14,2), payment_method(V20), receipt_attachment(V500), status(V20), approver(V100), finance_name(V100), payment_process_status(V20), add_date(DT), chg_date(DT), chg_user(V10), chg_term(V15)

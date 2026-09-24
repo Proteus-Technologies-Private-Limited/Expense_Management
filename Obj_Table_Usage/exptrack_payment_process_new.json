@@ -1,0 +1,27 @@
+{
+  "object_name": "exptrack_payment_process_new",
+  "tables": {
+    "EXPTRACK_EXPENSE": [
+      "CATEGORY",
+      "CHG_TERM",
+      "PAYMENT_METHOD",
+      "ADD_DATE",
+      "CHG_DATE",
+      "APPROVER",
+      "EMPLOYEE",
+      "STATUS",
+      "FINANCE_NAME",
+      "EXPENSE_DATE",
+      "CHG_USER",
+      "EXPENSE_REPORT",
+      "PAYMENT_PROCESS_STATUS",
+      "RECEIPT_ATTACHMENT",
+      "EXPENSE_ID"
+    ],
+    "EXPTRACK_EXPENSE_REPORT": [
+      "REPORT_ID",
+      "TOTAL_AMOUNT",
+      "TRIP"
+    ]
+  }
+}

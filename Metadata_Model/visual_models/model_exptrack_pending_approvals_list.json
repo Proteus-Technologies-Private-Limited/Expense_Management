@@ -1,0 +1,110 @@
+{
+  "DATA_SOURCE_MODE": "sql",
+  "SQLMODEL": {
+    "SQLModel": { "COLUMNS": [ { "COLUMN": [] } ] },
+    "CRITERIA": {
+      "query": {
+        "condition": "and",
+        "rules": [
+          {
+            "id": "Criteria_1", "field": "EMPLOYEE", "DBNAME": "EMPLOYEE", "tableName": "EXPTRACK_EXPENSE_REPORT",
+            "COLTYPE": "string", "currentFieldType": "string", "operator": "like",
+            "queryOption": "P", "prevOption": "P", "customValue": "FixedValue",
+            "promptLabel": "Employee", "promptVar": "employee", "value": "%", "chipValue": []
+          }
+        ]
+      }
+    },
+    "VISUAL_NAME": "Grid",
+    "SCHEMA_NAME": "EXPTRACK_PENDING_APPROVALS_LIST",
+    "SCHEMA_DESCR": "Pending Approvals List - reports awaiting the logged-in approver's decision",
+    "SCHEMA_TYPE": "S",
+    "OUTPUT_TYPE": "JSON",
+    "DATABASE_TYPE": "1",
+    "DATABASE_DETAIL": { "DATABASE_NAME": "PostgreSQL", "TYPE": 1 }
+  },
+  "LAYOUT_DATA": {
+    "visualLayout": {
+      "ID": "grid",
+      "VisualName": "Grid",
+      "VisualType": "Standard",
+      "VisualIcon": "Grid.svg",
+      "DisplayOrder": "8",
+      "className": "InsightGridTable",
+      "linkOptions": "",
+      "OutputType": "JSON",
+      "options": [
+        { "optionId": 1, "optionName": "showGrandTotals", "optionHeading": "Show Grand Totals", "dataType": "string", "defaultValue": "on", "listOfValues": "off,on", "allowChange": "true", "optionType": "inner" },
+        { "optionId": 2, "optionName": "showTotals", "optionHeading": "Show Totals", "dataType": "string", "defaultValue": "off", "listOfValues": "off,on", "allowChange": "true", "optionType": "inner" },
+        { "optionId": 3, "optionName": "type", "optionHeading": "Grid Type", "dataType": "string", "defaultValue": "flat", "listOfValues": "compact,flat,classic", "allowChange": "true", "optionType": "inner" },
+        { "optionId": 4, "optionName": "showFilter", "optionHeading": "Show Filter", "dataType": "boolean", "defaultValue": "true", "listOfValues": "true,false", "allowChange": "true", "optionType": "inner" },
+        { "optionId": 5, "optionName": "toolbar", "optionHeading": "Toolbar", "dataType": "boolean", "defaultValue": "true", "listOfValues": "true,false", "allowChange": "true", "optionType": "inner" },
+        { "optionId": 6, "optionName": "showHeaders", "optionHeading": "Show Headers", "dataType": "boolean", "defaultValue": "true", "listOfValues": "true,false", "allowChange": "true", "optionType": "inner" },
+        { "optionId": 7, "optionName": "autoRefreshSeconds", "optionHeading": "Auto Refresh (sec)", "dataType": "number", "defaultValue": "0", "listOfValues": "", "allowChange": "true", "optionType": "inner" }
+      ],
+      "ColumnGroups": [
+        {
+          "GroupID": 1, "GroupName": "Columns", "StandardName": "Columns", "AllowedColumnTypes": "ANY", "MinColumns": 0, "MaxColumns": 0,
+          "COLUMNS": [
+            {
+              "COLID": 2, "NAME": "REPORT_ID", "DBTABLE": "", "DBNAME": "REPORT_ID",
+              "tableName": "EXPTRACK_EXPENSE_REPORT", "tableDisplayName": "Expense Report",
+              "content": "Report ID", "name": "Report ID", "descr": "System-generated unique expense report identifier",
+              "type": "string", "JAVATYPE": "java.lang.String", "COLTYPE": "CHAR",
+              "NATIVETYPE": "AN", "DBSIZE": 20, "EXPRESSIONTYPE": "C",
+              "DEFAULTFUNCTION": "", "FUNCTION": "", "FEILD_TYPE": "TEXTBOX",
+              "ALIGNMENT": 1, "alignment": "", "WIDTH": 110, "FONT": "TIMES NEW ROMAN",
+              "FONTSIZE": 12, "FGCOLOR": "#000000", "BGCOLOR": "", "BOLD": 0,
+              "ITALIC": 0, "UNDERLINE": 0, "HIDDEN": "", "KEY": true, "CAPS": false,
+              "ADV_FORMAT": "", "expression": "", "value": "",
+              "groupName": "Columns", "StandardName": "Columns", "checked": true
+            },
+            {
+              "COLID": 3, "NAME": "EMPLOYEE", "DBTABLE": "", "DBNAME": "EMPLOYEE",
+              "tableName": "EXPTRACK_EXPENSE_REPORT", "tableDisplayName": "Expense Report",
+              "content": "Employee", "name": "Employee", "descr": "Employee who owns this expense report",
+              "type": "string", "JAVATYPE": "java.lang.String", "COLTYPE": "CHAR",
+              "NATIVETYPE": "AN", "DBSIZE": 10, "EXPRESSIONTYPE": "C",
+              "DEFAULTFUNCTION": "", "FUNCTION": "", "FEILD_TYPE": "TEXTBOX",
+              "ALIGNMENT": 1, "alignment": "", "WIDTH": 110, "FONT": "TIMES NEW ROMAN",
+              "FONTSIZE": 12, "FGCOLOR": "#000000", "BGCOLOR": "", "BOLD": 0,
+              "ITALIC": 0, "UNDERLINE": 0, "HIDDEN": "", "KEY": false, "CAPS": false,
+              "ADV_FORMAT": "", "expression": "", "value": "",
+              "groupName": "Columns", "StandardName": "Columns", "checked": true
+            },
+            {
+              "COLID": 4, "NAME": "TOTAL_AMOUNT", "DBTABLE": "", "DBNAME": "TOTAL_AMOUNT",
+              "tableName": "EXPTRACK_EXPENSE_REPORT", "tableDisplayName": "Expense Report",
+              "content": "Total Amount", "name": "Total Amount", "descr": "Sum of AMOUNT across all included expense lines",
+              "type": "number", "JAVATYPE": "java.math.BigDecimal", "COLTYPE": "NUMBER",
+              "NATIVETYPE": "AN", "DBSIZE": 14, "EXPRESSIONTYPE": "C",
+              "DEFAULTFUNCTION": "", "FUNCTION": "", "FEILD_TYPE": "TEXTBOX",
+              "ALIGNMENT": 2, "alignment": "", "WIDTH": 130, "FONT": "TIMES NEW ROMAN",
+              "FONTSIZE": 12, "FGCOLOR": "#000000", "BGCOLOR": "", "BOLD": 0,
+              "ITALIC": 0, "UNDERLINE": 0, "HIDDEN": "", "KEY": false, "CAPS": false,
+              "ADV_FORMAT": "", "expression": "", "value": "",
+              "display": { "type": "number", "numberStyle": "currency", "decimals": 0 },
+              "groupName": "Columns", "StandardName": "Columns", "checked": true
+            },
+            {
+              "COLID": 5, "NAME": "REPORT_DATE", "DBTABLE": "", "DBNAME": "REPORT_DATE",
+              "tableName": "EXPTRACK_EXPENSE_REPORT", "tableDisplayName": "Expense Report",
+              "content": "Report Date", "name": "Report Date", "descr": "Date the expense report was created",
+              "type": "date", "JAVATYPE": "java.sql.Date", "COLTYPE": "DATE",
+              "NATIVETYPE": "AN", "DBSIZE": 10, "EXPRESSIONTYPE": "C",
+              "DEFAULTFUNCTION": "", "FUNCTION": "", "FEILD_TYPE": "TEXTBOX",
+              "ALIGNMENT": 1, "alignment": "", "WIDTH": 110, "FONT": "TIMES NEW ROMAN",
+              "FONTSIZE": 12, "FGCOLOR": "#000000", "BGCOLOR": "", "BOLD": 0,
+              "ITALIC": 0, "UNDERLINE": 0, "HIDDEN": "", "KEY": false, "CAPS": false,
+              "ADV_FORMAT": "", "expression": "", "value": "",
+              "display": { "type": "date", "datePattern": "dd-MMM-yy" },
+              "groupName": "Columns", "StandardName": "Columns", "checked": true
+            }
+          ]
+        }
+      ]
+    },
+    "layoutdata": {}
+  },
+  "SOURCE_SQL": "SELECT r.report_id AS REPORT_ID, r.employee AS EMPLOYEE, r.total_amount AS TOTAL_AMOUNT, r.report_date AS REPORT_DATE FROM exptrack_expense_report r WHERE r.approver = ?.@LoginUser AND r.status = 'Submitted' AND r.employee LIKE ?.employee ORDER BY r.report_date"
+}

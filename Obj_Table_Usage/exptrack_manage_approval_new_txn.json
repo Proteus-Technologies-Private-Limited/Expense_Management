@@ -1,0 +1,35 @@
+{
+  "object_name": "exptrack_manage_approval_new_txn",
+  "tables": {
+    "EXPTRACK_MANAGE_APPROVAL_NEW_TXN": [
+      "TOTAL_EXPENSE_AMOUNT",
+      "TRIP",
+      "PAYMENT_METHOD",
+      "EMPLOYEE",
+      "EXPENSE_DATE",
+      "RECORD_ID",
+      "STATUS",
+      "ADD_USER",
+      "EXPENSE_ID",
+      "CHG_DATE",
+      "ADD_TERM",
+      "ADD_DATE",
+      "CHG_USER",
+      "CHG_TERM",
+      "CATEGORY",
+      "APPROVER_NAME"
+    ],
+    "EXPTRACK_TRIP": [
+      "TRIP_ID",
+      "TRIP_NAME"
+    ],
+    "EXPTRACK_EXPENSE_CATEGORY": [
+      "CATEGORY_NAME",
+      "CATEGORY_CODE"
+    ],
+    "EXPTRACK_PAYMENT_METHOD": [
+      "PAYMENT_METHOD_CODE",
+      "PAYMENT_METHOD_NAME"
+    ]
+  }
+}

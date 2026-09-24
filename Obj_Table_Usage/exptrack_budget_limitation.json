@@ -1,0 +1,17 @@
+{
+  "object_name": "exptrack_budget_limitation",
+  "tables": {
+    "EXPTRACK_BUDGET_LIMITATION": [
+      "ADD_USER",
+      "DEPARTMENT",
+      "ADD_DATE",
+      "CHG_USER",
+      "BUDGET_DOCUMENT",
+      "CHG_TERM",
+      "BUDGET_LIMITATION_ID",
+      "ADD_TERM",
+      "CHG_DATE",
+      "FINANCE_NAME"
+    ]
+  }
+}

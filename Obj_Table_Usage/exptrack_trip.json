@@ -1,0 +1,24 @@
+{
+  "object_name": "exptrack_trip",
+  "tables": {
+    "EXPTRACK_TRIP": [
+      "STATUS",
+      "CREATED_DATE",
+      "DESTINATION",
+      "CHG_USER",
+      "TOTAL_EXPENSE_AMOUNT",
+      "EMPLOYEE",
+      "PURPOSE",
+      "TRIP_ID",
+      "CHG_DATE",
+      "S_NO",
+      "START_DATE",
+      "ADD_TERM",
+      "CHG_TERM",
+      "TRIP_NAME",
+      "SERIAL_NO",
+      "ADD_USER",
+      "END_DATE"
+    ]
+  }
+}

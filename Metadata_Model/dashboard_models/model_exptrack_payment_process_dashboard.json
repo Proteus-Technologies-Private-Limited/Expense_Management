@@ -1,0 +1,43 @@
+{
+  "DASHBOARD": {
+    "DASHBOARD_ID": "EXPTRACK_PAYMENT_PROCESS_DASHBOARD",
+    "DASHBOARD_TYPE": "S",
+    "DASHBOARD_NAME": "Payment Process Dashboard",
+    "DASHBOARD_DESCR": "Analysis dashboard for the Payment Process expense records, showing payment-process status breakdown, total expense amount, category breakdown, and payment method breakdown.",
+    "CREATED_BY": "admin",
+    "CREATED_DATE": "2026-09-24",
+    "REFRESH_INTERVAL_SECONDS": 0,
+    "GLOBAL_CRITERIA": [],
+    "VISUALS": [
+      {
+        "VISUAL_ID": "VIS_001",
+        "VISUAL_NAME": "Payment Process Total Amount",
+        "POSITION": { "X": 0, "Y": 0, "WIDTH": 3, "HEIGHT": 2 },
+        "VISUAL_CONFIG_REF": "model_exptrack_payment_process_total_amount.json",
+        "CRITERIA_BINDINGS": []
+      },
+      {
+        "VISUAL_ID": "VIS_002",
+        "VISUAL_NAME": "Payment Process Status Count",
+        "POSITION": { "X": 3, "Y": 0, "WIDTH": 9, "HEIGHT": 4 },
+        "VISUAL_CONFIG_REF": "model_exptrack_payment_process_status_count.json",
+        "CRITERIA_BINDINGS": []
+      },
+      {
+        "VISUAL_ID": "VIS_003",
+        "VISUAL_NAME": "Payment Process by Category",
+        "POSITION": { "X": 0, "Y": 4, "WIDTH": 6, "HEIGHT": 4 },
+        "VISUAL_CONFIG_REF": "model_exptrack_payment_process_by_category.json",
+        "CRITERIA_BINDINGS": []
+      },
+      {
+        "VISUAL_ID": "VIS_004",
+        "VISUAL_NAME": "Payment Process by Method",
+        "POSITION": { "X": 6, "Y": 4, "WIDTH": 6, "HEIGHT": 4 },
+        "VISUAL_CONFIG_REF": "model_exptrack_payment_process_by_method.json",
+        "CRITERIA_BINDINGS": []
+      }
+    ],
+    "DRILL_THROUGH": []
+  }
+}

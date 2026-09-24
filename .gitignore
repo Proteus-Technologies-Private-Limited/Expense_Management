@@ -1,0 +1,15 @@
+# Twasta runtime artifacts — per-install, never part of the application design.
+.twasta/
+.twasta_build_state.json
+.twasta_plans/
+.autoagent_state.json
+.application.json.lock
+.claude/
+
+# Connection credentials are per-install and must never be published.
+Metadata_Model/connections/
+
+# Editor/designer backups
+*.bak
+*.bak-*
+*.bak.*

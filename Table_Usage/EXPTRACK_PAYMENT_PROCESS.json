@@ -1,0 +1,29 @@
+{
+  "table_name": "EXPTRACK_PAYMENT_PROCESS",
+  "objects": [
+    {
+      "object_name": "exptrack_payment_process",
+      "form_no": "1",
+      "usage_type": "M",
+      "referred_columns": [
+        "PAYMENT_AMOUNT",
+        "PAYMENT_REFERENCE",
+        "CREATED_BY",
+        "CATEGORY",
+        "REPORT_STATUS",
+        "REPORT_TOTAL_AMOUNT",
+        "EXPENSE_DATE",
+        "REPORT_TITLE",
+        "REPORT_EMPLOYEE",
+        "PAYMENT_DATE",
+        "PAYMENT_ID",
+        "STATUS",
+        "EXPENSE_ID",
+        "EXPENSE_REPORT",
+        "PAYMENT_METHOD",
+        "TRIP",
+        "CREATED_DATE"
+      ]
+    }
+  ]
+}

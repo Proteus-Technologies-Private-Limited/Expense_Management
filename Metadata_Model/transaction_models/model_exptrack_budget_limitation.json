@@ -1,0 +1,348 @@
+{
+  "transaction": {
+    "obj_name": "exptrack_budget_limitation",
+    "sql_models": [
+      {
+        "sql_model": {
+          "form_title": "Budget Limitation",
+          "form_descr": "Record finance budget and limitation details",
+          "form_no": "1",
+          "main_table": "EXPTRACK_BUDGET_LIMITATION",
+          "columns": [
+            {
+              "column": {
+                "name": "budget_limitation_id",
+                "db_name": "BUDGET_LIMITATION_ID",
+                "group_name": "Others",
+                "col_type": "VARCHAR",
+                "heading": "Budget Limitation ID",
+                "descr": "System generated unique identifier",
+                "key": true,
+                "mandatory": true,
+                "protect": "1",
+                "default_value": "auto_generate()",
+                "x": "40",
+                "y": "40",
+                "col_id": "1",
+                "table_name": "EXPTRACK_BUDGET_LIMITATION",
+                "table_display_name": "Budget and limitation records",
+                "db_size": "20",
+                "width": 200,
+                "hidden": "",
+                "format": "",
+                "default_function": "",
+                "expression": "",
+                "edit_mask": "",
+                "validations": "",
+                "lookup": ""
+              }
+            },
+            {
+              "column": {
+                "name": "finance_name",
+                "db_name": "FINANCE_NAME",
+                "group_name": "Basic",
+                "col_type": "VARCHAR",
+                "heading": "Finance Name",
+                "descr": "Name of the finance owner responsible for this budget",
+                "mandatory": true,
+                "x": "10",
+                "y": "10",
+                "col_id": "2",
+                "table_name": "EXPTRACK_BUDGET_LIMITATION",
+                "table_display_name": "Budget and limitation records",
+                "db_size": "100",
+                "width": 500,
+                "key": false,
+                "hidden": "",
+                "format": "",
+                "default_function": "",
+                "default_value": "",
+                "expression": "",
+                "edit_mask": "",
+                "protect": "",
+                "validations": "",
+                "lookup": ""
+              }
+            },
+            {
+              "column": {
+                "name": "department",
+                "db_name": "DEPARTMENT",
+                "group_name": "Basic",
+                "col_type": "VARCHAR",
+                "heading": "Department",
+                "descr": "Department this budget applies to",
+                "mandatory": true,
+                "x": "20",
+                "y": "20",
+                "col_id": "3",
+                "table_name": "EXPTRACK_BUDGET_LIMITATION",
+                "table_display_name": "Budget and limitation records",
+                "db_size": "100",
+                "width": 500,
+                "key": false,
+                "hidden": "",
+                "format": "",
+                "default_function": "",
+                "default_value": "",
+                "expression": "",
+                "edit_mask": "",
+                "protect": "",
+                "validations": "",
+                "lookup": ""
+              }
+            },
+            {
+              "column": {
+                "name": "budget_document",
+                "db_name": "BUDGET_DOCUMENT",
+                "group_name": "Basic",
+                "col_type": "VARCHAR",
+                "heading": "Budget Document",
+                "descr": "Uploaded document supporting the budget/limitation",
+                "mandatory": true,
+                "edit_mask": {
+                  "mask": "document"
+                },
+                "x": "30",
+                "y": "30",
+                "col_id": "4",
+                "table_name": "EXPTRACK_BUDGET_LIMITATION",
+                "table_display_name": "Budget and limitation records",
+                "db_size": "500",
+                "width": 500,
+                "key": false,
+                "hidden": "",
+                "format": "",
+                "default_function": "",
+                "default_value": "",
+                "expression": "",
+                "protect": "",
+                "validations": "",
+                "lookup": ""
+              }
+            },
+            {
+              "column": {
+                "name": "add_date",
+                "db_name": "ADD_DATE",
+                "group_name": "Others",
+                "col_type": "DATETIME",
+                "heading": "Add Date",
+                "default_value": ":audit_add_date",
+                "protect": "1",
+                "hidden": 1,
+                "x": "50",
+                "y": "50",
+                "col_id": "5",
+                "table_name": "EXPTRACK_BUDGET_LIMITATION",
+                "table_display_name": "Budget and limitation records",
+                "db_size": "",
+                "width": 50,
+                "key": false,
+                "mandatory": false,
+                "descr": "",
+                "format": "",
+                "default_function": "",
+                "expression": "",
+                "edit_mask": "",
+                "validations": "",
+                "lookup": ""
+              }
+            },
+            {
+              "column": {
+                "name": "add_user",
+                "db_name": "ADD_USER",
+                "group_name": "Others",
+                "col_type": "VARCHAR",
+                "heading": "Add User",
+                "default_value": ":audit_add_user",
+                "protect": "1",
+                "hidden": 1,
+                "x": "60",
+                "y": "60",
+                "col_id": "6",
+                "table_name": "EXPTRACK_BUDGET_LIMITATION",
+                "table_display_name": "Budget and limitation records",
+                "db_size": "10",
+                "width": 100,
+                "key": false,
+                "mandatory": false,
+                "descr": "",
+                "format": "",
+                "default_function": "",
+                "expression": "",
+                "edit_mask": "",
+                "validations": "",
+                "lookup": ""
+              }
+            },
+            {
+              "column": {
+                "name": "add_term",
+                "db_name": "ADD_TERM",
+                "group_name": "Others",
+                "col_type": "VARCHAR",
+                "heading": "Add Terminal",
+                "default_value": ":audit_add_terminal",
+                "protect": "1",
+                "hidden": 1,
+                "x": "70",
+                "y": "70",
+                "col_id": "7",
+                "table_name": "EXPTRACK_BUDGET_LIMITATION",
+                "table_display_name": "Budget and limitation records",
+                "db_size": "15",
+                "width": 150,
+                "key": false,
+                "mandatory": false,
+                "descr": "",
+                "format": "",
+                "default_function": "",
+                "expression": "",
+                "edit_mask": "",
+                "validations": "",
+                "lookup": ""
+              }
+            },
+            {
+              "column": {
+                "name": "chg_date",
+                "db_name": "CHG_DATE",
+                "group_name": "Others",
+                "col_type": "DATETIME",
+                "heading": "Changed Date",
+                "default_value": ":audit_chg_date",
+                "protect": "1",
+                "hidden": 1,
+                "x": "80",
+                "y": "80",
+                "col_id": "8",
+                "table_name": "EXPTRACK_BUDGET_LIMITATION",
+                "table_display_name": "Budget and limitation records",
+                "db_size": "",
+                "width": 50,
+                "key": false,
+                "mandatory": false,
+                "descr": "",
+                "format": "",
+                "default_function": "",
+                "expression": "",
+                "edit_mask": "",
+                "validations": "",
+                "lookup": ""
+              }
+            },
+            {
+              "column": {
+                "name": "chg_user",
+                "db_name": "CHG_USER",
+                "group_name": "Others",
+                "col_type": "VARCHAR",
+                "heading": "Changed User",
+                "default_value": ":audit_chg_user",
+                "protect": "1",
+                "hidden": 1,
+                "x": "90",
+                "y": "90",
+                "col_id": "9",
+                "table_name": "EXPTRACK_BUDGET_LIMITATION",
+                "table_display_name": "Budget and limitation records",
+                "db_size": "10",
+                "width": 100,
+                "key": false,
+                "mandatory": false,
+                "descr": "",
+                "format": "",
+                "default_function": "",
+                "expression": "",
+                "edit_mask": "",
+                "validations": "",
+                "lookup": ""
+              }
+            },
+            {
+              "column": {
+                "name": "chg_term",
+                "db_name": "CHG_TERM",
+                "group_name": "Others",
+                "col_type": "VARCHAR",
+                "heading": "Changed Terminal",
+                "default_value": ":audit_chg_terminal",
+                "protect": "1",
+                "hidden": 1,
+                "x": "100",
+                "y": "100",
+                "col_id": "10",
+                "table_name": "EXPTRACK_BUDGET_LIMITATION",
+                "table_display_name": "Budget and limitation records",
+                "db_size": "15",
+                "width": 150,
+                "key": false,
+                "mandatory": false,
+                "descr": "",
+                "format": "",
+                "default_function": "",
+                "expression": "",
+                "edit_mask": "",
+                "validations": "",
+                "lookup": ""
+              }
+            }
+          ],
+          "joins": {
+            "join_predicates": {
+              "joins": [
+                {
+                  "table": "EXPTRACK_BUDGET_LIMITATION",
+                  "main_table": true,
+                  "table_descr": "Budget and limitation records"
+                }
+              ]
+            }
+          },
+          "actions": [
+            {
+              "name": "Edit",
+              "handler": "system",
+              "system_op": "edit",
+              "scope": "row",
+              "validations": [
+                {
+                  "type": "expression",
+                  "name": "Employee view only",
+                  "error_code": "EMP_VIEW_ONLY",
+                  "message": "Employees have view-only access to Budget Limitation records (Finance Name, Department, Budget Document) and cannot edit them.",
+                  "expression": "{var.user_role} != \"EMPLOYEE\""
+                }
+              ],
+              "order": 1
+            },
+            {
+              "name": "View",
+              "handler": "system",
+              "scope": "row",
+              "visible_when": "{var.user_role} == \"EMPLOYEE\"",
+              "business_logic": {
+                "method": "view_budget_limitation",
+                "description": "Read-only display of budget limitation details",
+                "spec": "Return an HTML modal showing the current row's Finance Name (FINANCE_NAME), Department (DEPARTMENT) and Budget Document (BUDGET_DOCUMENT) as read-only, labelled fields. No save/edit control is included; this is a display-only view for the Employee role."
+              },
+              "system_op": "view",
+              "order": 2
+            }
+          ],
+          "validations": []
+        }
+      }
+    ],
+    "actions": [],
+    "cross_updates": [],
+    "pre_commit": [],
+    "post_commit": [],
+    "attach_docs": [],
+    "follow_up_actions": []
+  }
+}

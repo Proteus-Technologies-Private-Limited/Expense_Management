@@ -1,0 +1,86 @@
+{
+  "DATA_SOURCE_MODE": "sql",
+  "SQLMODEL": {
+    "SQLModel": { "COLUMNS": [ { "COLUMN": [] } ] },
+    "CRITERIA": { "query": { "condition": "and", "rules": [] } },
+    "VISUAL_NAME": "Column",
+    "SCHEMA_NAME": "EXPTRACK_APPROVAL_BY_CATEGORY",
+    "SCHEMA_DESCR": "Expense record count by category",
+    "SCHEMA_TYPE": "S",
+    "OUTPUT_TYPE": "JSON",
+    "DATABASE_TYPE": "1",
+    "DATABASE_DETAIL": { "DATABASE_NAME": "PostgreSQL", "TYPE": 1 }
+  },
+  "LAYOUT_DATA": {
+    "visualLayout": {
+      "ID": "column",
+      "VisualName": "Column",
+      "VisualType": "Standard",
+      "VisualIcon": "Column.svg",
+      "DisplayOrder": "1",
+      "className": "InsightColumnChart",
+      "linkOptions": "",
+      "OutputType": "JSON",
+      "options": [
+        { "optionId": 1, "optionName": "showGrandTotals", "optionHeading": "Show Grand Totals", "dataType": "string", "defaultValue": "off", "listOfValues": "off,on", "allowChange": "true", "optionType": "inner" },
+        { "optionId": 2, "optionName": "showTotals", "optionHeading": "Show Totals", "dataType": "string", "defaultValue": "off", "listOfValues": "off,on", "allowChange": "true", "optionType": "inner" },
+        { "optionId": 3, "optionName": "showAggregationLabels", "optionHeading": "Show Aggregation Labels", "dataType": "boolean", "defaultValue": "false", "listOfValues": "true,false", "allowChange": "true", "optionType": "inner" },
+        { "optionId": 4, "optionName": "showAxisTitle", "optionHeading": "Show Axis Title", "dataType": "boolean", "defaultValue": "true", "listOfValues": "true,false", "allowChange": "true", "optionType": "inner" },
+        { "optionId": 5, "optionName": "xAxisLabel", "optionHeading": "X Axis Label", "dataType": "boolean", "defaultValue": "true", "listOfValues": "true,false", "allowChange": "true", "optionType": "inner" },
+        { "optionId": 6, "optionName": "yAxisLabel", "optionHeading": "Y Axis Label", "dataType": "boolean", "defaultValue": "true", "listOfValues": "true,false", "allowChange": "true", "optionType": "inner" },
+        { "optionId": 7, "optionName": "showDataLabels", "optionHeading": "Show Data Labels", "dataType": "boolean", "defaultValue": "true", "listOfValues": "true,false", "allowChange": "true", "optionType": "inner" },
+        { "optionId": 8, "optionName": "toolbar", "optionHeading": "Toolbar", "dataType": "boolean", "defaultValue": "true", "listOfValues": "true,false", "allowChange": "true", "optionType": "inner" },
+        { "optionId": 9, "optionName": "autoRefreshSeconds", "optionHeading": "Auto Refresh Seconds", "dataType": "number", "defaultValue": "0", "listOfValues": "", "allowChange": "true", "optionType": "inner" }
+      ],
+      "ColumnGroups": [
+        {
+          "GroupID": 1, "GroupName": "Rows", "StandardName": "Rows",
+          "AllowedColumnTypes": "ANY", "MinColumns": 0, "MaxColumns": 0,
+          "COLUMNS": [
+            {
+              "COLID": 2, "NAME": "CATEGORY_NAME",
+              "DBTABLE": "EXPTRACK_EXPENSE_CATEGORY", "DBNAME": "CATEGORY_NAME",
+              "tableName": "EXPTRACK_EXPENSE_CATEGORY", "tableDisplayName": "Expense Category",
+              "content": "Category", "name": "Category", "descr": "Expense category display name",
+              "type": "string", "JAVATYPE": "java.lang.String", "COLTYPE": "CHAR",
+              "NATIVETYPE": "AN", "DBSIZE": 100, "EXPRESSIONTYPE": "C",
+              "DEFAULTFUNCTION": "", "FUNCTION": "", "FEILD_TYPE": "TEXTBOX",
+              "ALIGNMENT": 1, "alignment": "", "WIDTH": 150, "FONT": "TIMES NEW ROMAN",
+              "FONTSIZE": 12, "FGCOLOR": "#000000", "BGCOLOR": "", "BOLD": 0,
+              "ITALIC": 0, "UNDERLINE": 0, "HIDDEN": "", "KEY": false, "CAPS": false,
+              "ADV_FORMAT": "", "expression": "", "value": "",
+              "groupName": "Rows", "StandardName": "Rows", "checked": true
+            }
+          ]
+        },
+        {
+          "GroupID": 2, "GroupName": "Columns", "StandardName": "Columns",
+          "AllowedColumnTypes": "ANY", "MinColumns": 0, "MaxColumns": 0,
+          "COLUMNS": []
+        },
+        {
+          "GroupID": 3, "GroupName": "Values", "StandardName": "Values",
+          "AllowedColumnTypes": "ANY", "MinColumns": 0, "MaxColumns": 0,
+          "COLUMNS": [
+            {
+              "COLID": 3, "NAME": "EXPENSE_COUNT",
+              "DBTABLE": "EXPTRACK_EXPENSE", "DBNAME": "EXPENSE_ID",
+              "tableName": "EXPTRACK_EXPENSE", "tableDisplayName": "Expense",
+              "content": "Expense Count", "name": "Expense Count", "descr": "Count of expense records",
+              "type": "number", "JAVATYPE": "java.lang.Integer", "COLTYPE": "NUMBER",
+              "NATIVETYPE": "N", "DBSIZE": 20, "EXPRESSIONTYPE": "G",
+              "DEFAULTFUNCTION": "COUNT", "FUNCTION": "COUNT", "FEILD_TYPE": "TEXTBOX",
+              "ALIGNMENT": 2, "alignment": "", "WIDTH": 120, "FONT": "TIMES NEW ROMAN",
+              "FONTSIZE": 12, "FGCOLOR": "#000000", "BGCOLOR": "", "BOLD": 0,
+              "ITALIC": 0, "UNDERLINE": 0, "HIDDEN": "", "KEY": false, "CAPS": false,
+              "ADV_FORMAT": "", "expression": "", "value": "",
+              "groupName": "Values", "StandardName": "Values", "checked": true
+            }
+          ]
+        }
+      ]
+    },
+    "layoutdata": {}
+  },
+  "SOURCE_SQL": "SELECT cat.category_name AS CATEGORY_NAME, COUNT(e.expense_id) AS EXPENSE_COUNT FROM exptrack_expense e JOIN exptrack_expense_category cat ON e.category = cat.category_code GROUP BY cat.category_name"
+}

@@ -1,0 +1,33 @@
+{
+  "object_name": "exptrack_manage_approval_new",
+  "tables": {
+    "EXPTRACK_EXPENSE": [
+      "STATUS",
+      "EMPLOYEE",
+      "CURRENCY",
+      "EXPENSE_REPORT",
+      "APPROVER",
+      "EXPENSE_ID",
+      "CHG_TERM",
+      "PAYMENT_METHOD",
+      "CATEGORY",
+      "AMOUNT",
+      "APPROVER_COMMENTS",
+      "ADD_DATE",
+      "CHG_DATE",
+      "RECEIPT_ATTACHMENT",
+      "CHG_USER",
+      "APPROVAL_STATUS",
+      "DESCRIPTION",
+      "EXPENSE_DATE"
+    ],
+    "EXPTRACK_EXPENSE_CATEGORY": [
+      "CATEGORY_CODE",
+      "CATEGORY_NAME"
+    ],
+    "EXPTRACK_PAYMENT_METHOD": [
+      "PAYMENT_METHOD_CODE",
+      "PAYMENT_METHOD_NAME"
+    ]
+  }
+}

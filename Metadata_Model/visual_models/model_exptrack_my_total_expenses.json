@@ -1,0 +1,100 @@
+{
+  "DATA_SOURCE_MODE": "sql",
+  "SQLMODEL": {
+    "SQLModel": { "COLUMNS": [ { "COLUMN": [] } ] },
+    "CRITERIA": { "query": { "condition": "and", "rules": [] } },
+    "VISUAL_NAME": "Card",
+    "SCHEMA_NAME": "EXPTRACK_MY_TOTAL_EXPENSES",
+    "SCHEMA_DESCR": "My Total Expenses - Card with trailing 6-month spend trend for the logged-in employee",
+    "SCHEMA_TYPE": "S",
+    "OUTPUT_TYPE": "JSON",
+    "DATABASE_TYPE": "1",
+    "DATABASE_DETAIL": { "DATABASE_NAME": "PostgreSQL", "TYPE": 1 }
+  },
+  "LAYOUT_DATA": {
+    "visualLayout": {
+      "ID": "cards",
+      "VisualName": "Card",
+      "VisualType": "Standard",
+      "VisualIcon": "Card.svg",
+      "DisplayOrder": "15",
+      "className": "InsightCards",
+      "linkOptions": "",
+      "OutputType": "JSON",
+      "options": [
+        { "optionId": 1, "optionName": "cardColorPallete", "optionHeading": "Card Color Palette", "dataType": "string", "defaultValue": "Blue-Orange-Violet-Green", "listOfValues": "", "allowChange": "true", "optionType": "inner" },
+        { "optionId": 2, "optionName": "chartBackgroundColor", "optionHeading": "Background", "dataType": "string", "defaultValue": "Transparent", "listOfValues": "", "allowChange": "true", "optionType": "inner" },
+        { "optionId": 3, "optionName": "autoRefreshSeconds", "optionHeading": "Auto Refresh (sec)", "dataType": "number", "defaultValue": "0", "listOfValues": "", "allowChange": "true", "optionType": "inner" },
+        { "optionId": 4, "optionName": "microVisual", "optionHeading": "Micro Visual", "dataType": "string", "defaultValue": "sparkline", "listOfValues": "auto,none,sparkline,sparkbars,donut,gauge,ring,progressbar", "allowChange": "true", "optionType": "inner" },
+        { "optionId": 5, "optionName": "toolbar", "optionHeading": "Toolbar", "dataType": "boolean", "defaultValue": "true", "listOfValues": "true,false", "allowChange": "true", "optionType": "inner" },
+        { "optionId": 6, "optionName": "cardMode", "optionHeading": "Card Mode", "dataType": "string", "defaultValue": "single", "listOfValues": "auto,one-per-row,group,one-per-measure,single", "allowChange": "true", "optionType": "inner" },
+        { "optionId": 7, "optionName": "headlineAgg", "optionHeading": "Headline Aggregation", "dataType": "string", "defaultValue": "sum", "listOfValues": "auto,last,sum,avg,min,max,count", "allowChange": "true", "optionType": "inner" },
+        { "optionId": 8, "optionName": "trendValueColumn", "optionHeading": "Trend Value Column", "dataType": "string", "defaultValue": "MONTH_TOTAL", "listOfValues": "", "allowChange": "true", "optionType": "inner" },
+        { "optionId": 9, "optionName": "trendOrderColumn", "optionHeading": "Trend Order Column", "dataType": "string", "defaultValue": "MONTH_START", "listOfValues": "", "allowChange": "true", "optionType": "inner" }
+      ],
+      "ColumnGroups": [
+        { "GroupID": 1, "GroupName": "Top Left", "StandardName": "TopLeft", "AllowedColumnTypes": "ANY", "MinColumns": 0, "MaxColumns": 0, "COLUMNS": [] },
+        { "GroupID": 2, "GroupName": "Top Right", "StandardName": "TopRight", "AllowedColumnTypes": "ANY", "MinColumns": 0, "MaxColumns": 0, "COLUMNS": [] },
+        {
+          "GroupID": 3, "GroupName": "Center First Row", "StandardName": "CenterFirstRow", "AllowedColumnTypes": "ANY", "MinColumns": 0, "MaxColumns": 0,
+          "COLUMNS": [
+            {
+              "COLID": 2, "NAME": "MONTH_TOTAL", "DBTABLE": "", "DBNAME": "MONTH_TOTAL",
+              "tableName": "EXPTRACK_EXPENSE", "tableDisplayName": "Expense",
+              "content": "Monthly Total", "name": "Monthly Total", "descr": "Total expense amount for the month",
+              "type": "number", "JAVATYPE": "java.math.BigDecimal", "COLTYPE": "NUMBER",
+              "NATIVETYPE": "AN", "DBSIZE": 14, "EXPRESSIONTYPE": "G",
+              "DEFAULTFUNCTION": "SUM", "FUNCTION": "SUM", "FEILD_TYPE": "TEXTBOX",
+              "ALIGNMENT": 2, "alignment": "", "WIDTH": 120, "FONT": "TIMES NEW ROMAN",
+              "FONTSIZE": 28, "FGCOLOR": "#000000", "BGCOLOR": "", "BOLD": 1,
+              "ITALIC": 0, "UNDERLINE": 0, "HIDDEN": "", "KEY": false, "CAPS": false,
+              "ADV_FORMAT": "", "expression": "", "value": "",
+              "display": { "type": "number", "numberStyle": "currency", "decimals": 0 },
+              "groupName": "Center First Row", "StandardName": "CenterFirstRow", "checked": true
+            }
+          ]
+        },
+        {
+          "GroupID": 4, "GroupName": "Center Second Row", "StandardName": "CenterSecondRow", "AllowedColumnTypes": "ANY", "MinColumns": 0, "MaxColumns": 0,
+          "COLUMNS": [
+            {
+              "COLID": 3, "NAME": "LBL_TOTAL", "DBTABLE": "", "DBNAME": "LBL_TOTAL",
+              "tableName": "EXPTRACK_EXPENSE", "tableDisplayName": "Expense",
+              "content": "Label", "name": "Label", "descr": "Card caption",
+              "type": "string", "JAVATYPE": "java.lang.String", "COLTYPE": "CHAR",
+              "NATIVETYPE": "AN", "DBSIZE": 30, "EXPRESSIONTYPE": "C",
+              "DEFAULTFUNCTION": "", "FUNCTION": "", "FEILD_TYPE": "TEXTBOX",
+              "ALIGNMENT": 1, "alignment": "", "WIDTH": 160, "FONT": "TIMES NEW ROMAN",
+              "FONTSIZE": 12, "FGCOLOR": "#666666", "BGCOLOR": "", "BOLD": 0,
+              "ITALIC": 0, "UNDERLINE": 0, "HIDDEN": "", "KEY": false, "CAPS": false,
+              "ADV_FORMAT": "", "expression": "'My Total Expenses (last 6 months)'", "value": "",
+              "groupName": "Center Second Row", "StandardName": "CenterSecondRow", "checked": true
+            }
+          ]
+        },
+        { "GroupID": 5, "GroupName": "Bottom Left", "StandardName": "BottomLeft", "AllowedColumnTypes": "ANY", "MinColumns": 0, "MaxColumns": 0, "COLUMNS": [] },
+        {
+          "GroupID": 6, "GroupName": "Bottom Right", "StandardName": "BottomRight", "AllowedColumnTypes": "ANY", "MinColumns": 0, "MaxColumns": 0,
+          "COLUMNS": [
+            {
+              "COLID": 4, "NAME": "MONTH_START", "DBTABLE": "", "DBNAME": "MONTH_START",
+              "tableName": "EXPTRACK_EXPENSE", "tableDisplayName": "Expense",
+              "content": "Month", "name": "Month", "descr": "First day of the expense month (trend ordering)",
+              "type": "date", "JAVATYPE": "java.sql.Date", "COLTYPE": "DATE",
+              "NATIVETYPE": "AN", "DBSIZE": 10, "EXPRESSIONTYPE": "C",
+              "DEFAULTFUNCTION": "", "FUNCTION": "", "FEILD_TYPE": "TEXTBOX",
+              "ALIGNMENT": 1, "alignment": "", "WIDTH": 100, "FONT": "TIMES NEW ROMAN",
+              "FONTSIZE": 10, "FGCOLOR": "#999999", "BGCOLOR": "", "BOLD": 0,
+              "ITALIC": 0, "UNDERLINE": 0, "HIDDEN": "true", "KEY": false, "CAPS": false,
+              "ADV_FORMAT": "", "expression": "", "value": "",
+              "display": { "type": "date", "datePattern": "MMM-yy" },
+              "groupName": "Bottom Right", "StandardName": "BottomRight", "checked": true
+            }
+          ]
+        }
+      ]
+    },
+    "layoutdata": {}
+  },
+  "SOURCE_SQL": "SELECT DATE_TRUNC('month', e.expense_date)::date AS MONTH_START, SUM(e.amount) AS MONTH_TOTAL, 'My Total Expenses (last 6 months)' AS LBL_TOTAL FROM exptrack_expense e WHERE e.employee = ?.@LoginUser AND e.expense_date >= DATE_TRUNC('month', CURRENT_DATE) - INTERVAL '5 months' GROUP BY DATE_TRUNC('month', e.expense_date) ORDER BY MONTH_START"
+}

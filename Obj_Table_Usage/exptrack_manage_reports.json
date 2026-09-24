@@ -1,0 +1,46 @@
+{
+  "object_name": "exptrack_manage_reports",
+  "tables": {
+    "EXPTRACK_EXPENSE_REPORT": [
+      "CURRENCY",
+      "PAYMENT_STATUS",
+      "APPROVAL_DATE",
+      "REPORT_TITLE",
+      "DESCRIPTION",
+      "EMPLOYEE",
+      "APPROVER_COMMENTS",
+      "TOTAL_AMOUNT",
+      "CHG_USER",
+      "STATUS",
+      "RECEIPT_ATTACHMENT",
+      "REPORT_ID",
+      "REPORT_DATE",
+      "APPROVER",
+      "CURRENT_STATUS",
+      "CHG_DATE"
+    ],
+    "EXPTRACK_EXPENSE": [
+      "CURRENCY",
+      "AMOUNT",
+      "EXPENSE_REPORT",
+      "CATEGORY",
+      "DESCRIPTION",
+      "PAYMENT_METHOD",
+      "EMPLOYEE",
+      "APPROVER_COMMENTS",
+      "STATUS",
+      "APPROVAL_STATUS",
+      "EXPENSE_ID",
+      "EXPENSE_DATE",
+      "RECEIPT_ATTACHMENT"
+    ],
+    "EXPTRACK_EXPENSE_CATEGORY": [
+      "CATEGORY_NAME",
+      "CATEGORY_CODE"
+    ],
+    "EXPTRACK_PAYMENT_METHOD": [
+      "PAYMENT_METHOD_CODE",
+      "PAYMENT_METHOD_NAME"
+    ]
+  }
+}

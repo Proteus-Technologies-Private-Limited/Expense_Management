@@ -1,0 +1,1 @@
+[1] Manage Approval: record_id(V20), expense_id(V20), employee(V10), trip(V20), trip_name(V100), category(V20), category_name(V100), expense_date(D), total_expense_amount(N14,2), payment_method(V20), payment_method_name(V100), status(V20), approver_name(V100), add_date(DT), add_user(V10), add_term(V15), chg_date(DT), chg_user(V10), chg_term(V15)

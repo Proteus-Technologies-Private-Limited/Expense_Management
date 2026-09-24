@@ -1,0 +1,13 @@
+{
+  "object_name": "exptrack_expense_category",
+  "tables": {
+    "EXPTRACK_EXPENSE_CATEGORY": [
+      "CREATED_BY",
+      "STATUS",
+      "CATEGORY_NAME",
+      "DESCRIPTION",
+      "CREATED_DATE",
+      "CATEGORY_CODE"
+    ]
+  }
+}

@@ -1,0 +1,171 @@
+{
+  "DATA_SOURCE_MODE": "sql",
+  "SQLMODEL": {
+    "SQLModel": { "COLUMNS": [ { "COLUMN": [] } ] },
+    "CRITERIA": {
+      "query": {
+        "condition": "and",
+        "rules": [
+          {
+            "id": "Criteria_1",
+            "field": "FROM_DATE",
+            "DBNAME": "ACT_DATE",
+            "tableName": "ACTIVITY",
+            "COLTYPE": "date",
+            "currentFieldType": "date",
+            "operator": ">=",
+            "queryOption": "P",
+            "prevOption": "P",
+            "customValue": "FixedValue",
+            "promptLabel": "From Date",
+            "promptVar": "from_date",
+            "value": ":calendar_month_start",
+            "chipValue": []
+          },
+          {
+            "id": "Criteria_2",
+            "field": "TO_DATE",
+            "DBNAME": "ACT_DATE",
+            "tableName": "ACTIVITY",
+            "COLTYPE": "date",
+            "currentFieldType": "date",
+            "operator": "<=",
+            "queryOption": "P",
+            "prevOption": "P",
+            "customValue": "FixedValue",
+            "promptLabel": "To Date",
+            "promptVar": "to_date",
+            "value": ":calendar_today",
+            "chipValue": []
+          },
+          {
+            "id": "Criteria_3",
+            "field": "ACTIVITY_TYPE",
+            "DBNAME": "ACTIVITY_TYPE",
+            "tableName": "ACTIVITY",
+            "COLTYPE": "string",
+            "currentFieldType": "string",
+            "operator": "like",
+            "queryOption": "P",
+            "prevOption": "P",
+            "customValue": "FixedValue",
+            "promptLabel": "Activity Type",
+            "promptVar": "activity_type",
+            "value": "%",
+            "chipValue": [],
+            "options": [
+              { "data": "Added", "display": "Added" },
+              { "data": "Updated", "display": "Updated" },
+              { "data": "Approved", "display": "Approved" },
+              { "data": "Rejected", "display": "Rejected" }
+            ]
+          }
+        ]
+      }
+    },
+    "VISUAL_NAME": "Grid",
+    "SCHEMA_NAME": "EXPTRACK_ACTIVITY_LOG_DETAIL",
+    "SCHEMA_DESCR": "Activity Log Detail - Grid of expense/report activity log entries",
+    "SCHEMA_TYPE": "S",
+    "OUTPUT_TYPE": "JSON",
+    "DATABASE_TYPE": "1",
+    "DATABASE_DETAIL": { "DATABASE_NAME": "PostgreSQL", "TYPE": 1 }
+  },
+  "LAYOUT_DATA": {
+    "visualLayout": {
+      "ID": "grid",
+      "VisualName": "Grid",
+      "VisualType": "Standard",
+      "VisualIcon": "Grid.svg",
+      "DisplayOrder": "8",
+      "className": "InsightGridTable",
+      "linkOptions": "",
+      "OutputType": "JSON",
+      "options": [
+        { "optionId": 1, "optionName": "showGrandTotals", "optionHeading": "Show Grand Totals", "dataType": "string", "defaultValue": "off", "listOfValues": "off,on", "allowChange": "true", "optionType": "inner" },
+        { "optionId": 2, "optionName": "showTotals", "optionHeading": "Show Totals", "dataType": "string", "defaultValue": "off", "listOfValues": "off,on", "allowChange": "true", "optionType": "inner" },
+        { "optionId": 3, "optionName": "type", "optionHeading": "Grid Type", "dataType": "string", "defaultValue": "flat", "listOfValues": "compact,flat,classic", "allowChange": "true", "optionType": "inner" },
+        { "optionId": 4, "optionName": "showFilter", "optionHeading": "Show Filter", "dataType": "boolean", "defaultValue": "true", "listOfValues": "true,false", "allowChange": "true", "optionType": "inner" },
+        { "optionId": 5, "optionName": "toolbar", "optionHeading": "Toolbar", "dataType": "boolean", "defaultValue": "true", "listOfValues": "true,false", "allowChange": "true", "optionType": "inner" },
+        { "optionId": 6, "optionName": "showHeaders", "optionHeading": "Show Headers", "dataType": "boolean", "defaultValue": "true", "listOfValues": "true,false", "allowChange": "true", "optionType": "inner" },
+        { "optionId": 7, "optionName": "autoRefreshSeconds", "optionHeading": "Auto Refresh (sec)", "dataType": "number", "defaultValue": "0", "listOfValues": "", "allowChange": "true", "optionType": "inner" }
+      ],
+      "ColumnGroups": [
+        {
+          "GroupID": 1,
+          "GroupName": "Columns",
+          "StandardName": "Columns",
+          "AllowedColumnTypes": "ANY",
+          "MinColumns": 0,
+          "MaxColumns": 0,
+          "COLUMNS": [
+            {
+              "COLID": 2, "NAME": "ACT_DATE", "DBTABLE": "", "DBNAME": "ACT_DATE",
+              "tableName": "ACTIVITY", "tableDisplayName": "Activity Log",
+              "content": "Date", "name": "Date", "descr": "Date of the activity",
+              "type": "date", "JAVATYPE": "java.sql.Date", "COLTYPE": "DATE",
+              "NATIVETYPE": "AN", "DBSIZE": 10, "EXPRESSIONTYPE": "C",
+              "DEFAULTFUNCTION": "", "FUNCTION": "", "FEILD_TYPE": "TEXTBOX",
+              "ALIGNMENT": 1, "alignment": "", "WIDTH": 120, "FONT": "TIMES NEW ROMAN",
+              "FONTSIZE": 12, "FGCOLOR": "#000000", "BGCOLOR": "", "BOLD": 0,
+              "ITALIC": 0, "UNDERLINE": 0, "HIDDEN": "", "KEY": false, "CAPS": false,
+              "ADV_FORMAT": "", "expression": "", "value": "",
+              "display": { "type": "date", "datePattern": "dd-MMM-yy" },
+              "groupName": "Columns", "StandardName": "Columns", "checked": true
+            },
+            {
+              "COLID": 3, "NAME": "ACTIVITY_TYPE", "DBTABLE": "", "DBNAME": "ACTIVITY_TYPE",
+              "tableName": "ACTIVITY", "tableDisplayName": "Activity Log",
+              "content": "Activity Type", "name": "Activity Type", "descr": "Type of activity (Added/Updated/Approved/Rejected)",
+              "type": "string", "JAVATYPE": "java.lang.String", "COLTYPE": "CHAR",
+              "NATIVETYPE": "AN", "DBSIZE": 20, "EXPRESSIONTYPE": "C",
+              "DEFAULTFUNCTION": "", "FUNCTION": "", "FEILD_TYPE": "TEXTBOX",
+              "ALIGNMENT": 1, "alignment": "", "WIDTH": 110, "FONT": "TIMES NEW ROMAN",
+              "FONTSIZE": 12, "FGCOLOR": "#000000", "BGCOLOR": "", "BOLD": 0,
+              "ITALIC": 0, "UNDERLINE": 0, "HIDDEN": "", "KEY": false, "CAPS": false,
+              "ADV_FORMAT": "", "expression": "", "value": "",
+              "display": {
+                "type": "status_tag",
+                "map": [
+                  { "when": "Added", "color": "blue", "label": "Added" },
+                  { "when": "Updated", "color": "orange", "label": "Updated" },
+                  { "when": "Approved", "color": "green", "label": "Approved" },
+                  { "when": "Rejected", "color": "red", "label": "Rejected" }
+                ]
+              },
+              "groupName": "Columns", "StandardName": "Columns", "checked": true
+            },
+            {
+              "COLID": 4, "NAME": "ACTIVITY_DETAILS", "DBTABLE": "", "DBNAME": "ACTIVITY_DETAILS",
+              "tableName": "ACTIVITY", "tableDisplayName": "Activity Log",
+              "content": "Activity Details", "name": "Activity Details", "descr": "Expense ID / Report ID affected by this activity",
+              "type": "string", "JAVATYPE": "java.lang.String", "COLTYPE": "CHAR",
+              "NATIVETYPE": "AN", "DBSIZE": 20, "EXPRESSIONTYPE": "C",
+              "DEFAULTFUNCTION": "", "FUNCTION": "", "FEILD_TYPE": "TEXTBOX",
+              "ALIGNMENT": 1, "alignment": "", "WIDTH": 140, "FONT": "TIMES NEW ROMAN",
+              "FONTSIZE": 12, "FGCOLOR": "#000000", "BGCOLOR": "", "BOLD": 0,
+              "ITALIC": 0, "UNDERLINE": 0, "HIDDEN": "", "KEY": false, "CAPS": false,
+              "ADV_FORMAT": "", "expression": "", "value": "",
+              "groupName": "Columns", "StandardName": "Columns", "checked": true
+            },
+            {
+              "COLID": 5, "NAME": "DESCRIPTION", "DBTABLE": "", "DBNAME": "DESCRIPTION",
+              "tableName": "ACTIVITY", "tableDisplayName": "Activity Log",
+              "content": "Description", "name": "Description", "descr": "Narrative of the action and actor",
+              "type": "string", "JAVATYPE": "java.lang.String", "COLTYPE": "CHAR",
+              "NATIVETYPE": "AN", "DBSIZE": 250, "EXPRESSIONTYPE": "C",
+              "DEFAULTFUNCTION": "", "FUNCTION": "", "FEILD_TYPE": "TEXTBOX",
+              "ALIGNMENT": 1, "alignment": "", "WIDTH": 320, "FONT": "TIMES NEW ROMAN",
+              "FONTSIZE": 12, "FGCOLOR": "#000000", "BGCOLOR": "", "BOLD": 0,
+              "ITALIC": 0, "UNDERLINE": 0, "HIDDEN": "", "KEY": false, "CAPS": false,
+              "ADV_FORMAT": "", "expression": "", "value": "",
+              "groupName": "Columns", "StandardName": "Columns", "checked": true
+            }
+          ]
+        }
+      ]
+    },
+    "layoutdata": {}
+  },
+  "SOURCE_SQL": "SELECT act.act_date AS ACT_DATE, act.activity_type AS ACTIVITY_TYPE, act.activity_details AS ACTIVITY_DETAILS, act.description AS DESCRIPTION FROM ( SELECT e.add_date::date AS act_date, 'Added' AS activity_type, e.expense_id AS activity_details, (e.employee || ' added Expense ' || e.expense_id) AS description FROM exptrack_expense e WHERE e.add_date IS NOT NULL UNION ALL SELECT e.chg_date::date, 'Updated', e.expense_id, (e.employee || ' updated Expense ' || e.expense_id) FROM exptrack_expense e WHERE e.chg_date IS NOT NULL AND (e.add_date IS NULL OR e.chg_date::date <> e.add_date::date) UNION ALL SELECT r.add_date::date, 'Added', r.report_id, (r.employee || ' added Report ' || r.report_id) FROM exptrack_expense_report r WHERE r.add_date IS NOT NULL UNION ALL SELECT r.approval_date::date, 'Approved', r.report_id, (COALESCE(r.approver, 'Approver') || ' approved Report ' || r.report_id) FROM exptrack_expense_report r WHERE r.status = 'Approved' AND r.approval_date IS NOT NULL UNION ALL SELECT r.approval_date::date, 'Rejected', r.report_id, (COALESCE(r.approver, 'Approver') || ' rejected Report ' || r.report_id) FROM exptrack_expense_report r WHERE r.status = 'Rejected' AND r.approval_date IS NOT NULL ) act WHERE act.act_date BETWEEN ?.from_date AND ?.to_date AND act.activity_type LIKE ?.activity_type ORDER BY act.act_date DESC"
+}

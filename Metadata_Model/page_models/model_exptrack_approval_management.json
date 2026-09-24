@@ -1,0 +1,201 @@
+{
+  "page": {
+    "obj_name": "exptrack_approval_management",
+    "title": "Approval Management",
+    "kind": "internal",
+    "pageMode": "web",
+    "pageSchemaVersion": 2,
+    "inputs": [],
+    "actions": [],
+    "chrome": { "backToTop": true, "smoothScroll": true },
+    "sections": [
+      {
+        "id": "sec_hero",
+        "tag": "main",
+        "width": "full",
+        "blocks": [
+          {
+            "id": "hero_approval",
+            "type": "hero",
+            "eyebrow": "Management",
+            "title": "Approval Management",
+            "subtitle": "Review submitted expense reports, configure routing rules, monitor approval analytics, and audit approve/reject decisions — all from one hub.",
+            "align": "left",
+            "height": "compact",
+            "background": {
+              "kind": "gradient",
+              "gradientFrom": "#0f172a",
+              "gradientTo": "#1e3a8a",
+              "gradientAngle": 135
+            },
+            "textColor": "#ffffff",
+            "primaryCta": {
+              "id": "hero_cta_approve",
+              "label": "Approve Expense Reports",
+              "variant": "primary",
+              "size": "md",
+              "on_click": {
+                "kind": "navigate",
+                "obj_type": "T",
+                "obj_name": "exptrack_approve_expense_report"
+              }
+            },
+            "secondaryCta": {
+              "id": "hero_cta_rules",
+              "label": "Configure Approval Rules",
+              "variant": "outline",
+              "size": "md",
+              "on_click": {
+                "kind": "navigate",
+                "obj_type": "T",
+                "obj_name": "exptrack_approval_rules"
+              }
+            },
+            "imageSide": "none"
+          }
+        ]
+      },
+      {
+        "id": "sec_cards",
+        "tag": "main",
+        "blocks": [
+          {
+            "id": "heading_actions",
+            "type": "heading",
+            "level": 2,
+            "text": "Approval workspace"
+          },
+          {
+            "id": "paragraph_actions",
+            "type": "paragraph",
+            "text": "Jump into report review, routing rule configuration, analytics, or the audit trail."
+          },
+          {
+            "id": "card_grid_approval",
+            "type": "card_grid",
+            "columns": 4,
+            "gap": 16,
+            "animation": { "preset": "fade-up", "on": "scroll", "once": true, "stagger": 90 },
+            "style": {
+              "hover": { "translateY": -4, "shadow": "lg" },
+              "transition": 220
+            },
+            "cards": [
+              {
+                "id": "card_approve_report",
+                "title": "Approve Expense Report",
+                "subtitle": "Report review & decisions",
+                "body": "Review submitted expense reports, examine underlying expense lines and receipts, and record an Approve or Reject decision.",
+                "icon": "check-circle",
+                "cta": {
+                  "id": "cta_approve_report",
+                  "label": "Open",
+                  "variant": "link",
+                  "on_click": {
+                    "kind": "navigate",
+                    "obj_type": "T",
+                    "obj_name": "exptrack_approve_expense_report"
+                  }
+                },
+                "on_click": {
+                  "kind": "navigate",
+                  "obj_type": "T",
+                  "obj_name": "exptrack_approve_expense_report"
+                }
+              },
+              {
+                "id": "card_approval_rules",
+                "title": "Approval Rules",
+                "subtitle": "Routing configuration",
+                "body": "Configure which approver role (Manager/Finance) handles a report based on Expense Category and/or Total Amount range.",
+                "icon": "settings",
+                "cta": {
+                  "id": "cta_approval_rules",
+                  "label": "Open",
+                  "variant": "link",
+                  "on_click": {
+                    "kind": "navigate",
+                    "obj_type": "T",
+                    "obj_name": "exptrack_approval_rules"
+                  }
+                },
+                "on_click": {
+                  "kind": "navigate",
+                  "obj_type": "T",
+                  "obj_name": "exptrack_approval_rules"
+                }
+              },
+              {
+                "id": "card_approval_dashboard",
+                "title": "Approval Management Dashboard",
+                "subtitle": "Org-wide approval analytics",
+                "body": "Pending approvals by approver, approval turnaround, approval rate, and an embedded activity log grid.",
+                "icon": "bar-chart",
+                "cta": {
+                  "id": "cta_approval_dashboard",
+                  "label": "Open",
+                  "variant": "link",
+                  "on_click": {
+                    "kind": "navigate",
+                    "obj_type": "D",
+                    "obj_name": "exptrack_approval_management_dashboard"
+                  }
+                },
+                "on_click": {
+                  "kind": "navigate",
+                  "obj_type": "D",
+                  "obj_name": "exptrack_approval_management_dashboard"
+                }
+              },
+              {
+                "id": "card_activity_log",
+                "title": "Approval Activity Log",
+                "subtitle": "Audit trail",
+                "body": "Read-only, org-wide audit trail of all Approved/Rejected expense report decisions.",
+                "icon": "file-text",
+                "cta": {
+                  "id": "cta_activity_log",
+                  "label": "Open",
+                  "variant": "link",
+                  "on_click": {
+                    "kind": "navigate",
+                    "obj_type": "V",
+                    "obj_name": "exptrack_approval_activity_log"
+                  }
+                },
+                "on_click": {
+                  "kind": "navigate",
+                  "obj_type": "V",
+                  "obj_name": "exptrack_approval_activity_log"
+                }
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "id": "sec_dashboard_embed",
+        "tag": "main",
+        "blocks": [
+          {
+            "id": "heading_dashboard",
+            "type": "heading",
+            "level": 2,
+            "text": "Approval analytics at a glance"
+          },
+          {
+            "id": "embed_approval_dashboard",
+            "type": "embed",
+            "embed": {
+              "obj_name": "exptrack_approval_management_dashboard",
+              "obj_type": "D",
+              "renderMode": "realtime",
+              "presentation": "inline"
+            }
+          }
+        ]
+      }
+    ],
+    "blocks": []
+  }
+}

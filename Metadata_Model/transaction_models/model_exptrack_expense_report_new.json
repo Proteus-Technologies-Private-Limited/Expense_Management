@@ -1,0 +1,451 @@
+{
+  "transaction": {
+    "obj_name": "exptrack_expense_report_new",
+    "sql_models": [
+      {
+        "sql_model": {
+          "form_title": "Expense Report",
+          "form_descr": "Employee view/edit screen for a rejected expense voucher returned from Manage Approval for correction and resubmission using the same EXPENSE_ID.",
+          "form_no": "1",
+          "main_table": "EXPTRACK_EXPENSE_REPORT_NEW",
+          "columns": [
+            {
+              "column": {
+                "name": "record_id",
+                "db_name": "RECORD_ID",
+                "group_name": "Others",
+                "col_type": "VARCHAR",
+                "heading": "Record Id",
+                "descr": "System-generated unique identifier for this correction record",
+                "key": true,
+                "default_value": "auto_generate()",
+                "protect": "1",
+                "mandatory": true,
+                "x": "110",
+                "y": "110",
+                "col_id": "1",
+                "table_name": "EXPTRACK_EXPENSE_REPORT_NEW",
+                "table_display_name": "Expense Report correction record",
+                "db_size": "20",
+                "width": 200,
+                "hidden": "",
+                "format": "",
+                "default_function": "",
+                "expression": "",
+                "edit_mask": "",
+                "validations": "",
+                "lookup": ""
+              }
+            },
+            {
+              "column": {
+                "name": "expense_id",
+                "db_name": "EXPENSE_ID",
+                "group_name": "Basic",
+                "col_type": "VARCHAR",
+                "heading": "Expense Id",
+                "descr": "Reference to the original rejected expense voucher; reused on resubmission, never changed here",
+                "protect": "",
+                "mandatory": true,
+                "x": "10",
+                "y": "10",
+                "col_id": "2",
+                "table_name": "EXPTRACK_EXPENSE_REPORT_NEW",
+                "table_display_name": "Expense Report correction record",
+                "db_size": "20",
+                "width": 200,
+                "key": false,
+                "hidden": "",
+                "format": "",
+                "default_function": "",
+                "default_value": "",
+                "expression": "",
+                "edit_mask": {
+                  "mask": "",
+                  "values": []
+                },
+                "validations": "",
+                "lookup": ""
+              }
+            },
+            {
+              "column": {
+                "name": "employee",
+                "db_name": "EMPLOYEE",
+                "group_name": "Basic",
+                "col_type": "VARCHAR",
+                "heading": "Employee",
+                "descr": "Employee who owns this voucher",
+                "protect": "",
+                "mandatory": true,
+                "x": "20",
+                "y": "20",
+                "col_id": "3",
+                "table_name": "EXPTRACK_EXPENSE_REPORT_NEW",
+                "table_display_name": "Expense Report correction record",
+                "db_size": "10",
+                "width": 100,
+                "key": false,
+                "hidden": "",
+                "format": "",
+                "default_function": "",
+                "default_value": "",
+                "expression": "",
+                "edit_mask": "",
+                "validations": "",
+                "lookup": ""
+              }
+            },
+            {
+              "column": {
+                "name": "trip",
+                "db_name": "TRIP",
+                "group_name": "Basic",
+                "col_type": "VARCHAR",
+                "heading": "Trip",
+                "descr": "Trip this expense belongs to; editable during correction",
+                "mandatory": true,
+                "lookup": "EXPTRACK_TRIP(TRIP_NAME, TRIP_ID)",
+                "must_exist_in": "EXPTRACK_TRIP",
+                "validations": [
+                  {
+                    "type": "builtin",
+                    "name": "Trip exists",
+                    "error_code": "TRIP_NOT_FOUND",
+                    "message": "Trip {form.trip} not found in Manage Trip.",
+                    "builtin": {
+                      "kind": "must_exist_in_master",
+                      "table": "EXPTRACK_TRIP",
+                      "match_column": "TRIP_ID"
+                    }
+                  }
+                ],
+                "item_change": {
+                  "mode": "rule",
+                  "source_table": "EXPTRACK_TRIP",
+                  "match_table_col": "TRIP_ID",
+                  "fill": [
+                    {
+                      "form_col": "trip_name",
+                      "table_col": "TRIP_NAME"
+                    }
+                  ]
+                },
+                "x": "30",
+                "y": "30",
+                "col_id": "4",
+                "table_name": "EXPTRACK_EXPENSE_REPORT_NEW",
+                "table_display_name": "Expense Report correction record",
+                "db_size": "20",
+                "width": 200,
+                "key": false,
+                "hidden": "",
+                "format": "",
+                "default_function": "",
+                "default_value": "",
+                "expression": "",
+                "edit_mask": "",
+                "protect": ""
+              }
+            },
+            {
+              "column": {
+                "name": "trip_name",
+                "db_name": "TRIP_NAME",
+                "group_name": "Basic",
+                "col_type": "VARCHAR",
+                "heading": "Trip Name",
+                "descr": "Auto-filled from the selected Trip",
+                "protect": "",
+                "x": "40",
+                "y": "40",
+                "col_id": "5",
+                "table_name": "EXPTRACK_EXPENSE_REPORT_NEW",
+                "table_display_name": "Expense Report correction record",
+                "db_size": "100",
+                "width": 500,
+                "key": false,
+                "mandatory": false,
+                "hidden": "",
+                "format": "",
+                "default_function": "",
+                "default_value": "",
+                "expression": "",
+                "edit_mask": "",
+                "validations": "",
+                "lookup": ""
+              }
+            },
+            {
+              "column": {
+                "name": "category",
+                "db_name": "CATEGORY",
+                "group_name": "Basic",
+                "col_type": "VARCHAR",
+                "heading": "Category",
+                "descr": "Expense category; editable during correction",
+                "mandatory": true,
+                "lookup": "EXPTRACK_EXPENSE_CATEGORY(CATEGORY_NAME, CATEGORY_CODE)",
+                "must_exist_in": "EXPTRACK_EXPENSE_CATEGORY",
+                "validations": [
+                  {
+                    "type": "builtin",
+                    "name": "Category exists",
+                    "error_code": "CATEGORY_NOT_FOUND",
+                    "message": "Category {form.category} not found in Manage Expense Category.",
+                    "builtin": {
+                      "kind": "must_exist_in_master",
+                      "table": "EXPTRACK_EXPENSE_CATEGORY",
+                      "match_column": "CATEGORY_CODE"
+                    }
+                  }
+                ],
+                "x": "50",
+                "y": "50",
+                "col_id": "6",
+                "table_name": "EXPTRACK_EXPENSE_REPORT_NEW",
+                "table_display_name": "Expense Report correction record",
+                "db_size": "20",
+                "width": 200,
+                "key": false,
+                "hidden": "",
+                "format": "",
+                "default_function": "",
+                "default_value": "",
+                "expression": "",
+                "edit_mask": "",
+                "protect": ""
+              }
+            },
+            {
+              "column": {
+                "name": "expense_date",
+                "db_name": "EXPENSE_DATE",
+                "group_name": "Basic",
+                "col_type": "DATE",
+                "heading": "Expense Date",
+                "descr": "Date the expense was incurred; editable during correction",
+                "mandatory": true,
+                "validations": [
+                  {
+                    "type": "expression",
+                    "name": "Not future dated",
+                    "error_code": "EXP_DATE_FUTURE",
+                    "message": "Expense Date cannot be a future date.",
+                    "expression": "{form.expense_date} <= today()"
+                  }
+                ],
+                "x": "60",
+                "y": "60",
+                "col_id": "7",
+                "table_name": "EXPTRACK_EXPENSE_REPORT_NEW",
+                "table_display_name": "Expense Report correction record",
+                "db_size": "",
+                "width": 50,
+                "key": false,
+                "hidden": "",
+                "format": "",
+                "default_function": "",
+                "default_value": "",
+                "expression": "",
+                "edit_mask": "",
+                "protect": "",
+                "lookup": ""
+              }
+            },
+            {
+              "column": {
+                "name": "payment_method",
+                "db_name": "PAYMENT_METHOD",
+                "group_name": "Basic",
+                "col_type": "VARCHAR",
+                "heading": "Payment Method",
+                "descr": "Payment method used; editable during correction",
+                "mandatory": true,
+                "lookup": "EXPTRACK_PAYMENT_METHOD(PAYMENT_METHOD_NAME, PAYMENT_METHOD_CODE)",
+                "must_exist_in": "EXPTRACK_PAYMENT_METHOD",
+                "validations": [
+                  {
+                    "type": "builtin",
+                    "name": "Payment method exists",
+                    "error_code": "PAYMETHOD_NOT_FOUND",
+                    "message": "Payment Method {form.payment_method} not found in Manage Payment Method.",
+                    "builtin": {
+                      "kind": "must_exist_in_master",
+                      "table": "EXPTRACK_PAYMENT_METHOD",
+                      "match_column": "PAYMENT_METHOD_CODE"
+                    }
+                  }
+                ],
+                "x": "70",
+                "y": "70",
+                "col_id": "8",
+                "table_name": "EXPTRACK_EXPENSE_REPORT_NEW",
+                "table_display_name": "Expense Report correction record",
+                "db_size": "20",
+                "width": 200,
+                "key": false,
+                "hidden": "",
+                "format": "",
+                "default_function": "",
+                "default_value": "",
+                "expression": "",
+                "edit_mask": "",
+                "protect": ""
+              }
+            },
+            {
+              "column": {
+                "name": "total_amount",
+                "db_name": "TOTAL_AMOUNT",
+                "group_name": "Basic",
+                "col_type": "NUMBER",
+                "heading": "Total Amount",
+                "descr": "Auto-filled from the linked expense report's total when Manage Approval rejects and returns the voucher",
+                "protect": "",
+                "x": "80",
+                "y": "80",
+                "col_id": "9",
+                "table_name": "EXPTRACK_EXPENSE_REPORT_NEW",
+                "table_display_name": "Expense Report correction record",
+                "db_size": "14,2",
+                "width": 150,
+                "key": false,
+                "mandatory": false,
+                "hidden": "",
+                "format": "",
+                "default_function": "",
+                "default_value": "",
+                "expression": "",
+                "edit_mask": "",
+                "validations": "",
+                "lookup": ""
+              }
+            },
+            {
+              "column": {
+                "name": "approver_name",
+                "db_name": "APPROVER_NAME",
+                "group_name": "Basic",
+                "col_type": "VARCHAR",
+                "heading": "Approver Name",
+                "descr": "Name of the approver who rejected this voucher",
+                "protect": "1",
+                "x": "90",
+                "y": "90",
+                "col_id": "10",
+                "table_name": "EXPTRACK_EXPENSE_REPORT_NEW",
+                "table_display_name": "Expense Report correction record",
+                "db_size": "100",
+                "width": 500,
+                "key": false,
+                "mandatory": false,
+                "hidden": "",
+                "format": "",
+                "default_function": "",
+                "default_value": "",
+                "expression": "",
+                "edit_mask": "",
+                "validations": "",
+                "lookup": ""
+              }
+            },
+            {
+              "column": {
+                "name": "receipt_attachment",
+                "db_name": "RECEIPT_ATTACHMENT",
+                "group_name": "Basic",
+                "col_type": "VARCHAR",
+                "heading": "Receipt Attachment",
+                "descr": "Uploaded receipt; the employee can replace it during correction",
+                "edit_mask": {
+                  "mask": "document"
+                },
+                "x": "100",
+                "y": "100",
+                "col_id": "11",
+                "table_name": "EXPTRACK_EXPENSE_REPORT_NEW",
+                "table_display_name": "Expense Report correction record",
+                "db_size": "500",
+                "width": 500,
+                "key": false,
+                "mandatory": false,
+                "hidden": "",
+                "format": "",
+                "default_function": "",
+                "default_value": "",
+                "expression": "",
+                "protect": "",
+                "validations": "",
+                "lookup": ""
+              }
+            }
+          ],
+          "joins": {
+            "join_predicates": {
+              "joins": [
+                {
+                  "table": "EXPTRACK_EXPENSE_REPORT_NEW",
+                  "main_table": true,
+                  "table_descr": "Expense Report correction record"
+                },
+                {
+                  "table": "",
+                  "main_table": false,
+                  "table_descr": "",
+                  "join_table": "EXPTRACK_EXPENSE_REPORT_NEW",
+                  "join_type": "inner",
+                  "column": "",
+                  "join_column": ""
+                }
+              ]
+            }
+          },
+          "actions": [
+            {
+              "name": "Save",
+              "handler": "system",
+              "business_logic": {
+                "method": "",
+                "description": ""
+              },
+              "validations": [],
+              "order": 1,
+              "system_op": "save"
+            }
+          ],
+          "validations": [
+            {
+              "type": "business_logic",
+              "name": "Block duplicate resubmission",
+              "error_code": "DUP_RESUBMISSION",
+              "message": "This voucher (Expense Id {form.expense_id}) is already pending or approved and cannot be resubmitted again.",
+              "business_logic": {
+                "method": "block_duplicate_resubmission",
+                "description": "Refuse resubmission if the same EXPENSE_ID already has a pending or approved approval record",
+                "spec": "On save (edit) of an EXPTRACK_EXPENSE_REPORT_NEW record, check EXPTRACK_EXPENSE.APPROVAL_STATUS for the row whose EXPENSE_ID equals the form's expense_id. If that expense's APPROVAL_STATUS is 'Pending' or its STATUS/APPROVAL_STATUS reflects an already-approved outcome, AND the current EXPTRACK_EXPENSE.STATUS is not 'Reject' (i.e. the voucher is not currently awaiting correction), return an error blocking the save. Only a voucher whose linked EXPTRACK_EXPENSE.STATUS is 'Reject' may be resubmitted. Skip the check when _action is 'add' (this form never adds records)."
+              }
+            }
+          ],
+          "cross_updates": []
+        }
+      }
+    ],
+    "actions": [],
+    "cross_updates": [],
+    "pre_commit": [
+      {
+        "mode": "business_logic",
+        "business_logic": {
+          "method": "resubmit_expense_voucher",
+          "description": "Push the corrected voucher back to Management Approval under the same EXPENSE_ID",
+          "spec": "After an edit save on EXPTRACK_EXPENSE_REPORT_NEW is staged, using the header's expense_id: (1) UPDATE EXPTRACK_EXPENSE SET CATEGORY=header.category, EXPENSE_DATE=header.expense_date, PAYMENT_METHOD=header.payment_method, RECEIPT_ATTACHMENT=header.receipt_attachment, STATUS='Submitted', APPROVAL_STATUS='Pending', CHG_DATE=now() WHERE EXPENSE_ID=header.expense_id. (2) UPDATE the corresponding EXPTRACK_MANAGE_APPROVAL_NEW_TXN record(s) (matched on EXPENSE_ID) SET STATUS='Pending', TRIP=header.trip, CATEGORY=header.category, EXPENSE_DATE=header.expense_date, PAYMENT_METHOD=header.payment_method, CHG_DATE=now() so the corrected voucher reappears for the approver. If no EXPTRACK_EXPENSE row exists for expense_id, or its current STATUS is not 'Reject', return {\"error\": \"...\"} to abort the whole save (defense in depth alongside the form-level duplicate-resubmission validation).",
+          "language": "python"
+        }
+      }
+    ],
+    "post_commit": [],
+    "attach_docs": [],
+    "follow_up_actions": []
+  }
+}

@@ -1,0 +1,1133 @@
+{
+  "transaction": {
+    "obj_name": "exptrack_manage_reports",
+    "sql_models": [
+      {
+        "sql_model": {
+          "form_title": "My Reports",
+          "form_descr": "Read-only list of expense reports raised by the logged-in employee. Opens blank; rows are fetched only on Search and only for the logged-in employee.",
+          "form_no": "1",
+          "main_table": "EXPTRACK_EXPENSE_REPORT",
+          "auto_fetch": false,
+          "row_security": {
+            "column": "EMPLOYEE",
+            "source": "user_id"
+          },
+          "columns": [
+            {
+              "column": {
+                "name": "report_id",
+                "db_name": "REPORT_ID",
+                "table_name": "EXPTRACK_EXPENSE_REPORT",
+                "group_name": "Basic",
+                "col_type": "VARCHAR",
+                "heading": "Report ID",
+                "descr": "Expense report identifier (read-only)",
+                "key": true,
+                "mandatory": true,
+                "protect": "1",
+                "x": "10",
+                "y": "10",
+                "col_id": "1",
+                "table_display_name": "Expense report header",
+                "db_size": "20",
+                "width": 200,
+                "hidden": "",
+                "format": "",
+                "default_function": "",
+                "default_value": "",
+                "expression": "",
+                "edit_mask": "",
+                "validations": "",
+                "lookup": ""
+              }
+            },
+            {
+              "column": {
+                "name": "report_title",
+                "db_name": "REPORT_TITLE",
+                "table_name": "EXPTRACK_EXPENSE_REPORT",
+                "group_name": "Basic",
+                "col_type": "VARCHAR",
+                "heading": "Report Title",
+                "descr": "Title of the expense report (read-only, shown for context)",
+                "protect": "1",
+                "x": "20",
+                "y": "20",
+                "col_id": "2",
+                "table_display_name": "Expense report header",
+                "db_size": "150",
+                "width": 500,
+                "key": false,
+                "mandatory": false,
+                "hidden": "",
+                "format": "",
+                "default_function": "",
+                "default_value": "",
+                "expression": "",
+                "edit_mask": "",
+                "validations": "",
+                "lookup": ""
+              }
+            },
+            {
+              "column": {
+                "name": "report_date",
+                "db_name": "REPORT_DATE",
+                "table_name": "EXPTRACK_EXPENSE_REPORT",
+                "group_name": "Basic",
+                "col_type": "DATE",
+                "heading": "Report Date",
+                "descr": "Date the report was raised (read-only)",
+                "protect": "1",
+                "display": {
+                  "type": "date",
+                  "datePattern": "dd-MMM-yyyy"
+                },
+                "x": "30",
+                "y": "30",
+                "col_id": "3",
+                "table_display_name": "Expense report header",
+                "db_size": "",
+                "width": 50,
+                "key": false,
+                "mandatory": false,
+                "hidden": "",
+                "format": "",
+                "default_function": "",
+                "default_value": "",
+                "expression": "",
+                "edit_mask": "",
+                "validations": "",
+                "lookup": ""
+              }
+            },
+            {
+              "column": {
+                "name": "total_amount",
+                "db_name": "TOTAL_AMOUNT",
+                "table_name": "EXPTRACK_EXPENSE_REPORT",
+                "group_name": "Basic",
+                "col_type": "NUMBER",
+                "heading": "Total Amount",
+                "descr": "Total amount of the report, denominated in Currency (read-only)",
+                "protect": "1",
+                "display": {
+                  "type": "number",
+                  "numberStyle": "decimal",
+                  "decimals": 2
+                },
+                "x": "40",
+                "y": "40",
+                "col_id": "4",
+                "table_display_name": "Expense report header",
+                "db_size": "14,2",
+                "width": 150,
+                "key": false,
+                "mandatory": false,
+                "hidden": "",
+                "format": "",
+                "default_function": "",
+                "default_value": "",
+                "expression": "",
+                "edit_mask": "",
+                "validations": "",
+                "lookup": ""
+              }
+            },
+            {
+              "column": {
+                "name": "currency",
+                "db_name": "CURRENCY",
+                "table_name": "EXPTRACK_EXPENSE_REPORT",
+                "group_name": "Basic",
+                "col_type": "VARCHAR",
+                "heading": "Currency",
+                "descr": "Currency of the total amount (read-only)",
+                "protect": "1",
+                "edit_mask": {
+                  "mask": "ddlb",
+                  "values": [
+                    {
+                      "data": "INR",
+                      "display": "Indian Rupee"
+                    },
+                    {
+                      "data": "USD",
+                      "display": "US Dollar"
+                    },
+                    {
+                      "data": "EUR",
+                      "display": "Euro"
+                    },
+                    {
+                      "data": "GBP",
+                      "display": "British Pound Sterling"
+                    }
+                  ]
+                },
+                "x": "50",
+                "y": "50",
+                "col_id": "5",
+                "table_display_name": "Expense report header",
+                "db_size": "10",
+                "width": 100,
+                "key": false,
+                "mandatory": false,
+                "hidden": "",
+                "format": "",
+                "default_function": "",
+                "default_value": "",
+                "expression": "",
+                "validations": "",
+                "lookup": ""
+              }
+            },
+            {
+              "column": {
+                "name": "current_status",
+                "db_name": "CURRENT_STATUS",
+                "table_name": "EXPTRACK_EXPENSE_REPORT",
+                "group_name": "Basic",
+                "col_type": "VARCHAR",
+                "heading": "Current Status",
+                "descr": "Derived display status from STATUS + PAYMENT_STATUS: Draft; Submitted -> Pending Approval; Rejected; Cancelled; Approved+Pending -> Approved; Approved+Paid -> Payment Processed; otherwise the raw STATUS value.",
+                "protect": "1",
+                "item_change": {
+                  "mode": "rule",
+                  "fill": [
+                    {
+                      "form_col": "current_status",
+                      "expr": "iif({form.status} == \"Draft\", \"Draft\", iif({form.status} == \"Submitted\", \"Pending Approval\", iif({form.status} == \"Rejected\", \"Rejected\", iif({form.status} == \"Cancelled\", \"Cancelled\", iif({form.status} == \"Approved\", iif({form.payment_status} == \"Paid\", \"Payment Processed\", \"Approved\"), {form.status})))))"
+                    }
+                  ]
+                },
+                "display": {
+                  "type": "status_tag",
+                  "map": [
+                    {
+                      "when": "Draft",
+                      "color": "grey",
+                      "icon": "\u25cf",
+                      "label": "Draft"
+                    },
+                    {
+                      "when": "Pending Approval",
+                      "color": "yellow",
+                      "icon": "\u25f7",
+                      "label": "Pending Approval"
+                    },
+                    {
+                      "when": "Approved",
+                      "color": "blue",
+                      "icon": "\u2713",
+                      "label": "Approved"
+                    },
+                    {
+                      "when": "Payment Processed",
+                      "color": "green",
+                      "icon": "\u2713",
+                      "label": "Payment Processed"
+                    },
+                    {
+                      "when": "Rejected",
+                      "color": "red",
+                      "icon": "\u2715",
+                      "label": "Rejected"
+                    },
+                    {
+                      "when": "Cancelled",
+                      "color": "orange",
+                      "icon": "\u2298",
+                      "label": "Cancelled"
+                    }
+                  ],
+                  "defaultColor": "grey"
+                },
+                "x": "60",
+                "y": "60",
+                "col_id": "6",
+                "table_display_name": "Expense report header",
+                "db_size": "30",
+                "width": 300,
+                "key": false,
+                "mandatory": false,
+                "hidden": "",
+                "format": "",
+                "default_function": "",
+                "default_value": "",
+                "expression": "",
+                "edit_mask": "",
+                "validations": "",
+                "lookup": ""
+              }
+            },
+            {
+              "column": {
+                "name": "status",
+                "db_name": "STATUS",
+                "table_name": "EXPTRACK_EXPENSE_REPORT",
+                "group_name": "Workflow",
+                "col_type": "VARCHAR",
+                "heading": "Workflow Status",
+                "descr": "Stored workflow status driving Current Status (read-only)",
+                "protect": "1",
+                "x": "70",
+                "y": "70",
+                "col_id": "7",
+                "table_display_name": "Expense report header",
+                "db_size": "20",
+                "width": 200,
+                "key": false,
+                "mandatory": false,
+                "hidden": "",
+                "format": "",
+                "default_function": "",
+                "default_value": "",
+                "expression": "",
+                "edit_mask": "",
+                "validations": "",
+                "lookup": ""
+              }
+            },
+            {
+              "column": {
+                "name": "payment_status",
+                "db_name": "PAYMENT_STATUS",
+                "table_name": "EXPTRACK_EXPENSE_REPORT",
+                "group_name": "Workflow",
+                "col_type": "VARCHAR",
+                "heading": "Payment Status",
+                "descr": "Stored payment status driving Current Status (read-only)",
+                "protect": "1",
+                "x": "80",
+                "y": "80",
+                "col_id": "8",
+                "table_display_name": "Expense report header",
+                "db_size": "20",
+                "width": 200,
+                "key": false,
+                "mandatory": false,
+                "hidden": "",
+                "format": "",
+                "default_function": "",
+                "default_value": "",
+                "expression": "",
+                "edit_mask": "",
+                "validations": "",
+                "lookup": ""
+              }
+            },
+            {
+              "column": {
+                "name": "approver",
+                "db_name": "APPROVER",
+                "table_name": "EXPTRACK_EXPENSE_REPORT",
+                "group_name": "Workflow",
+                "col_type": "VARCHAR",
+                "heading": "Approver Name",
+                "descr": "Approver who decided the report (read-only)",
+                "protect": "1",
+                "x": "90",
+                "y": "90",
+                "col_id": "9",
+                "table_display_name": "Expense report header",
+                "db_size": "10",
+                "width": 100,
+                "key": false,
+                "mandatory": false,
+                "hidden": "",
+                "format": "",
+                "default_function": "",
+                "default_value": "",
+                "expression": "",
+                "edit_mask": "",
+                "validations": "",
+                "lookup": ""
+              }
+            },
+            {
+              "column": {
+                "name": "approval_date",
+                "db_name": "APPROVAL_DATE",
+                "table_name": "EXPTRACK_EXPENSE_REPORT",
+                "group_name": "Workflow",
+                "col_type": "DATETIME",
+                "heading": "Approval Date",
+                "descr": "Date/time the approval decision was recorded (read-only)",
+                "protect": "1",
+                "x": "100",
+                "y": "100",
+                "col_id": "10",
+                "table_display_name": "Expense report header",
+                "db_size": "",
+                "width": 50,
+                "key": false,
+                "mandatory": false,
+                "hidden": "",
+                "format": "",
+                "default_function": "",
+                "default_value": "",
+                "expression": "",
+                "edit_mask": "",
+                "validations": "",
+                "lookup": ""
+              }
+            },
+            {
+              "column": {
+                "name": "approver_comments",
+                "db_name": "APPROVER_COMMENTS",
+                "table_name": "EXPTRACK_EXPENSE_REPORT",
+                "group_name": "Workflow",
+                "col_type": "VARCHAR",
+                "heading": "Approver Comments",
+                "descr": "Rejection/approval remarks so the owning employee can correct a rejected report (read-only)",
+                "protect": "1",
+                "x": "110",
+                "y": "110",
+                "col_id": "11",
+                "table_display_name": "Expense report header",
+                "db_size": "500",
+                "width": 500,
+                "key": false,
+                "mandatory": false,
+                "hidden": "",
+                "format": "",
+                "default_function": "",
+                "default_value": "",
+                "expression": "",
+                "edit_mask": "",
+                "validations": "",
+                "lookup": ""
+              }
+            },
+            {
+              "column": {
+                "name": "employee",
+                "db_name": "EMPLOYEE",
+                "table_name": "EXPTRACK_EXPENSE_REPORT",
+                "group_name": "Others",
+                "col_type": "VARCHAR",
+                "heading": "Employee",
+                "descr": "Owning employee \u2014 row-security scope column; only the logged-in employee's reports are fetched",
+                "protect": "1",
+                "hidden": 1,
+                "x": "120",
+                "y": "120",
+                "col_id": "12",
+                "table_display_name": "Expense report header",
+                "db_size": "10",
+                "width": 100,
+                "key": false,
+                "mandatory": false,
+                "format": "",
+                "default_function": "",
+                "default_value": "",
+                "expression": "",
+                "edit_mask": "",
+                "validations": "",
+                "lookup": ""
+              }
+            },
+            {
+              "column": {
+                "name": "description",
+                "db_name": "DESCRIPTION",
+                "table_name": "EXPTRACK_EXPENSE_REPORT",
+                "group_name": "Others",
+                "col_type": "VARCHAR",
+                "heading": "Description",
+                "descr": "Report description (read-only)",
+                "protect": "1",
+                "x": "130",
+                "y": "130",
+                "col_id": "13",
+                "table_display_name": "Expense report header",
+                "db_size": "250",
+                "width": 500,
+                "key": false,
+                "mandatory": false,
+                "hidden": "",
+                "format": "",
+                "default_function": "",
+                "default_value": "",
+                "expression": "",
+                "edit_mask": "",
+                "validations": "",
+                "lookup": ""
+              }
+            },
+            {
+              "column": {
+                "name": "receipt_attachment",
+                "db_name": "RECEIPT_ATTACHMENT",
+                "table_name": "EXPTRACK_EXPENSE_REPORT",
+                "group_name": "Others",
+                "col_type": "VARCHAR",
+                "heading": "Receipt Attachment",
+                "descr": "Uploaded receipt on the report (view only)",
+                "protect": "1",
+                "edit_mask": {
+                  "mask": "document"
+                },
+                "display": {
+                  "type": "file",
+                  "label": "View"
+                },
+                "x": "140",
+                "y": "140",
+                "col_id": "14",
+                "table_display_name": "Expense report header",
+                "db_size": "500",
+                "width": 500,
+                "key": false,
+                "mandatory": false,
+                "hidden": "",
+                "format": "",
+                "default_function": "",
+                "default_value": "",
+                "expression": "",
+                "validations": "",
+                "lookup": ""
+              }
+            },
+            {
+              "column": {
+                "name": "chg_date",
+                "db_name": "CHG_DATE",
+                "table_name": "EXPTRACK_EXPENSE_REPORT",
+                "group_name": "Others",
+                "col_type": "DATETIME",
+                "heading": "Last Changed On",
+                "descr": "Last change timestamp (read-only)",
+                "protect": "1",
+                "x": "150",
+                "y": "150",
+                "col_id": "15",
+                "table_display_name": "Expense report header",
+                "db_size": "",
+                "width": 50,
+                "key": false,
+                "mandatory": false,
+                "hidden": "",
+                "format": "",
+                "default_function": "",
+                "default_value": "",
+                "expression": "",
+                "edit_mask": "",
+                "validations": "",
+                "lookup": ""
+              }
+            },
+            {
+              "column": {
+                "name": "chg_user",
+                "db_name": "CHG_USER",
+                "table_name": "EXPTRACK_EXPENSE_REPORT",
+                "group_name": "Others",
+                "col_type": "VARCHAR",
+                "heading": "Last Changed By",
+                "descr": "Last change user (read-only)",
+                "protect": "1",
+                "x": "160",
+                "y": "160",
+                "col_id": "16",
+                "table_display_name": "Expense report header",
+                "db_size": "10",
+                "width": 100,
+                "key": false,
+                "mandatory": false,
+                "hidden": "",
+                "format": "",
+                "default_function": "",
+                "default_value": "",
+                "expression": "",
+                "edit_mask": "",
+                "validations": "",
+                "lookup": ""
+              }
+            }
+          ],
+          "validations": [],
+          "cross_updates": [],
+          "joins": {
+            "join_predicates": {
+              "joins": [
+                {
+                  "table": "EXPTRACK_EXPENSE_REPORT",
+                  "main_table": true,
+                  "table_descr": "Expense report header"
+                }
+              ]
+            }
+          }
+        }
+      },
+      {
+        "sql_model": {
+          "form_title": "Expense Lines",
+          "form_descr": "Read-only expense lines belonging to the opened report (EXPTRACK_EXPENSE.EXPENSE_REPORT = REPORT_ID).",
+          "form_no": "2",
+          "parent_form_no": "1",
+          "parent_key_col": "REPORT_ID",
+          "main_table": "EXPTRACK_EXPENSE",
+          "columns": [
+            {
+              "column": {
+                "name": "expense_report",
+                "db_name": "EXPENSE_REPORT",
+                "table_name": "EXPTRACK_EXPENSE",
+                "group_name": "Others",
+                "col_type": "VARCHAR",
+                "heading": "Report ID",
+                "descr": "Link back to the parent expense report",
+                "key": true,
+                "hidden": 1,
+                "protect": "1",
+                "x": "120",
+                "y": "120",
+                "col_id": "1",
+                "table_display_name": "Expense lines of the report",
+                "db_size": "20",
+                "width": 200,
+                "mandatory": false,
+                "format": "",
+                "default_function": "",
+                "default_value": "",
+                "expression": "",
+                "edit_mask": "",
+                "validations": "",
+                "lookup": ""
+              }
+            },
+            {
+              "column": {
+                "name": "expense_id",
+                "db_name": "EXPENSE_ID",
+                "table_name": "EXPTRACK_EXPENSE",
+                "group_name": "Basic",
+                "col_type": "VARCHAR",
+                "heading": "Expense ID",
+                "descr": "Expense line identifier (read-only)",
+                "key": true,
+                "mandatory": true,
+                "protect": "1",
+                "x": "10",
+                "y": "10",
+                "col_id": "2",
+                "table_display_name": "Expense lines of the report",
+                "db_size": "20",
+                "width": 200,
+                "hidden": "",
+                "format": "",
+                "default_function": "",
+                "default_value": "",
+                "expression": "",
+                "edit_mask": "",
+                "validations": "",
+                "lookup": ""
+              }
+            },
+            {
+              "column": {
+                "name": "expense_date",
+                "db_name": "EXPENSE_DATE",
+                "table_name": "EXPTRACK_EXPENSE",
+                "group_name": "Basic",
+                "col_type": "DATE",
+                "heading": "Expense Date",
+                "descr": "Date the expense was incurred (read-only)",
+                "protect": "1",
+                "display": {
+                  "type": "date",
+                  "datePattern": "dd-MMM-yyyy"
+                },
+                "x": "20",
+                "y": "20",
+                "col_id": "3",
+                "table_display_name": "Expense lines of the report",
+                "db_size": "",
+                "width": 50,
+                "key": false,
+                "mandatory": false,
+                "hidden": "",
+                "format": "",
+                "default_function": "",
+                "default_value": "",
+                "expression": "",
+                "edit_mask": "",
+                "validations": "",
+                "lookup": ""
+              }
+            },
+            {
+              "column": {
+                "name": "category",
+                "db_name": "CATEGORY",
+                "table_name": "EXPTRACK_EXPENSE",
+                "group_name": "Basic",
+                "col_type": "VARCHAR",
+                "heading": "Category",
+                "descr": "Expense category code (read-only)",
+                "protect": "1",
+                "x": "30",
+                "y": "30",
+                "col_id": "4",
+                "table_display_name": "Expense lines of the report",
+                "db_size": "20",
+                "width": 200,
+                "key": false,
+                "mandatory": false,
+                "hidden": "",
+                "format": "",
+                "default_function": "",
+                "default_value": "",
+                "expression": "",
+                "edit_mask": "",
+                "validations": "",
+                "lookup": ""
+              }
+            },
+            {
+              "column": {
+                "name": "category_name",
+                "db_name": "CATEGORY_NAME",
+                "table_name": "EXPTRACK_EXPENSE_CATEGORY",
+                "group_name": "Basic",
+                "col_type": "VARCHAR",
+                "heading": "Category Name",
+                "descr": "Category description from the Expense Category master (joined display column)",
+                "protect": "1",
+                "x": "40",
+                "y": "40",
+                "col_id": "5",
+                "table_display_name": "Expense category master (display only)",
+                "db_size": "100",
+                "width": 500,
+                "key": false,
+                "mandatory": false,
+                "hidden": "",
+                "format": "",
+                "default_function": "",
+                "default_value": "",
+                "expression": "",
+                "edit_mask": "",
+                "validations": "",
+                "lookup": ""
+              }
+            },
+            {
+              "column": {
+                "name": "description",
+                "db_name": "DESCRIPTION",
+                "table_name": "EXPTRACK_EXPENSE",
+                "group_name": "Basic",
+                "col_type": "VARCHAR",
+                "heading": "Description",
+                "descr": "Expense description (read-only)",
+                "protect": "1",
+                "x": "50",
+                "y": "50",
+                "col_id": "6",
+                "table_display_name": "Expense lines of the report",
+                "db_size": "250",
+                "width": 500,
+                "key": false,
+                "mandatory": false,
+                "hidden": "",
+                "format": "",
+                "default_function": "",
+                "default_value": "",
+                "expression": "",
+                "edit_mask": "",
+                "validations": "",
+                "lookup": ""
+              }
+            },
+            {
+              "column": {
+                "name": "payment_method",
+                "db_name": "PAYMENT_METHOD",
+                "table_name": "EXPTRACK_EXPENSE",
+                "group_name": "Basic",
+                "col_type": "VARCHAR",
+                "heading": "Payment Method",
+                "descr": "Payment method code (read-only)",
+                "protect": "1",
+                "x": "60",
+                "y": "60",
+                "col_id": "7",
+                "table_display_name": "Expense lines of the report",
+                "db_size": "20",
+                "width": 200,
+                "key": false,
+                "mandatory": false,
+                "hidden": "",
+                "format": "",
+                "default_function": "",
+                "default_value": "",
+                "expression": "",
+                "edit_mask": "",
+                "validations": "",
+                "lookup": ""
+              }
+            },
+            {
+              "column": {
+                "name": "payment_method_name",
+                "db_name": "PAYMENT_METHOD_NAME",
+                "table_name": "EXPTRACK_PAYMENT_METHOD",
+                "group_name": "Basic",
+                "col_type": "VARCHAR",
+                "heading": "Payment Method Name",
+                "descr": "Payment method description from the Payment Method master (joined display column)",
+                "protect": "1",
+                "x": "70",
+                "y": "70",
+                "col_id": "8",
+                "table_display_name": "Payment method master (display only)",
+                "db_size": "100",
+                "width": 500,
+                "key": false,
+                "mandatory": false,
+                "hidden": "",
+                "format": "",
+                "default_function": "",
+                "default_value": "",
+                "expression": "",
+                "edit_mask": "",
+                "validations": "",
+                "lookup": ""
+              }
+            },
+            {
+              "column": {
+                "name": "amount",
+                "db_name": "AMOUNT",
+                "table_name": "EXPTRACK_EXPENSE",
+                "group_name": "Basic",
+                "col_type": "NUMBER",
+                "heading": "Amount",
+                "descr": "Line amount (read-only)",
+                "protect": "1",
+                "display": {
+                  "type": "number",
+                  "numberStyle": "decimal",
+                  "decimals": 2
+                },
+                "x": "80",
+                "y": "80",
+                "col_id": "9",
+                "table_display_name": "Expense lines of the report",
+                "db_size": "14,2",
+                "width": 150,
+                "key": false,
+                "mandatory": false,
+                "hidden": "",
+                "format": "",
+                "default_function": "",
+                "default_value": "",
+                "expression": "",
+                "edit_mask": "",
+                "validations": "",
+                "lookup": ""
+              }
+            },
+            {
+              "column": {
+                "name": "currency",
+                "db_name": "CURRENCY",
+                "table_name": "EXPTRACK_EXPENSE",
+                "group_name": "Basic",
+                "col_type": "VARCHAR",
+                "heading": "Currency",
+                "descr": "Currency of the line amount (read-only)",
+                "protect": "1",
+                "edit_mask": {
+                  "mask": "ddlb",
+                  "values": [
+                    {
+                      "data": "INR",
+                      "display": "Indian Rupee"
+                    },
+                    {
+                      "data": "USD",
+                      "display": "US Dollar"
+                    },
+                    {
+                      "data": "EUR",
+                      "display": "Euro"
+                    },
+                    {
+                      "data": "GBP",
+                      "display": "British Pound Sterling"
+                    }
+                  ]
+                },
+                "x": "90",
+                "y": "90",
+                "col_id": "10",
+                "table_display_name": "Expense lines of the report",
+                "db_size": "10",
+                "width": 100,
+                "key": false,
+                "mandatory": false,
+                "hidden": "",
+                "format": "",
+                "default_function": "",
+                "default_value": "",
+                "expression": "",
+                "validations": "",
+                "lookup": ""
+              }
+            },
+            {
+              "column": {
+                "name": "approval_status",
+                "db_name": "APPROVAL_STATUS",
+                "table_name": "EXPTRACK_EXPENSE",
+                "group_name": "Basic",
+                "col_type": "VARCHAR",
+                "heading": "Approval Status",
+                "descr": "Approval state of the expense line (read-only)",
+                "protect": "1",
+                "display": {
+                  "type": "status_tag",
+                  "map": [
+                    {
+                      "when": "Pending",
+                      "color": "yellow",
+                      "icon": "\u25f7",
+                      "label": "Pending"
+                    },
+                    {
+                      "when": "Approved",
+                      "color": "green",
+                      "icon": "\u2713",
+                      "label": "Approved"
+                    },
+                    {
+                      "when": "Rejected",
+                      "color": "red",
+                      "icon": "\u2715",
+                      "label": "Rejected"
+                    }
+                  ],
+                  "defaultColor": "grey"
+                },
+                "x": "100",
+                "y": "100",
+                "col_id": "11",
+                "table_display_name": "Expense lines of the report",
+                "db_size": "20",
+                "width": 200,
+                "key": false,
+                "mandatory": false,
+                "hidden": "",
+                "format": "",
+                "default_function": "",
+                "default_value": "",
+                "expression": "",
+                "edit_mask": "",
+                "validations": "",
+                "lookup": ""
+              }
+            },
+            {
+              "column": {
+                "name": "receipt_attachment",
+                "db_name": "RECEIPT_ATTACHMENT",
+                "table_name": "EXPTRACK_EXPENSE",
+                "group_name": "Basic",
+                "col_type": "VARCHAR",
+                "heading": "Receipt Attachment",
+                "descr": "Uploaded receipt for the line (view only)",
+                "protect": "1",
+                "edit_mask": {
+                  "mask": "document"
+                },
+                "display": {
+                  "type": "file",
+                  "label": "View"
+                },
+                "x": "110",
+                "y": "110",
+                "col_id": "12",
+                "table_display_name": "Expense lines of the report",
+                "db_size": "500",
+                "width": 500,
+                "key": false,
+                "mandatory": false,
+                "hidden": "",
+                "format": "",
+                "default_function": "",
+                "default_value": "",
+                "expression": "",
+                "validations": "",
+                "lookup": ""
+              }
+            },
+            {
+              "column": {
+                "name": "line_status",
+                "db_name": "STATUS",
+                "table_name": "EXPTRACK_EXPENSE",
+                "group_name": "Others",
+                "col_type": "VARCHAR",
+                "heading": "Line Status",
+                "descr": "Stored status of the expense line (read-only)",
+                "protect": "1",
+                "x": "130",
+                "y": "130",
+                "col_id": "13",
+                "table_display_name": "Expense lines of the report",
+                "db_size": "20",
+                "width": 200,
+                "key": false,
+                "mandatory": false,
+                "hidden": "",
+                "format": "",
+                "default_function": "",
+                "default_value": "",
+                "expression": "",
+                "edit_mask": "",
+                "validations": "",
+                "lookup": ""
+              }
+            },
+            {
+              "column": {
+                "name": "line_employee",
+                "db_name": "EMPLOYEE",
+                "table_name": "EXPTRACK_EXPENSE",
+                "group_name": "Others",
+                "col_type": "VARCHAR",
+                "heading": "Employee",
+                "descr": "Employee who incurred the expense (read-only)",
+                "protect": "1",
+                "hidden": 1,
+                "x": "140",
+                "y": "140",
+                "col_id": "14",
+                "table_display_name": "Expense lines of the report",
+                "db_size": "10",
+                "width": 100,
+                "key": false,
+                "mandatory": false,
+                "format": "",
+                "default_function": "",
+                "default_value": "",
+                "expression": "",
+                "edit_mask": "",
+                "validations": "",
+                "lookup": ""
+              }
+            },
+            {
+              "column": {
+                "name": "line_approver_comments",
+                "db_name": "APPROVER_COMMENTS",
+                "table_name": "EXPTRACK_EXPENSE",
+                "group_name": "Others",
+                "col_type": "VARCHAR",
+                "heading": "Approver Comments",
+                "descr": "Approver remarks on the line (read-only)",
+                "protect": "1",
+                "x": "150",
+                "y": "150",
+                "col_id": "15",
+                "table_display_name": "Expense lines of the report",
+                "db_size": "500",
+                "width": 500,
+                "key": false,
+                "mandatory": false,
+                "hidden": "",
+                "format": "",
+                "default_function": "",
+                "default_value": "",
+                "expression": "",
+                "edit_mask": "",
+                "validations": "",
+                "lookup": ""
+              }
+            }
+          ],
+          "validations": [],
+          "cross_updates": [],
+          "joins": {
+            "join_predicates": {
+              "joins": [
+                {
+                  "table": "EXPTRACK_EXPENSE",
+                  "main_table": true,
+                  "table_descr": "Expense lines of the report"
+                },
+                {
+                  "table": "EXPTRACK_EXPENSE_REPORT",
+                  "main_table": false,
+                  "table_descr": "Parent expense report",
+                  "column": "REPORT_ID",
+                  "join_table": "EXPTRACK_EXPENSE",
+                  "join_column": "EXPENSE_REPORT",
+                  "join_type": "left"
+                },
+                {
+                  "table": "EXPTRACK_EXPENSE_CATEGORY",
+                  "main_table": false,
+                  "table_descr": "Expense category master (display only)",
+                  "column": "CATEGORY_CODE",
+                  "join_table": "EXPTRACK_EXPENSE",
+                  "join_column": "CATEGORY",
+                  "join_type": "left"
+                },
+                {
+                  "table": "EXPTRACK_PAYMENT_METHOD",
+                  "main_table": false,
+                  "table_descr": "Payment method master (display only)",
+                  "column": "PAYMENT_METHOD_CODE",
+                  "join_table": "EXPTRACK_EXPENSE",
+                  "join_column": "PAYMENT_METHOD",
+                  "join_type": "left"
+                }
+              ]
+            }
+          }
+        }
+      }
+    ],
+    "actions": [
+      {
+        "name": "View Report",
+        "handler": "message",
+        "scope": "row",
+        "business_logic": {
+          "method": "view_report_summary",
+          "description": "Show a read-only summary of the selected report",
+          "spec": "Given the clicked EXPTRACK_EXPENSE_REPORT row (REPORT_ID in the flat payload), read the report header and its EXPTRACK_EXPENSE lines (EXPENSE_REPORT = REPORT_ID) and return {\"message\": \"...\"} summarising Report ID, Report Date, Total Amount with Currency, the derived Current Status (STATUS='Draft'->Draft; 'Submitted'->Pending Approval; 'Rejected'->Rejected; 'Cancelled'->Cancelled; 'Approved' with PAYMENT_STATUS='Pending'->Approved; 'Approved' with PAYMENT_STATUS='Paid'->Payment Processed; otherwise the raw STATUS), the approver comments when the report is Rejected, and the count and total of its expense lines. Perform NO writes \u2014 this screen is strictly read-only. Refuse with {\"error\": ...} if the report's EMPLOYEE is not the logged-in user."
+        },
+        "validations": []
+      }
+    ],
+    "cross_updates": [],
+    "pre_commit": [],
+    "post_commit": [],
+    "follow_up_actions": [],
+    "attach_docs": [
+      "Receipt"
+    ],
+    "list_view": {
+      "auto_fetch": false,
+      "open_blank": true,
+      "read_only": true,
+      "columns": [
+        "report_id",
+        "report_date",
+        "total_amount",
+        "currency",
+        "current_status",
+        "report_title"
+      ]
+    }
+  }
+}

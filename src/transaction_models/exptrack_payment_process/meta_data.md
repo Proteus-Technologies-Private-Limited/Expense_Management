@@ -1,0 +1,1 @@
+[1] Payment Process: payment_id(V20), expense_report(V20), expense_id(V20), trip(V20), category(V20), expense_date(D), payment_method(V20), report_title(V150), report_employee(V10), report_total_amount(N14,2), report_status(V20), payment_date(D), payment_amount(N14,2), payment_reference(V100), status(V20), created_by(V10), created_date(DT)

@@ -1,0 +1,133 @@
+{
+  "table_name": "EXPTRACK_BUDGET_POLICY",
+  "table_description": "",
+  "project": "Expense_Management",
+  "columns": [
+    {
+      "column_name": "BUDGET_POLICY_ID",
+      "data_type": "VARCHAR",
+      "size": "20",
+      "key": true,
+      "description": "System auto-generated identifier in the format BGT-00001. Read-only; stamped on Add only, so the field is blank until the user starts a new record.",
+      "sequence": 1,
+      "mandatory": true
+    },
+    {
+      "column_name": "DEPARTMENT",
+      "data_type": "VARCHAR",
+      "size": "100",
+      "key": false,
+      "description": "Free-text department name. The application has no Department master today, so this is entered manually and is not validated against another table.",
+      "sequence": 2,
+      "mandatory": true
+    },
+    {
+      "column_name": "TIER_NAME",
+      "data_type": "VARCHAR",
+      "size": "100",
+      "key": false,
+      "description": "Spending limit tier for this department (e.g. Tier 1, Tier 2, Tier 3).",
+      "sequence": 3,
+      "mandatory": true
+    },
+    {
+      "column_name": "STATUS",
+      "data_type": "VARCHAR",
+      "size": "1",
+      "key": false,
+      "description": "Active or Inactive. No default is pre-populated - the screen opens blank and Finance selects the value. Setting the tier Inactive locks the Budget Utilized and Budget Policy Document fields.",
+      "sequence": 4,
+      "mandatory": true,
+      "allowed_values": [
+        {
+          "value": "A",
+          "label": "Active"
+        },
+        {
+          "value": "I",
+          "label": "Inactive"
+        }
+      ]
+    },
+    {
+      "column_name": "BUDGET_POLICY_DOCUMENT",
+      "data_type": "VARCHAR",
+      "size": "500",
+      "key": false,
+      "description": "Uploaded document recording this tier's spending limit and monthly/quarterly budget cap values. Finance uploads, views and removes it; Employees view/download the same current file read-only. Stores the uploaded file URL.",
+      "sequence": 5
+    },
+    {
+      "column_name": "BUDGET_UTILIZED",
+      "data_type": "NUMBER",
+      "size": "14,2",
+      "key": false,
+      "description": "Budget utilization entered manually by Finance (expenses are tracked by Employee, not by Department, so this is not auto-calculated).",
+      "sequence": 6
+    },
+    {
+      "column_name": "CREATED_BY",
+      "data_type": "VARCHAR",
+      "size": "10",
+      "key": false,
+      "description": "User who created the budget policy tier (stamped on create).",
+      "sequence": 7
+    },
+    {
+      "column_name": "CREATED_DATE",
+      "data_type": "DATETIME",
+      "size": "",
+      "key": false,
+      "description": "Date and time the budget policy tier was created (stamped on create).",
+      "sequence": 8
+    },
+    {
+      "column_name": "ADD_DATE",
+      "data_type": "DATETIME",
+      "size": "",
+      "key": false,
+      "description": "Audit: record insert timestamp.",
+      "sequence": 9
+    },
+    {
+      "column_name": "ADD_USER",
+      "data_type": "VARCHAR",
+      "size": "10",
+      "key": false,
+      "description": "Audit: user who inserted the record.",
+      "sequence": 10
+    },
+    {
+      "column_name": "ADD_TERM",
+      "data_type": "VARCHAR",
+      "size": "15",
+      "key": false,
+      "description": "Audit: terminal the record was inserted from.",
+      "sequence": 11
+    },
+    {
+      "column_name": "CHG_DATE",
+      "data_type": "DATETIME",
+      "size": "",
+      "key": false,
+      "description": "Audit: last update timestamp.",
+      "sequence": 12
+    },
+    {
+      "column_name": "CHG_USER",
+      "data_type": "VARCHAR",
+      "size": "10",
+      "key": false,
+      "description": "Audit: user who last updated the record.",
+      "sequence": 13
+    },
+    {
+      "column_name": "CHG_TERM",
+      "data_type": "VARCHAR",
+      "size": "15",
+      "key": false,
+      "description": "Audit: terminal of the last update.",
+      "sequence": 14
+    }
+  ]
+}

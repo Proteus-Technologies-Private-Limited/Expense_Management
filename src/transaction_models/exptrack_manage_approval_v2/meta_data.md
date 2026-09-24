@@ -1,0 +1,1 @@
+[1] Manage Approval: expense_id(V20), employee(V10), trip(V20), category(V20), expense_date(D), total_amount(N14,2), payment_method(V20), status(V20), approver(V100), trip_name(V100), receipt_attachment(V500)

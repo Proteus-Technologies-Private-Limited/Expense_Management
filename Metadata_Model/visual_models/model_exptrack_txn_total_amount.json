@@ -1,0 +1,390 @@
+{
+  "DATA_SOURCE_MODE": "sql",
+  "SQLMODEL": {
+    "SQLModel": {
+      "COLUMNS": [
+        {
+          "COLUMN": [
+            {
+              "COLID": 2,
+              "NAME": "TOTAL_AMOUNT",
+              "DBTABLE": "EXPTRACK_EXPENSE",
+              "DBNAME": "AMOUNT",
+              "tableName": "EXPTRACK_EXPENSE",
+              "tableDisplayName": "Expense",
+              "content": "Total Amount",
+              "name": "Total Amount",
+              "descr": "Sum of expense amounts",
+              "type": "number",
+              "JAVATYPE": "java.math.BigDecimal",
+              "COLTYPE": "NUMBER",
+              "NATIVETYPE": "NUMBER",
+              "DBSIZE": 14,
+              "EXPRESSIONTYPE": "G",
+              "DEFAULTFUNCTION": "SUM",
+              "FUNCTION": "SUM",
+              "FEILD_TYPE": "TEXTBOX",
+              "ALIGNMENT": 2,
+              "alignment": "",
+              "WIDTH": 160,
+              "FONT": "TIMES NEW ROMAN",
+              "FONTSIZE": 12,
+              "FGCOLOR": "#000000",
+              "BGCOLOR": "",
+              "BOLD": 0,
+              "ITALIC": 0,
+              "UNDERLINE": 0,
+              "HIDDEN": "",
+              "KEY": false,
+              "CAPS": false,
+              "ADV_FORMAT": "",
+              "expression": "",
+              "value": "",
+              "display": {
+                "type": "number",
+                "numberStyle": "currency",
+                "currency": "INR",
+                "decimals": 0
+              },
+              "groupName": "Center First Row",
+              "StandardName": "CenterFirstRow",
+              "checked": true
+            },
+            {
+              "COLID": 3,
+              "NAME": "LBL_TOTAL_AMOUNT",
+              "DBTABLE": "",
+              "DBNAME": "",
+              "tableName": "",
+              "tableDisplayName": "",
+              "content": "Caption",
+              "name": "Caption",
+              "descr": "Fixed caption",
+              "type": "string",
+              "JAVATYPE": "java.lang.String",
+              "COLTYPE": "CHAR",
+              "NATIVETYPE": "AN",
+              "DBSIZE": 40,
+              "EXPRESSIONTYPE": "C",
+              "DEFAULTFUNCTION": "",
+              "FUNCTION": "",
+              "FEILD_TYPE": "TEXTBOX",
+              "ALIGNMENT": 1,
+              "alignment": "",
+              "WIDTH": 160,
+              "FONT": "TIMES NEW ROMAN",
+              "FONTSIZE": 12,
+              "FGCOLOR": "#000000",
+              "BGCOLOR": "",
+              "BOLD": 0,
+              "ITALIC": 0,
+              "UNDERLINE": 0,
+              "HIDDEN": "",
+              "KEY": false,
+              "CAPS": false,
+              "ADV_FORMAT": "",
+              "expression": "'Total Expense Amount'",
+              "value": "",
+              "groupName": "Center Second Row",
+              "StandardName": "CenterSecondRow",
+              "checked": true
+            }
+          ]
+        }
+      ]
+    },
+    "CRITERIA": {
+      "query": {
+        "rules": [
+          {
+            "id": "Criteria_1",
+            "field": "EXPTRACK_EXPENSE.EXPENSE_DATE",
+            "DBNAME": "EXPENSE_DATE",
+            "tableName": "EXPTRACK_EXPENSE",
+            "COLTYPE": "date",
+            "currentFieldType": "date",
+            "operator": ">=",
+            "queryOption": "P",
+            "prevOption": "P",
+            "customValue": "FixedValue",
+            "promptLabel": "From Date",
+            "promptVar": "from_date",
+            "value": ":calendar_month_start",
+            "chipValue": []
+          },
+          {
+            "id": "Criteria_2",
+            "field": "EXPTRACK_EXPENSE.EXPENSE_DATE",
+            "DBNAME": "EXPENSE_DATE",
+            "tableName": "EXPTRACK_EXPENSE",
+            "COLTYPE": "date",
+            "currentFieldType": "date",
+            "operator": "<=",
+            "queryOption": "P",
+            "prevOption": "P",
+            "customValue": "FixedValue",
+            "promptLabel": "To Date",
+            "promptVar": "to_date",
+            "value": ":calendar_today",
+            "chipValue": []
+          },
+          {
+            "id": "Criteria_3",
+            "field": "EXPTRACK_EXPENSE.STATUS",
+            "DBNAME": "STATUS",
+            "tableName": "EXPTRACK_EXPENSE",
+            "COLTYPE": "string",
+            "currentFieldType": "string",
+            "operator": "like",
+            "queryOption": "P",
+            "prevOption": "P",
+            "customValue": "FixedValue",
+            "promptLabel": "Status",
+            "promptVar": "status",
+            "value": "%",
+            "chipValue": [],
+            "options": [
+              {
+                "data": "Approved",
+                "display": "Approved"
+              },
+              {
+                "data": "Reject",
+                "display": "Reject"
+              }
+            ]
+          }
+        ],
+        "condition": "and"
+      }
+    },
+    "VISUAL_NAME": "Card",
+    "SCHEMA_NAME": "EXPTRACK_TXN_TOTAL_AMOUNT",
+    "SCHEMA_DESCR": "Total transaction (expense) amount card",
+    "SCHEMA_TYPE": "S",
+    "OUTPUT_TYPE": "JSON",
+    "DATABASE_TYPE": "1",
+    "DATABASE_DETAIL": {
+      "DATABASE_NAME": "PostgreSQL",
+      "TYPE": 1
+    }
+  },
+  "LAYOUT_DATA": {
+    "visualLayout": {
+      "ID": "cards",
+      "VisualName": "Card",
+      "VisualType": "Standard",
+      "VisualIcon": "Card.svg",
+      "DisplayOrder": "15",
+      "className": "InsightCards",
+      "linkOptions": "",
+      "OutputType": "JSON",
+      "options": [
+        {
+          "optionId": 1,
+          "optionName": "cardColorPallete",
+          "optionHeading": "Card Color Palette",
+          "dataType": "string",
+          "defaultValue": "Blue-Orange-Violet-Green",
+          "listOfValues": "",
+          "allowChange": "true",
+          "optionType": "inner"
+        },
+        {
+          "optionId": 2,
+          "optionName": "chartBackgroundColor",
+          "optionHeading": "Background",
+          "dataType": "string",
+          "defaultValue": "Transparent",
+          "listOfValues": "White,Transparent",
+          "allowChange": "true",
+          "optionType": "inner"
+        },
+        {
+          "optionId": 3,
+          "optionName": "autoRefreshSeconds",
+          "optionHeading": "Auto Refresh Seconds",
+          "dataType": "number",
+          "defaultValue": "0",
+          "listOfValues": "",
+          "allowChange": "true",
+          "optionType": "inner"
+        },
+        {
+          "optionId": 4,
+          "optionName": "microVisual",
+          "optionHeading": "Micro Visual",
+          "dataType": "string",
+          "defaultValue": "none",
+          "listOfValues": "auto,none,sparkline,sparkbars,donut,gauge,ring,progressbar",
+          "allowChange": "true",
+          "optionType": "inner"
+        },
+        {
+          "optionId": 5,
+          "optionName": "toolbar",
+          "optionHeading": "Toolbar",
+          "dataType": "boolean",
+          "defaultValue": "true",
+          "listOfValues": "true,false",
+          "allowChange": "true",
+          "optionType": "inner"
+        },
+        {
+          "optionId": 6,
+          "optionName": "cardMode",
+          "optionHeading": "Card Mode",
+          "dataType": "string",
+          "defaultValue": "single",
+          "listOfValues": "auto,one-per-row,group,one-per-measure,single",
+          "allowChange": "true",
+          "optionType": "inner"
+        }
+      ],
+      "ColumnGroups": [
+        {
+          "GroupID": 1,
+          "GroupName": "Top Left",
+          "StandardName": "TopLeft",
+          "AllowedColumnTypes": "ANY",
+          "MinColumns": 0,
+          "MaxColumns": 0,
+          "COLUMNS": []
+        },
+        {
+          "GroupID": 2,
+          "GroupName": "Top Right",
+          "StandardName": "TopRight",
+          "AllowedColumnTypes": "ANY",
+          "MinColumns": 0,
+          "MaxColumns": 0,
+          "COLUMNS": []
+        },
+        {
+          "GroupID": 3,
+          "GroupName": "Center First Row",
+          "StandardName": "CenterFirstRow",
+          "AllowedColumnTypes": "ANY",
+          "MinColumns": 0,
+          "MaxColumns": 0,
+          "COLUMNS": [
+            {
+              "COLID": 2,
+              "NAME": "TOTAL_AMOUNT",
+              "DBTABLE": "EXPTRACK_EXPENSE",
+              "DBNAME": "AMOUNT",
+              "tableName": "EXPTRACK_EXPENSE",
+              "tableDisplayName": "Expense",
+              "content": "Total Amount",
+              "name": "Total Amount",
+              "descr": "Sum of expense amounts",
+              "type": "number",
+              "JAVATYPE": "java.math.BigDecimal",
+              "COLTYPE": "NUMBER",
+              "NATIVETYPE": "NUMBER",
+              "DBSIZE": 14,
+              "EXPRESSIONTYPE": "G",
+              "DEFAULTFUNCTION": "SUM",
+              "FUNCTION": "SUM",
+              "FEILD_TYPE": "TEXTBOX",
+              "ALIGNMENT": 2,
+              "alignment": "",
+              "WIDTH": 160,
+              "FONT": "TIMES NEW ROMAN",
+              "FONTSIZE": 12,
+              "FGCOLOR": "#000000",
+              "BGCOLOR": "",
+              "BOLD": 0,
+              "ITALIC": 0,
+              "UNDERLINE": 0,
+              "HIDDEN": "",
+              "KEY": false,
+              "CAPS": false,
+              "ADV_FORMAT": "",
+              "expression": "",
+              "value": "",
+              "display": {
+                "type": "number",
+                "numberStyle": "currency",
+                "currency": "INR",
+                "decimals": 0
+              },
+              "groupName": "Center First Row",
+              "StandardName": "CenterFirstRow",
+              "checked": true
+            }
+          ]
+        },
+        {
+          "GroupID": 4,
+          "GroupName": "Center Second Row",
+          "StandardName": "CenterSecondRow",
+          "AllowedColumnTypes": "ANY",
+          "MinColumns": 0,
+          "MaxColumns": 0,
+          "COLUMNS": [
+            {
+              "COLID": 3,
+              "NAME": "LBL_TOTAL_AMOUNT",
+              "DBTABLE": "",
+              "DBNAME": "",
+              "tableName": "",
+              "tableDisplayName": "",
+              "content": "Caption",
+              "name": "Caption",
+              "descr": "Fixed caption",
+              "type": "string",
+              "JAVATYPE": "java.lang.String",
+              "COLTYPE": "CHAR",
+              "NATIVETYPE": "AN",
+              "DBSIZE": 40,
+              "EXPRESSIONTYPE": "C",
+              "DEFAULTFUNCTION": "",
+              "FUNCTION": "",
+              "FEILD_TYPE": "TEXTBOX",
+              "ALIGNMENT": 1,
+              "alignment": "",
+              "WIDTH": 160,
+              "FONT": "TIMES NEW ROMAN",
+              "FONTSIZE": 12,
+              "FGCOLOR": "#000000",
+              "BGCOLOR": "",
+              "BOLD": 0,
+              "ITALIC": 0,
+              "UNDERLINE": 0,
+              "HIDDEN": "",
+              "KEY": false,
+              "CAPS": false,
+              "ADV_FORMAT": "",
+              "expression": "'Total Expense Amount'",
+              "value": "",
+              "groupName": "Center Second Row",
+              "StandardName": "CenterSecondRow",
+              "checked": true
+            }
+          ]
+        },
+        {
+          "GroupID": 5,
+          "GroupName": "Bottom Left",
+          "StandardName": "BottomLeft",
+          "AllowedColumnTypes": "ANY",
+          "MinColumns": 0,
+          "MaxColumns": 0,
+          "COLUMNS": []
+        },
+        {
+          "GroupID": 6,
+          "GroupName": "Bottom Right",
+          "StandardName": "BottomRight",
+          "AllowedColumnTypes": "ANY",
+          "MinColumns": 0,
+          "MaxColumns": 0,
+          "COLUMNS": []
+        }
+      ]
+    },
+    "layoutdata": {}
+  },
+  "SOURCE_SQL": "SELECT COALESCE(SUM(amount), 0) AS TOTAL_AMOUNT, 'Total Expense Amount' AS LBL_TOTAL_AMOUNT FROM exptrack_expense WHERE expense_date >= ?.from_date AND expense_date <= ?.to_date AND status LIKE ?.status"
+}

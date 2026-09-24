@@ -1,0 +1,21 @@
+{
+  "object_name": "exptrack_budget_policy",
+  "tables": {
+    "EXPTRACK_BUDGET_POLICY": [
+      "ADD_DATE",
+      "CHG_TERM",
+      "ADD_USER",
+      "CHG_USER",
+      "CREATED_DATE",
+      "BUDGET_POLICY_ID",
+      "BUDGET_POLICY_DOCUMENT",
+      "TIER_NAME",
+      "DEPARTMENT",
+      "BUDGET_UTILIZED",
+      "CREATED_BY",
+      "CHG_DATE",
+      "STATUS",
+      "ADD_TERM"
+    ]
+  }
+}

@@ -1,0 +1,1037 @@
+{
+  "transaction": {
+    "obj_name": "exptrack_finance_payment",
+    "sql_models": [
+      {
+        "sql_model": {
+          "form_title": "Finance Payment",
+          "form_descr": "Finance processes payment for manager-approved expense reports (STATUS = Approved) and records PAYMENT_STATUS, PAYMENT_DATE and PAYMENT_REFERENCE. No Add/Delete - this screen only processes payment on existing approved reports.",
+          "form_no": "1",
+          "main_table": "EXPTRACK_EXPENSE_REPORT",
+          "extra_filters": [
+            {
+              "column": "STATUS",
+              "op": "=",
+              "value": "Approved"
+            }
+          ],
+          "columns": [
+            {
+              "column": {
+                "name": "REPORT_ID",
+                "db_name": "REPORT_ID",
+                "table_name": "EXPTRACK_EXPENSE_REPORT",
+                "group_name": "Basic",
+                "col_type": "VARCHAR",
+                "heading": "Report ID",
+                "descr": "Expense report identifier (existing record - never created here)",
+                "key": true,
+                "mandatory": true,
+                "protect": "1",
+                "x": "10",
+                "y": "10",
+                "col_id": "1",
+                "table_display_name": "Expense report - payment is recorded against this row",
+                "db_size": "20",
+                "width": 200,
+                "hidden": "",
+                "format": "",
+                "default_function": "",
+                "default_value": "",
+                "expression": "",
+                "edit_mask": "",
+                "validations": "",
+                "lookup": ""
+              }
+            },
+            {
+              "column": {
+                "name": "REPORT_TITLE",
+                "db_name": "REPORT_TITLE",
+                "table_name": "EXPTRACK_EXPENSE_REPORT",
+                "group_name": "Basic",
+                "col_type": "VARCHAR",
+                "heading": "Report Title",
+                "descr": "Title of the expense report",
+                "mandatory": true,
+                "protect": "1",
+                "x": "20",
+                "y": "20",
+                "col_id": "2",
+                "table_display_name": "Expense report - payment is recorded against this row",
+                "db_size": "150",
+                "width": 500,
+                "key": false,
+                "hidden": "",
+                "format": "",
+                "default_function": "",
+                "default_value": "",
+                "expression": "",
+                "edit_mask": "",
+                "validations": "",
+                "lookup": ""
+              }
+            },
+            {
+              "column": {
+                "name": "EMPLOYEE",
+                "db_name": "EMPLOYEE",
+                "table_name": "EXPTRACK_EXPENSE_REPORT",
+                "group_name": "Basic",
+                "col_type": "VARCHAR",
+                "heading": "Employee",
+                "descr": "Employee who owns the report",
+                "mandatory": true,
+                "protect": "1",
+                "x": "30",
+                "y": "30",
+                "col_id": "3",
+                "table_display_name": "Expense report - payment is recorded against this row",
+                "db_size": "10",
+                "width": 100,
+                "key": false,
+                "hidden": "",
+                "format": "",
+                "default_function": "",
+                "default_value": "",
+                "expression": "",
+                "edit_mask": "",
+                "validations": "",
+                "lookup": ""
+              }
+            },
+            {
+              "column": {
+                "name": "REPORT_DATE",
+                "db_name": "REPORT_DATE",
+                "table_name": "EXPTRACK_EXPENSE_REPORT",
+                "group_name": "Basic",
+                "col_type": "DATE",
+                "heading": "Report Date",
+                "descr": "Date the report was raised",
+                "mandatory": true,
+                "protect": "1",
+                "display": {
+                  "type": "date",
+                  "datePattern": "dd-MMM-yyyy"
+                },
+                "x": "40",
+                "y": "40",
+                "col_id": "4",
+                "table_display_name": "Expense report - payment is recorded against this row",
+                "db_size": "",
+                "width": 50,
+                "key": false,
+                "hidden": "",
+                "format": "",
+                "default_function": "",
+                "default_value": "",
+                "expression": "",
+                "edit_mask": "",
+                "validations": "",
+                "lookup": ""
+              }
+            },
+            {
+              "column": {
+                "name": "TOTAL_AMOUNT",
+                "db_name": "TOTAL_AMOUNT",
+                "table_name": "EXPTRACK_EXPENSE_REPORT",
+                "group_name": "Basic",
+                "col_type": "NUMBER",
+                "heading": "Total Amount",
+                "descr": "Total approved amount payable",
+                "protect": "1",
+                "display": {
+                  "type": "number",
+                  "numberStyle": "decimal",
+                  "decimals": 2
+                },
+                "x": "50",
+                "y": "50",
+                "col_id": "5",
+                "table_display_name": "Expense report - payment is recorded against this row",
+                "db_size": "14,2",
+                "width": 150,
+                "key": false,
+                "mandatory": false,
+                "hidden": "",
+                "format": "",
+                "default_function": "",
+                "default_value": "",
+                "expression": "",
+                "edit_mask": "",
+                "validations": "",
+                "lookup": ""
+              }
+            },
+            {
+              "column": {
+                "name": "CURRENCY",
+                "db_name": "CURRENCY",
+                "table_name": "EXPTRACK_EXPENSE_REPORT",
+                "group_name": "Basic",
+                "col_type": "VARCHAR",
+                "heading": "Currency",
+                "descr": "Currency the total amount is denominated in",
+                "protect": "1",
+                "edit_mask": {
+                  "mask": "ddlb",
+                  "values": [
+                    {
+                      "data": "INR",
+                      "display": "Indian Rupee"
+                    },
+                    {
+                      "data": "USD",
+                      "display": "US Dollar"
+                    },
+                    {
+                      "data": "EUR",
+                      "display": "Euro"
+                    },
+                    {
+                      "data": "GBP",
+                      "display": "British Pound Sterling"
+                    }
+                  ]
+                },
+                "x": "60",
+                "y": "60",
+                "col_id": "6",
+                "table_display_name": "Expense report - payment is recorded against this row",
+                "db_size": "10",
+                "width": 100,
+                "key": false,
+                "mandatory": false,
+                "hidden": "",
+                "format": "",
+                "default_function": "",
+                "default_value": "",
+                "expression": "",
+                "validations": "",
+                "lookup": ""
+              }
+            },
+            {
+              "column": {
+                "name": "STATUS",
+                "db_name": "STATUS",
+                "table_name": "EXPTRACK_EXPENSE_REPORT",
+                "group_name": "Basic",
+                "col_type": "VARCHAR",
+                "heading": "Report Status",
+                "descr": "Report status - only Approved reports are listed on this screen",
+                "mandatory": true,
+                "protect": "1",
+                "display": {
+                  "type": "status_tag",
+                  "map": [
+                    {
+                      "when": "Approved",
+                      "color": "green",
+                      "icon": "\u2713",
+                      "label": "Approved"
+                    },
+                    {
+                      "when": "Submitted",
+                      "color": "blue",
+                      "icon": "\u25cf",
+                      "label": "Submitted"
+                    },
+                    {
+                      "when": "Rejected",
+                      "color": "red",
+                      "icon": "\u2715",
+                      "label": "Rejected"
+                    }
+                  ],
+                  "defaultColor": "grey"
+                },
+                "x": "70",
+                "y": "70",
+                "col_id": "7",
+                "table_display_name": "Expense report - payment is recorded against this row",
+                "db_size": "20",
+                "width": 200,
+                "key": false,
+                "hidden": "",
+                "format": "",
+                "default_function": "",
+                "default_value": "",
+                "expression": "",
+                "edit_mask": "",
+                "validations": "",
+                "lookup": ""
+              }
+            },
+            {
+              "column": {
+                "name": "PAYMENT_STATUS",
+                "db_name": "PAYMENT_STATUS",
+                "table_name": "EXPTRACK_EXPENSE_REPORT",
+                "group_name": "Payment",
+                "col_type": "VARCHAR",
+                "heading": "Payment Status",
+                "descr": "Pending until Finance processes payment; set to Paid by the Process Payment action",
+                "mandatory": true,
+                "default_value": "Pending",
+                "edit_mask": {
+                  "mask": "ddlb",
+                  "values": [
+                    {
+                      "data": "Pending",
+                      "display": "Pending"
+                    },
+                    {
+                      "data": "Paid",
+                      "display": "Paid"
+                    }
+                  ]
+                },
+                "item_change": {
+                  "mode": "rule",
+                  "fill": [
+                    {
+                      "form_col": "PAYMENT_REFERENCE",
+                      "expr": "iif({form.PAYMENT_STATUS} == \"Pending\", \"\", {form.PAYMENT_REFERENCE})"
+                    }
+                  ],
+                  "protect": [
+                    {
+                      "form_col": "PAYMENT_REFERENCE",
+                      "when": "{form.PAYMENT_STATUS} == \"Pending\""
+                    }
+                  ]
+                },
+                "display": {
+                  "type": "status_tag",
+                  "map": [
+                    {
+                      "when": "Paid",
+                      "color": "green",
+                      "icon": "\u2713",
+                      "label": "Paid"
+                    },
+                    {
+                      "when": "Pending",
+                      "color": "amber",
+                      "icon": "\u25f7",
+                      "label": "Pending"
+                    }
+                  ],
+                  "defaultColor": "grey"
+                },
+                "x": "80",
+                "y": "80",
+                "col_id": "8",
+                "table_display_name": "Expense report - payment is recorded against this row",
+                "db_size": "20",
+                "width": 200,
+                "key": false,
+                "hidden": "",
+                "format": "",
+                "default_function": "",
+                "expression": "",
+                "protect": "",
+                "validations": "",
+                "lookup": ""
+              }
+            },
+            {
+              "column": {
+                "name": "PAYMENT_DATE",
+                "db_name": "PAYMENT_DATE",
+                "table_name": "EXPTRACK_EXPENSE_REPORT",
+                "group_name": "Payment",
+                "col_type": "DATE",
+                "heading": "Payment Date",
+                "descr": "Processing date - system set, read-only",
+                "protect": "1",
+                "display": {
+                  "type": "date",
+                  "datePattern": "dd-MMM-yyyy"
+                },
+                "x": "90",
+                "y": "90",
+                "col_id": "9",
+                "table_display_name": "Expense report - payment is recorded against this row",
+                "db_size": "",
+                "width": 50,
+                "key": false,
+                "mandatory": false,
+                "hidden": "",
+                "format": "",
+                "default_function": "",
+                "default_value": "",
+                "expression": "",
+                "edit_mask": "",
+                "validations": "",
+                "lookup": ""
+              }
+            },
+            {
+              "column": {
+                "name": "PAYMENT_REFERENCE",
+                "db_name": "PAYMENT_REFERENCE",
+                "table_name": "EXPTRACK_EXPENSE_REPORT",
+                "group_name": "Payment",
+                "col_type": "VARCHAR",
+                "heading": "Payment Reference",
+                "descr": "Bank / UTR / cheque reference - mandatory when payment is processed",
+                "validations": [
+                  {
+                    "type": "expression",
+                    "name": "Reference required when paid",
+                    "error_code": "PAY_REF_REQ",
+                    "message": "Payment Reference is mandatory when Payment Status is Paid.",
+                    "expression": "{form.PAYMENT_STATUS} != \"Paid\" or not_empty({form.PAYMENT_REFERENCE})"
+                  }
+                ],
+                "x": "100",
+                "y": "100",
+                "col_id": "10",
+                "table_display_name": "Expense report - payment is recorded against this row",
+                "db_size": "100",
+                "width": 500,
+                "key": false,
+                "mandatory": false,
+                "hidden": "",
+                "format": "",
+                "default_function": "",
+                "default_value": "",
+                "expression": "",
+                "edit_mask": "",
+                "protect": "",
+                "lookup": ""
+              }
+            },
+            {
+              "column": {
+                "name": "APPROVER",
+                "db_name": "APPROVER",
+                "table_name": "EXPTRACK_EXPENSE_REPORT",
+                "group_name": "Approval",
+                "col_type": "VARCHAR",
+                "heading": "Approver",
+                "descr": "Manager who approved the report",
+                "protect": "1",
+                "x": "110",
+                "y": "110",
+                "col_id": "11",
+                "table_display_name": "Expense report - payment is recorded against this row",
+                "db_size": "10",
+                "width": 100,
+                "key": false,
+                "mandatory": false,
+                "hidden": "",
+                "format": "",
+                "default_function": "",
+                "default_value": "",
+                "expression": "",
+                "edit_mask": "",
+                "validations": "",
+                "lookup": ""
+              }
+            },
+            {
+              "column": {
+                "name": "APPROVAL_DATE",
+                "db_name": "APPROVAL_DATE",
+                "table_name": "EXPTRACK_EXPENSE_REPORT",
+                "group_name": "Approval",
+                "col_type": "DATETIME",
+                "heading": "Approval Date",
+                "descr": "Date/time the manager approved the report",
+                "protect": "1",
+                "display": {
+                  "type": "date",
+                  "datePattern": "dd-MMM-yyyy"
+                },
+                "x": "120",
+                "y": "120",
+                "col_id": "12",
+                "table_display_name": "Expense report - payment is recorded against this row",
+                "db_size": "",
+                "width": 50,
+                "key": false,
+                "mandatory": false,
+                "hidden": "",
+                "format": "",
+                "default_function": "",
+                "default_value": "",
+                "expression": "",
+                "edit_mask": "",
+                "validations": "",
+                "lookup": ""
+              }
+            },
+            {
+              "column": {
+                "name": "APPROVER_COMMENTS",
+                "db_name": "APPROVER_COMMENTS",
+                "table_name": "EXPTRACK_EXPENSE_REPORT",
+                "group_name": "Approval",
+                "col_type": "VARCHAR",
+                "heading": "Approver Comments",
+                "descr": "Comments recorded by the approver",
+                "protect": "1",
+                "x": "130",
+                "y": "130",
+                "col_id": "13",
+                "table_display_name": "Expense report - payment is recorded against this row",
+                "db_size": "500",
+                "width": 500,
+                "key": false,
+                "mandatory": false,
+                "hidden": "",
+                "format": "",
+                "default_function": "",
+                "default_value": "",
+                "expression": "",
+                "edit_mask": "",
+                "validations": "",
+                "lookup": ""
+              }
+            },
+            {
+              "column": {
+                "name": "TRIP",
+                "db_name": "TRIP",
+                "table_name": "EXPTRACK_EXPENSE_REPORT",
+                "group_name": "Expense Details",
+                "col_type": "VARCHAR",
+                "heading": "Trip",
+                "descr": "Trip the report relates to",
+                "protect": "1",
+                "lookup": "EXPTRACK_TRIP(TRIP_NAME, TRIP_ID)",
+                "x": "140",
+                "y": "140",
+                "col_id": "14",
+                "table_display_name": "Expense report - payment is recorded against this row",
+                "db_size": "20",
+                "width": 200,
+                "key": false,
+                "mandatory": false,
+                "hidden": "",
+                "format": "",
+                "default_function": "",
+                "default_value": "",
+                "expression": "",
+                "edit_mask": "",
+                "validations": ""
+              }
+            },
+            {
+              "column": {
+                "name": "TRIP_NAME",
+                "db_name": "TRIP_NAME",
+                "table_name": "EXPTRACK_TRIP",
+                "group_name": "Expense Details",
+                "col_type": "VARCHAR",
+                "heading": "Trip Name",
+                "descr": "Trip name from the Trip master (joined display column)",
+                "protect": "1",
+                "x": "150",
+                "y": "150",
+                "col_id": "15",
+                "table_display_name": "Trip master (display of TRIP_NAME)",
+                "db_size": "100",
+                "width": 500,
+                "key": false,
+                "mandatory": false,
+                "hidden": "",
+                "format": "",
+                "default_function": "",
+                "default_value": "",
+                "expression": "",
+                "edit_mask": "",
+                "validations": "",
+                "lookup": ""
+              }
+            },
+            {
+              "column": {
+                "name": "CATEGORY_NAME",
+                "db_name": "CATEGORY_NAME",
+                "table_name": "EXPTRACK_EXPENSE_REPORT",
+                "group_name": "Expense Details",
+                "col_type": "VARCHAR",
+                "heading": "Category",
+                "descr": "Expense category name carried from the expense",
+                "protect": "1",
+                "x": "160",
+                "y": "160",
+                "col_id": "16",
+                "table_display_name": "Expense report - payment is recorded against this row",
+                "db_size": "100",
+                "width": 500,
+                "key": false,
+                "mandatory": false,
+                "hidden": "",
+                "format": "",
+                "default_function": "",
+                "default_value": "",
+                "expression": "",
+                "edit_mask": "",
+                "validations": "",
+                "lookup": ""
+              }
+            },
+            {
+              "column": {
+                "name": "PAYMENT_METHOD_NAME",
+                "db_name": "PAYMENT_METHOD_NAME",
+                "table_name": "EXPTRACK_EXPENSE_REPORT",
+                "group_name": "Expense Details",
+                "col_type": "VARCHAR",
+                "heading": "Payment Method",
+                "descr": "Payment method name carried from the expense",
+                "protect": "1",
+                "x": "170",
+                "y": "170",
+                "col_id": "17",
+                "table_display_name": "Expense report - payment is recorded against this row",
+                "db_size": "100",
+                "width": 500,
+                "key": false,
+                "mandatory": false,
+                "hidden": "",
+                "format": "",
+                "default_function": "",
+                "default_value": "",
+                "expression": "",
+                "edit_mask": "",
+                "validations": "",
+                "lookup": ""
+              }
+            },
+            {
+              "column": {
+                "name": "DESCRIPTION",
+                "db_name": "DESCRIPTION",
+                "table_name": "EXPTRACK_EXPENSE_REPORT",
+                "group_name": "Expense Details",
+                "col_type": "VARCHAR",
+                "heading": "Description",
+                "descr": "Expense description",
+                "protect": "1",
+                "x": "180",
+                "y": "180",
+                "col_id": "18",
+                "table_display_name": "Expense report - payment is recorded against this row",
+                "db_size": "250",
+                "width": 500,
+                "key": false,
+                "mandatory": false,
+                "hidden": "",
+                "format": "",
+                "default_function": "",
+                "default_value": "",
+                "expression": "",
+                "edit_mask": "",
+                "validations": "",
+                "lookup": ""
+              }
+            },
+            {
+              "column": {
+                "name": "RECEIPT_ATTACHMENT",
+                "db_name": "RECEIPT_ATTACHMENT",
+                "table_name": "EXPTRACK_EXPENSE_REPORT",
+                "group_name": "Expense Details",
+                "col_type": "VARCHAR",
+                "heading": "Receipt",
+                "descr": "Receipt attachment uploaded by the employee",
+                "protect": "1",
+                "edit_mask": {
+                  "mask": "document"
+                },
+                "display": {
+                  "type": "file",
+                  "label": "View Receipt"
+                },
+                "x": "190",
+                "y": "190",
+                "col_id": "19",
+                "table_display_name": "Expense report - payment is recorded against this row",
+                "db_size": "500",
+                "width": 500,
+                "key": false,
+                "mandatory": false,
+                "hidden": "",
+                "format": "",
+                "default_function": "",
+                "default_value": "",
+                "expression": "",
+                "validations": "",
+                "lookup": ""
+              }
+            },
+            {
+              "column": {
+                "name": "PERIOD_FROM",
+                "db_name": "PERIOD_FROM",
+                "table_name": "EXPTRACK_EXPENSE_REPORT",
+                "group_name": "Others",
+                "col_type": "DATE",
+                "heading": "Period From",
+                "descr": "Report period start",
+                "protect": "1",
+                "x": "200",
+                "y": "200",
+                "col_id": "20",
+                "table_display_name": "Expense report - payment is recorded against this row",
+                "db_size": "",
+                "width": 50,
+                "key": false,
+                "mandatory": false,
+                "hidden": "",
+                "format": "",
+                "default_function": "",
+                "default_value": "",
+                "expression": "",
+                "edit_mask": "",
+                "validations": "",
+                "lookup": ""
+              }
+            },
+            {
+              "column": {
+                "name": "PERIOD_TO",
+                "db_name": "PERIOD_TO",
+                "table_name": "EXPTRACK_EXPENSE_REPORT",
+                "group_name": "Others",
+                "col_type": "DATE",
+                "heading": "Period To",
+                "descr": "Report period end",
+                "protect": "1",
+                "x": "210",
+                "y": "210",
+                "col_id": "21",
+                "table_display_name": "Expense report - payment is recorded against this row",
+                "db_size": "",
+                "width": 50,
+                "key": false,
+                "mandatory": false,
+                "hidden": "",
+                "format": "",
+                "default_function": "",
+                "default_value": "",
+                "expression": "",
+                "edit_mask": "",
+                "validations": "",
+                "lookup": ""
+              }
+            },
+            {
+              "column": {
+                "name": "ADD_DATE",
+                "db_name": "ADD_DATE",
+                "table_name": "EXPTRACK_EXPENSE_REPORT",
+                "group_name": "Others",
+                "col_type": "DATETIME",
+                "heading": "Added On",
+                "descr": "Record creation timestamp",
+                "default_value": ":audit_add_date",
+                "protect": "1",
+                "x": "220",
+                "y": "220",
+                "col_id": "22",
+                "table_display_name": "Expense report - payment is recorded against this row",
+                "db_size": "",
+                "width": 50,
+                "key": false,
+                "mandatory": false,
+                "hidden": "",
+                "format": "",
+                "default_function": "",
+                "expression": "",
+                "edit_mask": "",
+                "validations": "",
+                "lookup": ""
+              }
+            },
+            {
+              "column": {
+                "name": "ADD_USER",
+                "db_name": "ADD_USER",
+                "table_name": "EXPTRACK_EXPENSE_REPORT",
+                "group_name": "Others",
+                "col_type": "VARCHAR",
+                "heading": "Added By",
+                "descr": "User who created the record",
+                "default_value": ":audit_add_user",
+                "protect": "1",
+                "x": "230",
+                "y": "230",
+                "col_id": "23",
+                "table_display_name": "Expense report - payment is recorded against this row",
+                "db_size": "10",
+                "width": 100,
+                "key": false,
+                "mandatory": false,
+                "hidden": "",
+                "format": "",
+                "default_function": "",
+                "expression": "",
+                "edit_mask": "",
+                "validations": "",
+                "lookup": ""
+              }
+            },
+            {
+              "column": {
+                "name": "ADD_TERM",
+                "db_name": "ADD_TERM",
+                "table_name": "EXPTRACK_EXPENSE_REPORT",
+                "group_name": "Others",
+                "col_type": "VARCHAR",
+                "heading": "Added From",
+                "descr": "Terminal the record was created from",
+                "default_value": ":audit_add_terminal",
+                "protect": "1",
+                "x": "240",
+                "y": "240",
+                "col_id": "24",
+                "table_display_name": "Expense report - payment is recorded against this row",
+                "db_size": "15",
+                "width": 150,
+                "key": false,
+                "mandatory": false,
+                "hidden": "",
+                "format": "",
+                "default_function": "",
+                "expression": "",
+                "edit_mask": "",
+                "validations": "",
+                "lookup": ""
+              }
+            },
+            {
+              "column": {
+                "name": "CHG_DATE",
+                "db_name": "CHG_DATE",
+                "table_name": "EXPTRACK_EXPENSE_REPORT",
+                "group_name": "Others",
+                "col_type": "DATETIME",
+                "heading": "Changed On",
+                "descr": "Last update timestamp",
+                "default_value": ":audit_chg_date",
+                "protect": "1",
+                "x": "250",
+                "y": "250",
+                "col_id": "25",
+                "table_display_name": "Expense report - payment is recorded against this row",
+                "db_size": "",
+                "width": 50,
+                "key": false,
+                "mandatory": false,
+                "hidden": "",
+                "format": "",
+                "default_function": "",
+                "expression": "",
+                "edit_mask": "",
+                "validations": "",
+                "lookup": ""
+              }
+            },
+            {
+              "column": {
+                "name": "CHG_USER",
+                "db_name": "CHG_USER",
+                "table_name": "EXPTRACK_EXPENSE_REPORT",
+                "group_name": "Others",
+                "col_type": "VARCHAR",
+                "heading": "Changed By",
+                "descr": "User who last updated the record",
+                "default_value": ":audit_chg_user",
+                "protect": "1",
+                "x": "260",
+                "y": "260",
+                "col_id": "26",
+                "table_display_name": "Expense report - payment is recorded against this row",
+                "db_size": "10",
+                "width": 100,
+                "key": false,
+                "mandatory": false,
+                "hidden": "",
+                "format": "",
+                "default_function": "",
+                "expression": "",
+                "edit_mask": "",
+                "validations": "",
+                "lookup": ""
+              }
+            },
+            {
+              "column": {
+                "name": "CHG_TERM",
+                "db_name": "CHG_TERM",
+                "table_name": "EXPTRACK_EXPENSE_REPORT",
+                "group_name": "Others",
+                "col_type": "VARCHAR",
+                "heading": "Changed From",
+                "descr": "Terminal the record was last updated from",
+                "default_value": ":audit_chg_terminal",
+                "protect": "1",
+                "x": "270",
+                "y": "270",
+                "col_id": "27",
+                "table_display_name": "Expense report - payment is recorded against this row",
+                "db_size": "15",
+                "width": 150,
+                "key": false,
+                "mandatory": false,
+                "hidden": "",
+                "format": "",
+                "default_function": "",
+                "expression": "",
+                "edit_mask": "",
+                "validations": "",
+                "lookup": ""
+              }
+            }
+          ],
+          "joins": {
+            "join_predicates": {
+              "joins": [
+                {
+                  "table": "EXPTRACK_EXPENSE_REPORT",
+                  "main_table": true,
+                  "table_descr": "Expense report - payment is recorded against this row"
+                },
+                {
+                  "table": "EXPTRACK_TRIP",
+                  "main_table": false,
+                  "table_descr": "Trip master (display of TRIP_NAME)",
+                  "column": "TRIP_ID",
+                  "join_table": "EXPTRACK_EXPENSE_REPORT",
+                  "join_column": "TRIP",
+                  "join_type": "left"
+                }
+              ]
+            }
+          },
+          "list_view": {
+            "extra_filters": [
+              {
+                "column": "STATUS",
+                "op": "=",
+                "value": "Approved"
+              }
+            ],
+            "columns": [
+              "REPORT_ID",
+              "REPORT_TITLE",
+              "EMPLOYEE",
+              "TOTAL_AMOUNT",
+              "APPROVAL_DATE",
+              "PAYMENT_STATUS",
+              "PAYMENT_DATE",
+              "PAYMENT_REFERENCE"
+            ]
+          },
+          "validations": [
+            {
+              "type": "expression",
+              "name": "Only approved reports",
+              "error_code": "PAY_NOT_APPROVED",
+              "message": "Only manager-approved reports can be processed for payment (report {form.REPORT_ID} is {form.STATUS}).",
+              "expression": "{form.STATUS} == \"Approved\""
+            },
+            {
+              "type": "expression",
+              "name": "Reference mandatory on payment",
+              "error_code": "PAY_REF_MANDATORY",
+              "message": "Enter the Payment Reference before marking report {form.REPORT_ID} as Paid.",
+              "expression": "{form.PAYMENT_STATUS} != \"Paid\" or not_empty({form.PAYMENT_REFERENCE})"
+            }
+          ],
+          "actions": [
+            {
+              "name": "Process Payment",
+              "handler": "message",
+              "scope": "row",
+              "visible_when": "{form.STATUS} == \"Approved\" and {form.PAYMENT_STATUS} != \"Paid\"",
+              "business_logic": {
+                "method": "process_payment",
+                "description": "Record payment on the approved expense report",
+                "spec": "Input payload is the clicked EXPTRACK_EXPENSE_REPORT row (flat). Refuse with {\"error\": ...} when STATUS <> 'Approved', when PAYMENT_STATUS is already 'Paid', or when PAYMENT_REFERENCE is empty/blank. Otherwise UPDATE EXPTRACK_EXPENSE_REPORT SET PAYMENT_STATUS = 'Paid', PAYMENT_DATE = current date (the processing date), PAYMENT_REFERENCE = the reference entered on the form, CHG_DATE = current timestamp, CHG_USER = the acting user WHERE REPORT_ID = the payload REPORT_ID AND STATUS = 'Approved' AND PAYMENT_STATUS <> 'Paid'. If no row was updated (someone else paid it meanwhile), return {\"error\": \"Report <id> has already been paid.\"}. On success return {\"message\": \"Payment processed for report <REPORT_ID>, reference <PAYMENT_REFERENCE>.\"}."
+              },
+              "confirmation": {
+                "mode": "reconfirm",
+                "message": "Process payment of {form.TOTAL_AMOUNT} for report {form.REPORT_ID} ({form.EMPLOYEE})?"
+              },
+              "validations": [
+                {
+                  "type": "expression",
+                  "name": "Report must be approved",
+                  "error_code": "PP_NOT_APPROVED",
+                  "message": "Only reports with STATUS = Approved can be paid (report {form.REPORT_ID} is {form.STATUS}).",
+                  "expression": "{form.STATUS} == \"Approved\""
+                },
+                {
+                  "type": "expression",
+                  "name": "Not already paid",
+                  "error_code": "PP_ALREADY_PAID",
+                  "message": "Report {form.REPORT_ID} is already marked Paid.",
+                  "expression": "{form.PAYMENT_STATUS} != \"Paid\""
+                },
+                {
+                  "type": "expression",
+                  "name": "Payment reference entered",
+                  "error_code": "PP_REF_REQ",
+                  "message": "Enter the Payment Reference before processing payment.",
+                  "expression": "not_empty({form.PAYMENT_REFERENCE})"
+                }
+              ]
+            }
+          ]
+        }
+      }
+    ],
+    "actions": [],
+    "cross_updates": [],
+    "pre_commit": [],
+    "post_commit": [],
+    "follow_up_actions": [
+      {
+        "event": "on-edit",
+        "name": "log_payment_activity",
+        "business_logic": {
+          "method": "log_payment_activity",
+          "description": "Write a payment entry to the activity log",
+          "spec": "After a payment edit on EXPTRACK_EXPENSE_REPORT, when PAYMENT_STATUS = 'Paid', write an activity-log style narrative entry capturing the acting Finance user, the action ('Processed payment'), the REPORT_ID, TOTAL_AMOUNT and PAYMENT_REFERENCE. Never block the save; report-only."
+        }
+      }
+    ],
+    "attach_docs": [
+      "Payment Advice"
+    ],
+    "unit_test": {
+      "sample": {
+        "REPORT_ID": "@lookup",
+        "STATUS": "Approved",
+        "PAYMENT_STATUS": "Pending",
+        "PAYMENT_REFERENCE": ""
+      },
+      "note": "This screen never adds rows - it edits existing EXPTRACK_EXPENSE_REPORT rows with STATUS = Approved. A Pending row with no reference is the valid unedited state; PAYMENT_REFERENCE only becomes mandatory when PAYMENT_STATUS is Paid."
+    },
+    "vector_search": {
+      "enabled": true,
+      "columns": [
+        "REPORT_TITLE",
+        "STATUS",
+        "PAYMENT_STATUS",
+        "CATEGORY_NAME",
+        "TRIP"
+      ],
+      "key_column": "REPORT_ID",
+      "display_column": "REPORT_TITLE",
+      "allow_alias": true,
+      "auto": true,
+      "reason": "looked up by exptrack_manage_expense; searched by REPORT_TITLE plus STATUS, PAYMENT_STATUS, CATEGORY_NAME, TRIP so same-named records stay distinguishable"
+    }
+  }
+}

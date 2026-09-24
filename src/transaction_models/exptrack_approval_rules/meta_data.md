@@ -1,0 +1,1 @@
+[1] Approval Rules: rule_id(V20), category(V20), category_name(V100), min_amount(N14,2), max_amount(N14,2), approver_role(V20), status(V1), created_by(V10), created_date(DT), chg_user(V10), chg_date(DT)

@@ -1,0 +1,178 @@
+{
+  "table_name": "EXPTRACK_MANAGE_APPROVAL_NEW_TXN",
+  "table_description": "",
+  "project": "Expense_Management",
+  "columns": [
+    {
+      "column_name": "RECORD_ID",
+      "data_type": "VARCHAR",
+      "size": "20",
+      "key": true,
+      "description": "System-generated unique identifier for this approval record",
+      "sequence": 1,
+      "mandatory": true
+    },
+    {
+      "column_name": "EXPENSE_ID",
+      "data_type": "VARCHAR",
+      "size": "20",
+      "key": false,
+      "description": "Foreign key to the submitted expense; exactly one approval record exists per expense",
+      "sequence": 2,
+      "mandatory": true,
+      "lookup": {
+        "table": "EXPTRACK_EXPENSE",
+        "display_column": "EXPENSE_ID",
+        "value_column": "EXPENSE_ID"
+      }
+    },
+    {
+      "column_name": "EMPLOYEE",
+      "data_type": "VARCHAR",
+      "size": "10",
+      "key": false,
+      "description": "Employee who raised the expense, copied from the linked expense record",
+      "sequence": 3,
+      "mandatory": true
+    },
+    {
+      "column_name": "TRIP",
+      "data_type": "VARCHAR",
+      "size": "20",
+      "key": false,
+      "description": "Trip linked to the expense, if any",
+      "sequence": 4,
+      "lookup": {
+        "table": "EXPTRACK_TRIP",
+        "display_column": "TRIP_NAME",
+        "value_column": "TRIP_ID"
+      }
+    },
+    {
+      "column_name": "CATEGORY",
+      "data_type": "VARCHAR",
+      "size": "20",
+      "key": false,
+      "description": "Expense category, copied from the linked expense record",
+      "sequence": 5,
+      "mandatory": true,
+      "lookup": {
+        "table": "EXPTRACK_EXPENSE_CATEGORY",
+        "display_column": "CATEGORY_NAME",
+        "value_column": "CATEGORY_CODE"
+      }
+    },
+    {
+      "column_name": "EXPENSE_DATE",
+      "data_type": "DATE",
+      "size": "",
+      "key": false,
+      "description": "Date of the expense, copied from the linked expense record",
+      "sequence": 6,
+      "mandatory": true
+    },
+    {
+      "column_name": "TOTAL_EXPENSE_AMOUNT",
+      "data_type": "NUMBER",
+      "size": "14,2",
+      "key": false,
+      "description": "Total expense amount, copied from the linked expense record",
+      "sequence": 7,
+      "mandatory": true
+    },
+    {
+      "column_name": "PAYMENT_METHOD",
+      "data_type": "VARCHAR",
+      "size": "20",
+      "key": false,
+      "description": "Payment method used, copied from the linked expense record",
+      "sequence": 8,
+      "mandatory": true,
+      "lookup": {
+        "table": "EXPTRACK_PAYMENT_METHOD",
+        "display_column": "PAYMENT_METHOD_NAME",
+        "value_column": "PAYMENT_METHOD_CODE"
+      }
+    },
+    {
+      "column_name": "STATUS",
+      "data_type": "VARCHAR",
+      "size": "20",
+      "key": false,
+      "description": "Approval status of this record",
+      "sequence": 9,
+      "mandatory": true,
+      "allowed_values": [
+        {
+          "value": "Pending",
+          "label": "Pending"
+        },
+        {
+          "value": "Approved",
+          "label": "Approved"
+        },
+        {
+          "value": "Rejected",
+          "label": "Rejected"
+        }
+      ]
+    },
+    {
+      "column_name": "APPROVER_NAME",
+      "data_type": "VARCHAR",
+      "size": "100",
+      "key": false,
+      "description": "Name of the approver responsible for actioning this record",
+      "sequence": 10,
+      "mandatory": true
+    },
+    {
+      "column_name": "ADD_DATE",
+      "data_type": "DATETIME",
+      "size": "",
+      "key": false,
+      "description": "Timestamp when this record was created",
+      "sequence": 11
+    },
+    {
+      "column_name": "ADD_USER",
+      "data_type": "VARCHAR",
+      "size": "10",
+      "key": false,
+      "description": "User who created this record",
+      "sequence": 12
+    },
+    {
+      "column_name": "ADD_TERM",
+      "data_type": "VARCHAR",
+      "size": "15",
+      "key": false,
+      "description": "Terminal/IP from which this record was created",
+      "sequence": 13
+    },
+    {
+      "column_name": "CHG_DATE",
+      "data_type": "DATETIME",
+      "size": "",
+      "key": false,
+      "description": "Timestamp of the last change to this record",
+      "sequence": 14
+    },
+    {
+      "column_name": "CHG_USER",
+      "data_type": "VARCHAR",
+      "size": "10",
+      "key": false,
+      "description": "User who last changed this record",
+      "sequence": 15
+    },
+    {
+      "column_name": "CHG_TERM",
+      "data_type": "VARCHAR",
+      "size": "15",
+      "key": false,
+      "description": "Terminal/IP from which this record was last changed",
+      "sequence": 16
+    }
+  ]
+}

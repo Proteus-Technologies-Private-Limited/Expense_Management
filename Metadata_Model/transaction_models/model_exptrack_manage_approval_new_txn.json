@@ -1,0 +1,732 @@
+{
+  "transaction": {
+    "obj_name": "exptrack_manage_approval_new_txn",
+    "sql_models": [
+      {
+        "sql_model": {
+          "form_title": "Manage Approval",
+          "form_descr": "Auto-created linked record raised whenever a Manage Expense record is Submitted, carrying the expense's key fields for approval.",
+          "form_no": "1",
+          "main_table": "EXPTRACK_MANAGE_APPROVAL_NEW_TXN",
+          "columns": [
+            {
+              "column": {
+                "name": "record_id",
+                "db_name": "RECORD_ID",
+                "group_name": "Others",
+                "col_type": "VARCHAR",
+                "heading": "Record ID",
+                "descr": "System-generated unique identifier for this approval record",
+                "key": true,
+                "default_value": "auto_generate()",
+                "protect": "1",
+                "mandatory": true,
+                "x": "130",
+                "y": "130",
+                "col_id": "1",
+                "table_name": "EXPTRACK_MANAGE_APPROVAL_NEW_TXN",
+                "table_display_name": "Manage Approval auto-created record",
+                "db_size": "20",
+                "width": 200,
+                "hidden": "",
+                "format": "",
+                "default_function": "",
+                "expression": "",
+                "edit_mask": "",
+                "validations": "",
+                "lookup": ""
+              }
+            },
+            {
+              "column": {
+                "name": "expense_id",
+                "db_name": "EXPENSE_ID",
+                "group_name": "Basic",
+                "col_type": "VARCHAR",
+                "heading": "Expense ID",
+                "descr": "Foreign key to the submitted expense; exactly one approval record exists per expense",
+                "mandatory": true,
+                "lookup": "EXPTRACK_EXPENSE(EXPENSE_ID, EXPENSE_ID)",
+                "validations": [
+                  {
+                    "type": "builtin",
+                    "name": "Expense exists",
+                    "error_code": "EXP_NOT_FOUND",
+                    "message": "Expense {form.expense_id} not found in Manage Expense.",
+                    "builtin": {
+                      "kind": "must_exist_in_master",
+                      "table": "EXPTRACK_EXPENSE",
+                      "match_column": "EXPENSE_ID"
+                    }
+                  },
+                  {
+                    "type": "builtin",
+                    "name": "Expense unique on approval",
+                    "error_code": "EXP_DUP",
+                    "message": "An approval record already exists for expense {form.expense_id}.",
+                    "builtin": {
+                      "kind": "must_be_unique"
+                    }
+                  }
+                ],
+                "item_change": {
+                  "mode": "rule",
+                  "source_table": "EXPTRACK_EXPENSE",
+                  "match_table_col": "EXPENSE_ID",
+                  "fill": [
+                    {
+                      "form_col": "employee",
+                      "table_col": "EMPLOYEE"
+                    },
+                    {
+                      "form_col": "category",
+                      "table_col": "CATEGORY"
+                    },
+                    {
+                      "form_col": "expense_date",
+                      "table_col": "EXPENSE_DATE"
+                    },
+                    {
+                      "form_col": "total_expense_amount",
+                      "table_col": "AMOUNT"
+                    },
+                    {
+                      "form_col": "payment_method",
+                      "table_col": "PAYMENT_METHOD"
+                    }
+                  ]
+                },
+                "x": "10",
+                "y": "10",
+                "col_id": "2",
+                "table_name": "EXPTRACK_MANAGE_APPROVAL_NEW_TXN",
+                "table_display_name": "Manage Approval auto-created record",
+                "db_size": "20",
+                "width": 200,
+                "key": false,
+                "hidden": "",
+                "format": "",
+                "default_function": "",
+                "default_value": "",
+                "expression": "",
+                "edit_mask": "",
+                "protect": ""
+              }
+            },
+            {
+              "column": {
+                "name": "employee",
+                "db_name": "EMPLOYEE",
+                "group_name": "Basic",
+                "col_type": "VARCHAR",
+                "heading": "Employee",
+                "descr": "Employee who raised the expense, copied from the linked expense record",
+                "mandatory": true,
+                "x": "20",
+                "y": "20",
+                "col_id": "3",
+                "table_name": "EXPTRACK_MANAGE_APPROVAL_NEW_TXN",
+                "table_display_name": "Manage Approval auto-created record",
+                "db_size": "10",
+                "width": 100,
+                "key": false,
+                "hidden": "",
+                "format": "",
+                "default_function": "",
+                "default_value": "",
+                "expression": "",
+                "edit_mask": "",
+                "protect": "",
+                "validations": "",
+                "lookup": ""
+              }
+            },
+            {
+              "column": {
+                "name": "trip",
+                "db_name": "TRIP",
+                "group_name": "Basic",
+                "col_type": "VARCHAR",
+                "heading": "Trip",
+                "descr": "Trip linked to the expense, if any",
+                "lookup": "EXPTRACK_TRIP(TRIP_NAME, TRIP_ID)",
+                "validations": [
+                  {
+                    "type": "builtin",
+                    "name": "Trip exists",
+                    "error_code": "TRIP_NOT_FOUND",
+                    "message": "Trip {form.trip} not found in Manage Trip.",
+                    "disabled": true,
+                    "builtin": {
+                      "kind": "must_exist_in_master",
+                      "table": "EXPTRACK_TRIP",
+                      "match_column": "TRIP_ID"
+                    }
+                  }
+                ],
+                "x": "30",
+                "y": "30",
+                "col_id": "4",
+                "table_name": "EXPTRACK_MANAGE_APPROVAL_NEW_TXN",
+                "table_display_name": "Manage Approval auto-created record",
+                "db_size": "20",
+                "width": 200,
+                "key": false,
+                "mandatory": false,
+                "hidden": "",
+                "format": "",
+                "default_function": "",
+                "default_value": "",
+                "expression": "",
+                "edit_mask": "",
+                "protect": ""
+              }
+            },
+            {
+              "column": {
+                "name": "trip_name",
+                "db_name": "TRIP_NAME",
+                "table_name": "EXPTRACK_TRIP",
+                "group_name": "Basic",
+                "col_type": "VARCHAR",
+                "heading": "Trip Name",
+                "descr": "Trip name from the Manage Trip master (display only)",
+                "protect": "1",
+                "x": "40",
+                "y": "40",
+                "col_id": "5",
+                "table_display_name": "Trip master (lookup display)",
+                "db_size": "100",
+                "width": 500,
+                "key": false,
+                "mandatory": false,
+                "hidden": "",
+                "format": "",
+                "default_function": "",
+                "default_value": "",
+                "expression": "",
+                "edit_mask": "",
+                "validations": "",
+                "lookup": ""
+              }
+            },
+            {
+              "column": {
+                "name": "category",
+                "db_name": "CATEGORY",
+                "group_name": "Basic",
+                "col_type": "VARCHAR",
+                "heading": "Category",
+                "descr": "Expense category, copied from the linked expense record",
+                "mandatory": true,
+                "lookup": "EXPTRACK_EXPENSE_CATEGORY(CATEGORY_NAME, CATEGORY_CODE)",
+                "validations": [
+                  {
+                    "type": "builtin",
+                    "name": "Category exists",
+                    "error_code": "CAT_NOT_FOUND",
+                    "message": "Category {form.category} not found in Manage Expense Category.",
+                    "builtin": {
+                      "kind": "must_exist_in_master",
+                      "table": "EXPTRACK_EXPENSE_CATEGORY",
+                      "match_column": "CATEGORY_CODE"
+                    }
+                  }
+                ],
+                "x": "50",
+                "y": "50",
+                "col_id": "6",
+                "table_name": "EXPTRACK_MANAGE_APPROVAL_NEW_TXN",
+                "table_display_name": "Manage Approval auto-created record",
+                "db_size": "20",
+                "width": 200,
+                "key": false,
+                "hidden": "",
+                "format": "",
+                "default_function": "",
+                "default_value": "",
+                "expression": "",
+                "edit_mask": "",
+                "protect": ""
+              }
+            },
+            {
+              "column": {
+                "name": "category_name",
+                "db_name": "CATEGORY_NAME",
+                "table_name": "EXPTRACK_EXPENSE_CATEGORY",
+                "group_name": "Basic",
+                "col_type": "VARCHAR",
+                "heading": "Category Name",
+                "descr": "Category name from the Manage Expense Category master (display only)",
+                "protect": "1",
+                "x": "60",
+                "y": "60",
+                "col_id": "7",
+                "table_display_name": "Expense category master (lookup display)",
+                "db_size": "100",
+                "width": 500,
+                "key": false,
+                "mandatory": false,
+                "hidden": "",
+                "format": "",
+                "default_function": "",
+                "default_value": "",
+                "expression": "",
+                "edit_mask": "",
+                "validations": "",
+                "lookup": ""
+              }
+            },
+            {
+              "column": {
+                "name": "expense_date",
+                "db_name": "EXPENSE_DATE",
+                "group_name": "Basic",
+                "col_type": "DATE",
+                "heading": "Expense Date",
+                "descr": "Date of the expense, copied from the linked expense record",
+                "mandatory": true,
+                "x": "70",
+                "y": "70",
+                "col_id": "8",
+                "table_name": "EXPTRACK_MANAGE_APPROVAL_NEW_TXN",
+                "table_display_name": "Manage Approval auto-created record",
+                "db_size": "",
+                "width": 50,
+                "key": false,
+                "hidden": "",
+                "format": "",
+                "default_function": "",
+                "default_value": "",
+                "expression": "",
+                "edit_mask": "",
+                "protect": "",
+                "validations": "",
+                "lookup": ""
+              }
+            },
+            {
+              "column": {
+                "name": "total_expense_amount",
+                "db_name": "TOTAL_EXPENSE_AMOUNT",
+                "group_name": "Basic",
+                "col_type": "NUMBER",
+                "heading": "Total Expense Amount",
+                "descr": "Total expense amount, copied from the linked expense record",
+                "mandatory": true,
+                "x": "80",
+                "y": "80",
+                "col_id": "9",
+                "table_name": "EXPTRACK_MANAGE_APPROVAL_NEW_TXN",
+                "table_display_name": "Manage Approval auto-created record",
+                "db_size": "14,2",
+                "width": 150,
+                "key": false,
+                "hidden": "",
+                "format": "",
+                "default_function": "",
+                "default_value": "",
+                "expression": "",
+                "edit_mask": "",
+                "protect": "",
+                "validations": "",
+                "lookup": ""
+              }
+            },
+            {
+              "column": {
+                "name": "payment_method",
+                "db_name": "PAYMENT_METHOD",
+                "group_name": "Basic",
+                "col_type": "VARCHAR",
+                "heading": "Payment Method",
+                "descr": "Payment method used, copied from the linked expense record",
+                "mandatory": true,
+                "lookup": "EXPTRACK_PAYMENT_METHOD(PAYMENT_METHOD_NAME, PAYMENT_METHOD_CODE)",
+                "validations": [
+                  {
+                    "type": "builtin",
+                    "name": "Payment method exists",
+                    "error_code": "PM_NOT_FOUND",
+                    "message": "Payment method {form.payment_method} not found in Manage Payment Method.",
+                    "builtin": {
+                      "kind": "must_exist_in_master",
+                      "table": "EXPTRACK_PAYMENT_METHOD",
+                      "match_column": "PAYMENT_METHOD_CODE"
+                    }
+                  }
+                ],
+                "x": "90",
+                "y": "90",
+                "col_id": "10",
+                "table_name": "EXPTRACK_MANAGE_APPROVAL_NEW_TXN",
+                "table_display_name": "Manage Approval auto-created record",
+                "db_size": "20",
+                "width": 200,
+                "key": false,
+                "hidden": "",
+                "format": "",
+                "default_function": "",
+                "default_value": "",
+                "expression": "",
+                "edit_mask": "",
+                "protect": ""
+              }
+            },
+            {
+              "column": {
+                "name": "payment_method_name",
+                "db_name": "PAYMENT_METHOD_NAME",
+                "table_name": "EXPTRACK_PAYMENT_METHOD",
+                "group_name": "Basic",
+                "col_type": "VARCHAR",
+                "heading": "Payment Method Name",
+                "descr": "Payment method name from the Manage Payment Method master (display only)",
+                "protect": "1",
+                "x": "100",
+                "y": "100",
+                "col_id": "11",
+                "table_display_name": "Payment method master (lookup display)",
+                "db_size": "100",
+                "width": 500,
+                "key": false,
+                "mandatory": false,
+                "hidden": "",
+                "format": "",
+                "default_function": "",
+                "default_value": "",
+                "expression": "",
+                "edit_mask": "",
+                "validations": "",
+                "lookup": ""
+              }
+            },
+            {
+              "column": {
+                "name": "status",
+                "db_name": "STATUS",
+                "group_name": "Basic",
+                "col_type": "VARCHAR",
+                "heading": "Status",
+                "descr": "Approval status of this record",
+                "default_value": "Pending",
+                "mandatory": true,
+                "edit_mask": {
+                  "mask": "ddlb",
+                  "values": [
+                    {
+                      "data": "Pending",
+                      "display": "Pending"
+                    },
+                    {
+                      "data": "Approved",
+                      "display": "Approved"
+                    },
+                    {
+                      "data": "Rejected",
+                      "display": "Rejected"
+                    }
+                  ]
+                },
+                "display": {
+                  "type": "status_tag",
+                  "map": [
+                    {
+                      "when": "Pending",
+                      "color": "yellow",
+                      "icon": "\u25f7"
+                    },
+                    {
+                      "when": "Approved",
+                      "color": "green",
+                      "icon": "\u2713"
+                    },
+                    {
+                      "when": "Rejected",
+                      "color": "red",
+                      "icon": "\u2715"
+                    }
+                  ],
+                  "defaultColor": "grey"
+                },
+                "x": "110",
+                "y": "110",
+                "col_id": "12",
+                "table_name": "EXPTRACK_MANAGE_APPROVAL_NEW_TXN",
+                "table_display_name": "Manage Approval auto-created record",
+                "db_size": "20",
+                "width": 200,
+                "key": false,
+                "hidden": "",
+                "format": "",
+                "default_function": "",
+                "expression": "",
+                "protect": "",
+                "validations": "",
+                "lookup": ""
+              }
+            },
+            {
+              "column": {
+                "name": "approver_name",
+                "db_name": "APPROVER_NAME",
+                "group_name": "Basic",
+                "col_type": "VARCHAR",
+                "heading": "Approver Name",
+                "descr": "Name of the approver responsible for actioning this record",
+                "mandatory": true,
+                "x": "120",
+                "y": "120",
+                "col_id": "13",
+                "table_name": "EXPTRACK_MANAGE_APPROVAL_NEW_TXN",
+                "table_display_name": "Manage Approval auto-created record",
+                "db_size": "100",
+                "width": 500,
+                "key": false,
+                "hidden": "",
+                "format": "",
+                "default_function": "",
+                "default_value": "",
+                "expression": "",
+                "edit_mask": "",
+                "protect": "",
+                "validations": "",
+                "lookup": ""
+              }
+            },
+            {
+              "column": {
+                "name": "add_date",
+                "db_name": "ADD_DATE",
+                "group_name": "Others",
+                "col_type": "DATETIME",
+                "heading": "Added On",
+                "descr": "Timestamp when this record was created",
+                "default_value": ":audit_add_date",
+                "protect": "1",
+                "x": "140",
+                "y": "140",
+                "col_id": "14",
+                "table_name": "EXPTRACK_MANAGE_APPROVAL_NEW_TXN",
+                "table_display_name": "Manage Approval auto-created record",
+                "db_size": "",
+                "width": 50,
+                "key": false,
+                "mandatory": false,
+                "hidden": "",
+                "format": "",
+                "default_function": "",
+                "expression": "",
+                "edit_mask": "",
+                "validations": "",
+                "lookup": ""
+              }
+            },
+            {
+              "column": {
+                "name": "add_user",
+                "db_name": "ADD_USER",
+                "group_name": "Others",
+                "col_type": "VARCHAR",
+                "heading": "Added By",
+                "descr": "User who created this record",
+                "default_value": ":audit_add_user",
+                "protect": "1",
+                "x": "150",
+                "y": "150",
+                "col_id": "15",
+                "table_name": "EXPTRACK_MANAGE_APPROVAL_NEW_TXN",
+                "table_display_name": "Manage Approval auto-created record",
+                "db_size": "10",
+                "width": 100,
+                "key": false,
+                "mandatory": false,
+                "hidden": "",
+                "format": "",
+                "default_function": "",
+                "expression": "",
+                "edit_mask": "",
+                "validations": "",
+                "lookup": ""
+              }
+            },
+            {
+              "column": {
+                "name": "add_term",
+                "db_name": "ADD_TERM",
+                "group_name": "Others",
+                "col_type": "VARCHAR",
+                "heading": "Added Terminal",
+                "descr": "Terminal/IP from which this record was created",
+                "default_value": ":audit_add_terminal",
+                "protect": "1",
+                "x": "160",
+                "y": "160",
+                "col_id": "16",
+                "table_name": "EXPTRACK_MANAGE_APPROVAL_NEW_TXN",
+                "table_display_name": "Manage Approval auto-created record",
+                "db_size": "15",
+                "width": 150,
+                "key": false,
+                "mandatory": false,
+                "hidden": "",
+                "format": "",
+                "default_function": "",
+                "expression": "",
+                "edit_mask": "",
+                "validations": "",
+                "lookup": ""
+              }
+            },
+            {
+              "column": {
+                "name": "chg_date",
+                "db_name": "CHG_DATE",
+                "group_name": "Others",
+                "col_type": "DATETIME",
+                "heading": "Changed On",
+                "descr": "Timestamp of the last change to this record",
+                "default_value": ":audit_chg_date",
+                "protect": "1",
+                "x": "170",
+                "y": "170",
+                "col_id": "17",
+                "table_name": "EXPTRACK_MANAGE_APPROVAL_NEW_TXN",
+                "table_display_name": "Manage Approval auto-created record",
+                "db_size": "",
+                "width": 50,
+                "key": false,
+                "mandatory": false,
+                "hidden": "",
+                "format": "",
+                "default_function": "",
+                "expression": "",
+                "edit_mask": "",
+                "validations": "",
+                "lookup": ""
+              }
+            },
+            {
+              "column": {
+                "name": "chg_user",
+                "db_name": "CHG_USER",
+                "group_name": "Others",
+                "col_type": "VARCHAR",
+                "heading": "Changed By",
+                "descr": "User who last changed this record",
+                "default_value": ":audit_chg_user",
+                "protect": "1",
+                "x": "180",
+                "y": "180",
+                "col_id": "18",
+                "table_name": "EXPTRACK_MANAGE_APPROVAL_NEW_TXN",
+                "table_display_name": "Manage Approval auto-created record",
+                "db_size": "10",
+                "width": 100,
+                "key": false,
+                "mandatory": false,
+                "hidden": "",
+                "format": "",
+                "default_function": "",
+                "expression": "",
+                "edit_mask": "",
+                "validations": "",
+                "lookup": ""
+              }
+            },
+            {
+              "column": {
+                "name": "chg_term",
+                "db_name": "CHG_TERM",
+                "group_name": "Others",
+                "col_type": "VARCHAR",
+                "heading": "Changed Terminal",
+                "descr": "Terminal/IP from which this record was last changed",
+                "default_value": ":audit_chg_terminal",
+                "protect": "1",
+                "x": "190",
+                "y": "190",
+                "col_id": "19",
+                "table_name": "EXPTRACK_MANAGE_APPROVAL_NEW_TXN",
+                "table_display_name": "Manage Approval auto-created record",
+                "db_size": "15",
+                "width": 150,
+                "key": false,
+                "mandatory": false,
+                "hidden": "",
+                "format": "",
+                "default_function": "",
+                "expression": "",
+                "edit_mask": "",
+                "validations": "",
+                "lookup": ""
+              }
+            }
+          ],
+          "actions": [
+            {
+              "name": "Add",
+              "handler": "system",
+              "system_op": "add",
+              "scope": "form",
+              "validations": [
+                {
+                  "type": "expression",
+                  "name": "No manual add",
+                  "error_code": "NO_MANUAL_ADD",
+                  "message": "Manage Approval records are created automatically when an expense is Submitted; manual Add is not permitted.",
+                  "expression": "false"
+                }
+              ]
+            }
+          ],
+          "joins": {
+            "join_predicates": {
+              "joins": [
+                {
+                  "table": "EXPTRACK_MANAGE_APPROVAL_NEW_TXN",
+                  "main_table": true,
+                  "table_descr": "Manage Approval auto-created record"
+                },
+                {
+                  "table": "EXPTRACK_TRIP",
+                  "main_table": false,
+                  "table_descr": "Trip master (lookup display)",
+                  "column": "TRIP_ID",
+                  "join_table": "EXPTRACK_MANAGE_APPROVAL_NEW_TXN",
+                  "join_column": "TRIP",
+                  "join_type": "left"
+                },
+                {
+                  "table": "EXPTRACK_EXPENSE_CATEGORY",
+                  "main_table": false,
+                  "table_descr": "Expense category master (lookup display)",
+                  "column": "CATEGORY_CODE",
+                  "join_table": "EXPTRACK_MANAGE_APPROVAL_NEW_TXN",
+                  "join_column": "CATEGORY",
+                  "join_type": "left"
+                },
+                {
+                  "table": "EXPTRACK_PAYMENT_METHOD",
+                  "main_table": false,
+                  "table_descr": "Payment method master (lookup display)",
+                  "column": "PAYMENT_METHOD_CODE",
+                  "join_table": "EXPTRACK_MANAGE_APPROVAL_NEW_TXN",
+                  "join_column": "PAYMENT_METHOD",
+                  "join_type": "left"
+                }
+              ]
+            }
+          }
+        }
+      }
+    ],
+    "actions": [],
+    "cross_updates": [],
+    "pre_commit": [],
+    "post_commit": [],
+    "attach_docs": [],
+    "follow_up_actions": []
+  }
+}

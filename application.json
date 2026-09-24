@@ -1,0 +1,493 @@
+{
+  "application": {
+    "id": "exptrack",
+    "title": "Expense Management",
+    "description": "Application to record employee expenses, group them into trips and expense reports, route reports for single-approver approval, and provide analytics and activity audit trail across roles.",
+    "icon": "receipt_long",
+    "theme_color": "#1976D2",
+    "group": "NA",
+    "generated": true,
+    "auth": {
+      "providers": [
+        "project-users"
+      ],
+      "requireLogin": true,
+      "defaultRoles": [
+        "member"
+      ]
+    },
+    "folder_name": "Expense_Management",
+    "db_mode": "postgres",
+    "biz_logic": "python",
+    "icon_image_data": "data:image/png;base64,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"
+  },
+  "navigation": [
+    {
+      "id": "exptrack.1",
+      "title": "Employees",
+      "parent_id": "",
+      "icon_image": "badge",
+      "description": "Employee-facing area grouping master data, trip, expense and expense report management",
+      "obj_name": "exptrack_employees",
+      "obj_type": "-",
+      "menu_path": "exptrack.1",
+      "functional_specs": "Group folder for the Employee-facing business processes: Master Data Management, Trip Management, Expense Management, and Expense Report Management. Visible to the Employee role, and Employee role access applies to this entire subtree."
+    },
+    {
+      "id": "exptrack.1.1",
+      "title": "Master Data Management",
+      "parent_id": "exptrack.1",
+      "icon_image": "settings",
+      "description": "Maintain master data used across the application",
+      "obj_name": "exptrack_master_data",
+      "obj_type": "-",
+      "menu_path": "exptrack.1.1",
+      "functional_specs": "Group for master data maintenance transactions."
+    },
+    {
+      "id": "exptrack.1.1.1",
+      "title": " Expense Category",
+      "parent_id": "exptrack.1.1",
+      "icon_image": "category",
+      "description": "Maintain standard list of expense categories",
+      "obj_name": "exptrack_expense_category",
+      "obj_type": "T",
+      "menu_path": "exptrack.1.1.1",
+      "functional_specs": "Search, Add, Edit (no Delete — the Delete action is removed from both the list/grid view and the edit/form view; retire a category by setting STATUS = Inactive) (CATEGORY_CODE unique/mandatory, CATEGORY_NAME mandatory, STATUS Active/Inactive). Inactive categories hidden from picker on Manage Expense but remain visible on historical records and Visuals."
+    },
+    {
+      "id": "exptrack.1.1.2",
+      "title": " Payment Method",
+      "parent_id": "exptrack.1.1",
+      "icon_image": "payments",
+      "description": "Maintain list of payment methods. Each Payment Method requires a mandatory CATEGORY_CODE linked to the Manage Expense Category master.",
+      "obj_name": "exptrack_payment_method",
+      "obj_type": "T",
+      "menu_path": "exptrack.1.1.2",
+      "functional_specs": "Search, Add, Edit (no Delete — the Delete action is removed from both the list/grid view and the edit/form view; retire a payment method by setting STATUS = Inactive) (PAYMENT_METHOD_CODE unique/mandatory, PAYMENT_METHOD_NAME mandatory, TYPE, STATUS Active/Inactive). Inactive methods hidden from picker on Manage Expense but remain visible on historical records and Visuals. CATEGORY_CODE is mandatory on each Payment Method and must exist in the Manage Expense Category master; CATEGORY_NAME is auto-filled from that master on selection of CATEGORY_CODE."
+    },
+    {
+      "id": "exptrack.1.2",
+      "title": "Trip Management",
+      "parent_id": "exptrack.1",
+      "icon_image": "flight_takeoff",
+      "description": "Record and manage business trips",
+      "obj_name": "exptrack_trip_management",
+      "obj_type": "-",
+      "menu_path": "exptrack.1.2",
+      "functional_specs": "Group for trip management transactions."
+    },
+    {
+      "id": "exptrack.1.2.1",
+      "title": "Manage Trip",
+      "parent_id": "exptrack.1.2",
+      "icon_image": "map",
+      "description": "Record a business trip grouping related expenses",
+      "obj_name": "exptrack_trip",
+      "obj_type": "T",
+      "menu_path": "exptrack.1.2.1",
+      "functional_specs": "Search, Add, Edit, Delete, Close-trip. TRIP_NAME, DESTINATION, START_DATE, END_DATE mandatory; END_DATE >= START_DATE. Close-trip sets STATUS=Closed and locks it from further expense linkage; reopening not permitted. Serial Number is manually entered by the user rather than auto-generated. STATUS dropdown with values Planned / Upcoming / Completed, default Planned; Closed is a system-only status applied by the Close-trip action and is not user-selectable. TRIP_ID (system-generated internal identifier) has been removed from the form, the grid/table view, and the underlying table schema as a deliberate, accepted breaking change; this was previously the match column used by Manage Expense's TRIP lookup, which is now unresolvable for both existing and new expense records. Trip ID (TRIP_ID) is system auto-generated on Add in the format TRIP-00001 (TRIP- prefix + 5-digit sequence); it is not manually entered."
+    },
+    {
+      "id": "exptrack.1.3",
+      "title": " Expense Budget & Limitation Rules",
+      "parent_id": "exptrack.1",
+      "icon_image": "receipt",
+      "description": "Capture and manage individual expenses",
+      "obj_name": "exptrack_expense_management",
+      "obj_type": "-",
+      "menu_path": "exptrack.1.3",
+      "functional_specs": "Group for expense capture transactions."
+    },
+    {
+      "id": "exptrack.1.3.1",
+      "title": "Budget and Limitation",
+      "parent_id": "exptrack.1.3",
+      "icon_image": "account_balance_wallet",
+      "description": "Record finance budget and limitation details: Finance Name, Department, and an uploaded Budget Document. All three fields are mandatory.",
+      "obj_name": "exptrack_budget_limitation",
+      "obj_type": "T",
+      "menu_path": "exptrack.1.3.1",
+      "functional_specs": "Fields: FINANCE_NAME (text, mandatory), DEPARTMENT (text, mandatory), BUDGET_DOCUMENT (file upload, mandatory). Actions: Search, Add, Edit, Delete. Employee role: View action only (read-only access to FINANCE_NAME, DEPARTMENT, BUDGET_DOCUMENT); Edit is not available to Employee. Other roles retain Search, Add, Edit, Delete. A Download action is provided next to the Budget Document field to download the uploaded document."
+    },
+    {
+      "id": "exptrack.1.4",
+      "title": "Expense Management",
+      "parent_id": "exptrack.1",
+      "icon_image": "summarize",
+      "description": "Compile expenses into reports and route for approval",
+      "obj_name": "exptrack_expense_report_management",
+      "obj_type": "-",
+      "menu_path": "exptrack.1.4",
+      "functional_specs": "Group for expense report management transactions."
+    },
+    {
+      "id": "exptrack.1.4.1",
+      "title": "Manage Expense",
+      "parent_id": "exptrack.1.4",
+      "icon_image": "receipt_long",
+      "description": "Capture an individual expense with category, trip, payment method and a receipt upload field. Submitting an expense creates/links a Submitted expense report so the expense flows to Management → Approval Management for approval.",
+      "obj_name": "exptrack_expense",
+      "obj_type": "T",
+      "menu_path": "exptrack.1.4.1",
+      "functional_specs": "Search, Add, Edit, Delete. Sections: Basic (EXPENSE_DATE date required; CATEGORY lookup to Expense Category master required, auto-fills CATEGORY_NAME read-only; TRIP lookup to Trip master required, auto-fills TRIP_NAME read-only; TOTAL_EXPENSE_AMOUNT number required; CURRENCY fixed list INR/USD/EUR/GBP required; PAYMENT_METHOD lookup to Payment Method master required, auto-fills PAYMENT_METHOD_NAME read-only), Receipt (RECEIPT_ATTACHMENT file upload field on the form; no separate Attach Receipt business action), Report Linkage (EXPENSE_REPORT system-managed read-only reference, auto-populated by Submit — no manual Add to Report or Remove from Report actions), Other Information (S_NO manual number; EXPENSE_ID system auto-generated unique read-only, unchanged by Submit; ADD_DATE/ADD_USER auto on create; CHG_DATE/CHG_USER auto on update). Submit action validates and saves the expense, sets STATUS=Submitted and APPROVAL_STATUS=Pending, and auto-creates a matching one-expense Expense Report (EXPTRACK_EXPENSE_REPORT) with STATUS=Submitted so it appears in Approval Management (exptrack_approve_expense_report) for approval; EXPENSE_ID is unchanged. Record becomes editable again only if Manager rejects it (STATUS=Rejected) or while still Draft. STATUS is displayed as read-only text, not an editable dropdown, and defaults to \"Draft\" automatically when a new expense record is added. Submit action: validates and saves the expense, sets STATUS=Submitted and APPROVAL_STATUS=Pending, and automatically links the expense to a record in Approval Management (exptrack_approve_expense_report) using the same EXPENSE_ID, reusing an existing linked record instead of creating a duplicate if one already exists. Submit action: marks the expense STATUS=Submitted, auto-creates a new EXPTRACK_EXPENSE_REPORT containing just this expense (STATUS=Submitted, EMPLOYEE=current user, TOTAL_AMOUNT=expense AMOUNT, REPORT_TITLE auto-generated), sets the expense's EXPENSE_REPORT to the new report id, so it immediately appears in Management > Approval Management (exptrack_approve_expense_report) for approval. Submit button/action on the expense form: submits the expense (sets STATUS=Submitted) and automatically routes it into Management → Approval Management (exptrack_approve_expense_report) for approver review. On Submit, auto-creates a linked Approval Management record (EXPTRACK_EXPENSE_REPORT) with an auto-generated Report ID, mapping Employee, Report Date, Trip, Total Amount, Category, Payment Method, Currency, Receipt Attachment and Description from the expense, and writes the generated Report ID back onto this expense's Expense Report field. STATUS defaults to Draft on a newly created expense. STATUS is automatically set to 'Draft' when a new expense is created and is not displayed as an editable dropdown on this form; this default is specific to the Manage Expense form and does not apply to the Approval Management / Management Approval screen or any other form. STATUS is auto-defaulted to Draft on new records and shown as a read-only, non-editable field (no status dropdown on the form); status transitions happen only through the submit/approval actions. STATUS defaults to Draft on new records and is shown read-only (protected, no dropdown); it is set only by Submit/approval processing. This applies to Manage Expense only — the Approval Management screen retains its own independent Status field and dropdown. STATUS is hidden on this form and is automatically set to Draft for every newly created expense record; this is a form-specific default/visibility rule and does not affect the STATUS field on the Management Approval screen. The STATUS field is hidden on this screen — it is not displayed in the form or the list/grid and is not entered by the employee; it defaults to Pending on create and is maintained only by the Management Approval screen (exptrack_manage_expense). STATUS is not displayed on this screen; it defaults to Pending on create and is updated only by the approval/report flows. Submit action: saves the expense and, in the same commit, creates a new EXPTRACK_EXPENSE_REPORT header (REPORT_ID auto-generated, EMPLOYEE = logged-in user, STATUS = Submitted) or reuses the employee's existing open report, sets EXPTRACK_EXPENSE.EXPENSE_REPORT = that REPORT_ID and EXPTRACK_EXPENSE.STATUS = Pending. Because exptrack_manage_expense (Management → Approval Management) fetches only EXPTRACK_EXPENSE_REPORT rows with STATUS = Submitted, the submitted expense appears there automatically. Re-submitting an expense already on a Submitted or Approved report is blocked with an error. On Submit, in addition to creating/linking the Submitted expense report, the system also auto-creates a linked record in the Manage Approval transaction (exptrack_manage_approval_new_txn) carrying the expense's EXPENSE_ID, EMPLOYEE, TRIP, CATEGORY, EXPENSE_DATE, AMOUNT, PAYMENT_METHOD, STATUS and APPROVER_NAME. Displays PAYMENT_PROCESS_STATUS (read-only), defaulting to None; updated to Proceed/Not Proceed once payment is processed on the Payment Process screen."
+    },
+    {
+      "id": "exptrack.3",
+      "title": "Management",
+      "parent_id": "",
+      "icon_image": "supervisor_account",
+      "description": "Management screens",
+      "obj_name": "exptrack_management",
+      "obj_type": "-",
+      "menu_path": "exptrack.3",
+      "functional_specs": "Top-level group folder for management-facing screens."
+    },
+    {
+      "id": "exptrack.3.1",
+      "title": "Manage Approval",
+      "parent_id": "exptrack.3",
+      "icon_image": "fact_check",
+      "description": "List of existing submitted expense records for reference in the Management folder — displays Expense ID, Employee, Trip, Category, Expense Date, Total Expense Amount, Payment Method, Status and Approver Name. Supports Search and Edit (to record the approval decision on STATUS); does not create, fetch, or import any new or sample records and has no Add/Delete actions.",
+      "obj_name": "exptrack_manage_approval_v2",
+      "obj_type": "T",
+      "menu_path": "exptrack.3.1",
+      "functional_specs": "Search, Edit. Main table EXPTRACK_EXPENSE joined to EXPTRACK_EXPENSE_REPORT (EXPENSE_REPORT = REPORT_ID) for TRIP and TOTAL_AMOUNT. Columns: EXPENSE_ID, EMPLOYEE, TRIP, CATEGORY, EXPENSE_DATE, TOTAL_AMOUNT (labeled Total Expense Amount), PAYMENT_METHOD, APPROVER (labeled Approver Name) — all remain mandatory/read-only. STATUS is now a required dropdown field with options Approved and Reject, editable only via the Edit action (all other columns stay read-only). This is a new object distinct from exptrack_manage_approval and its variants; none of those existing objects are changed. Clicking the Submit action creates a linked record in the Finance → Payment Process transaction (exptrack_payment_process), copying EXPENSE_ID, EMPLOYEE, TRIP, CATEGORY, EXPENSE_DATE, TOTAL_AMOUNT, PAYMENT_METHOD and STATUS from the current record. No sample/random/fetched records are created. Setting STATUS to Reject on a voucher automatically sets the linked expense report's STATUS to Rejected, returning it to the Expense Report transaction in the Expense Management folder for the employee to revise and resubmit."
+    },
+    {
+      "id": "exptrack.4",
+      "title": "Finance",
+      "parent_id": "",
+      "icon_image": "account_balance",
+      "description": "Finance screens",
+      "obj_name": "exptrack_finance",
+      "obj_type": "-",
+      "menu_path": "exptrack.4",
+      "functional_specs": "Top-level group folder for finance-facing screens."
+    },
+    {
+      "id": "exptrack.4.1",
+      "title": "Payment process",
+      "parent_id": "exptrack.4",
+      "icon_image": "payments",
+      "description": "View submitted expense records for payment processing. Displays Expense ID, Employee, Trip, Category, Expense Date, Total Expense Amount, Payment Method, Receipt Attachment, Status and Approver Name as read-only reference fields. Finance Name is a required editable field for the processor to enter their name. A Process Payment button records the payment.",
+      "obj_name": "exptrack_payment_process_new",
+      "obj_type": "T",
+      "menu_path": "exptrack.4.1",
+      "functional_specs": "Main table EXPTRACK_EXPENSE joined to EXPTRACK_EXPENSE_REPORT (EXPTRACK_EXPENSE.EXPENSE_REPORT = EXPTRACK_EXPENSE_REPORT.REPORT_ID) for TRIP and TOTAL_AMOUNT. Columns (all read-only/view-only): EXPENSE_ID, EMPLOYEE, TRIP (from EXPTRACK_EXPENSE_REPORT), CATEGORY, EXPENSE_DATE, TOTAL_AMOUNT (from EXPTRACK_EXPENSE_REPORT), PAYMENT_METHOD, RECEIPT_ATTACHMENT, STATUS, APPROVER (Approver Name). FINANCE_NAME VARCHAR(100) is a required editable text field for entering the finance processor name. Actions: Search, Edit (to open a record and view details / enter Finance Name), and a Process Payment button action to record the payment. No Add, Delete, Import, or sample/random record creation. Adds an editable PAYMENT_PROCESS_STATUS field (options: Proceed, Not Proceed) that the finance processor sets as part of the Process Payment action."
+    },
+    {
+      "id": "exptrack.4.2",
+      "title": "Budget and Limitation",
+      "parent_id": "exptrack.4",
+      "icon_image": "account_balance_wallet",
+      "description": "Record finance budget and limitation details: Finance Name, Department, and an uploaded Budget Document. All three fields are mandatory.",
+      "obj_name": "exptrack_budget_limitation",
+      "obj_type": "T",
+      "menu_path": "exptrack.4.2",
+      "functional_specs": "Fields: FINANCE_NAME (text, mandatory), DEPARTMENT (text, mandatory), BUDGET_DOCUMENT (file upload, mandatory). Actions: Search, Add, Edit, Delete. A Download action is provided next to the Budget Document field to download the uploaded document."
+    },
+    {
+      "id": "exptrack.5",
+      "title": "Dashboard",
+      "parent_id": "",
+      "icon_image": "dashboard",
+      "description": "Dashboard screens",
+      "obj_name": "exptrack_dashboard",
+      "obj_type": "-",
+      "menu_path": "exptrack.5",
+      "functional_specs": "Top-level group folder for dashboard-related objects."
+    },
+    {
+      "id": "exptrack.5.1",
+      "title": "Employee Transaction Analysis Dashboard",
+      "parent_id": "exptrack.5",
+      "icon_image": "dashboard",
+      "description": "Analysis dashboard for all expense transactions in EXPTRACK_EXPENSE, showing total expense amount, expense count by category, expense by payment method, and monthly expense trend.",
+      "obj_name": "exptrack_txn_analysis_dashboard",
+      "obj_type": "D",
+      "menu_path": "exptrack.5.1",
+      "functional_specs": "Composed of 4 visuals: (1) exptrack_txn_total_amount — single KPI totaling AMOUNT from EXPTRACK_EXPENSE; (2) exptrack_txn_count_by_category — bar/column chart of expense COUNT grouped by CATEGORY (lookup to EXPTRACK_EXPENSE_CATEGORY.CATEGORY_CODE); (3) exptrack_txn_by_payment_method — chart of SUM(AMOUNT) grouped by PAYMENT_METHOD (lookup to EXPTRACK_PAYMENT_METHOD.PAYMENT_METHOD_CODE); (4) exptrack_txn_monthly_trend — line/trend chart of SUM(AMOUNT) grouped by month of EXPENSE_DATE. All visuals source from table EXPTRACK_EXPENSE."
+    },
+    {
+      "id": "exptrack.5.2",
+      "title": "Expense Approval Status Count",
+      "parent_id": "exptrack.5",
+      "icon_image": "bar_chart",
+      "description": "Bar chart showing the count of submitted expense records (from Manage Approval — EXPTRACK_EXPENSE) grouped by STATUS (Approved/Reject).",
+      "obj_name": "exptrack_approval_status_count",
+      "obj_type": "V",
+      "menu_path": "exptrack.5.2",
+      "functional_specs": "Main table EXPTRACK_EXPENSE. X-axis: STATUS (allowed values Approved, Reject). Y-axis: COUNT of EXPENSE_ID. Bar/column chart."
+    },
+    {
+      "id": "exptrack.5.7",
+      "title": "Payment Process Status Count",
+      "parent_id": "exptrack.5",
+      "icon_image": "bar_chart",
+      "description": "Bar chart showing the count of payment-process expense records (from EXPTRACK_EXPENSE) grouped by PAYMENT_PROCESS_STATUS.",
+      "obj_name": "exptrack_payment_process_status_count",
+      "obj_type": "V",
+      "menu_path": "exptrack.5.7",
+      "functional_specs": "Main table EXPTRACK_EXPENSE. X-axis: PAYMENT_PROCESS_STATUS (allowed values Proceed, Not Proceed). Y-axis: COUNT of EXPENSE_ID. Bar/column chart."
+    },
+    {
+      "id": "exptrack.5.3",
+      "title": "Total Approved Expense Amount",
+      "parent_id": "exptrack.5",
+      "icon_image": "paid",
+      "description": "Single KPI totaling TOTAL_AMOUNT across all submitted expense reports linked to Manage Approval records.",
+      "obj_name": "exptrack_approval_total_amount",
+      "obj_type": "V",
+      "menu_path": "exptrack.5.3",
+      "functional_specs": "Main table EXPTRACK_EXPENSE joined to EXPTRACK_EXPENSE_REPORT on EXPTRACK_EXPENSE.EXPENSE_REPORT = EXPTRACK_EXPENSE_REPORT.REPORT_ID. Measure: SUM of EXPTRACK_EXPENSE_REPORT.TOTAL_AMOUNT. Single KPI tile."
+    },
+    {
+      "id": "exptrack.5.8",
+      "title": "Total Payment Process Expense Amount",
+      "parent_id": "exptrack.5",
+      "icon_image": "paid",
+      "description": "Single KPI totaling TOTAL_AMOUNT across all expense reports linked to payment-process expense records.",
+      "obj_name": "exptrack_payment_process_total_amount",
+      "obj_type": "V",
+      "menu_path": "exptrack.5.8",
+      "functional_specs": "Main table EXPTRACK_EXPENSE joined to EXPTRACK_EXPENSE_REPORT on EXPTRACK_EXPENSE.EXPENSE_REPORT = EXPTRACK_EXPENSE_REPORT.REPORT_ID. Measure: SUM of EXPTRACK_EXPENSE_REPORT.TOTAL_AMOUNT. Single KPI tile."
+    },
+    {
+      "id": "exptrack.5.4",
+      "title": "Approval by Category",
+      "parent_id": "exptrack.5",
+      "icon_image": "bar_chart",
+      "description": "Bar chart of Manage Approval expense record count grouped by Expense Category.",
+      "obj_name": "exptrack_approval_by_category",
+      "obj_type": "V",
+      "menu_path": "exptrack.5.4",
+      "functional_specs": "Main table EXPTRACK_EXPENSE, CATEGORY column looked up to EXPTRACK_EXPENSE_CATEGORY.CATEGORY_CODE for display name (CATEGORY_NAME). X-axis: CATEGORY (display CATEGORY_NAME). Y-axis: COUNT of EXPENSE_ID. Bar/column chart."
+    },
+    {
+      "id": "exptrack.5.9",
+      "title": "Payment Process by Category",
+      "parent_id": "exptrack.5",
+      "icon_image": "bar_chart",
+      "description": "Bar chart of payment-process expense record count grouped by Expense Category.",
+      "obj_name": "exptrack_payment_process_by_category",
+      "obj_type": "V",
+      "menu_path": "exptrack.5.9",
+      "functional_specs": "Main table EXPTRACK_EXPENSE, CATEGORY column looked up to EXPTRACK_EXPENSE_CATEGORY.CATEGORY_CODE for display name (CATEGORY_NAME). X-axis: CATEGORY (display CATEGORY_NAME). Y-axis: COUNT of EXPENSE_ID. Bar/column chart."
+    },
+    {
+      "id": "exptrack.5.10",
+      "title": "Payment Process by Method",
+      "parent_id": "exptrack.5",
+      "icon_image": "bar_chart",
+      "description": "Bar chart of payment-process expense record count grouped by Payment Method.",
+      "obj_name": "exptrack_payment_process_by_method",
+      "obj_type": "V",
+      "menu_path": "exptrack.5.10",
+      "functional_specs": "Main table EXPTRACK_EXPENSE, PAYMENT_METHOD column looked up to EXPTRACK_PAYMENT_METHOD.PAYMENT_METHOD_CODE for display name (PAYMENT_METHOD_NAME). X-axis: PAYMENT_METHOD (display PAYMENT_METHOD_NAME). Y-axis: COUNT of EXPENSE_ID. Bar/column chart."
+    },
+    {
+      "id": "exptrack.5.5",
+      "title": "Approval by Approver",
+      "parent_id": "exptrack.5",
+      "icon_image": "bar_chart",
+      "description": "Bar chart of Manage Approval expense record count grouped by Approver.",
+      "obj_name": "exptrack_approval_by_approver",
+      "obj_type": "V",
+      "menu_path": "exptrack.5.5",
+      "functional_specs": "Main table EXPTRACK_EXPENSE. X-axis: APPROVER (VARCHAR(100)). Y-axis: COUNT of EXPENSE_ID. Bar/column chart."
+    },
+    {
+      "id": "exptrack.5.6",
+      "title": "Manage Approval Analysis Dashboard",
+      "parent_id": "exptrack.5",
+      "icon_image": "dashboard",
+      "description": "Analysis dashboard for the Manage Approval (exptrack_manage_approval_v2) submitted expense records, showing approval status breakdown, total expense amount, category breakdown, and approver breakdown.",
+      "obj_name": "exptrack_manage_approval_dashboard",
+      "obj_type": "D",
+      "menu_path": "exptrack.5.6",
+      "functional_specs": "Composed of 4 visuals: (1) exptrack_approval_status_count — bar chart of record count by STATUS; (2) exptrack_approval_total_amount — KPI totaling TOTAL_AMOUNT from EXPTRACK_EXPENSE_REPORT; (3) exptrack_approval_by_category — bar chart of record count by CATEGORY; (4) exptrack_approval_by_approver — bar chart of record count by APPROVER. All sourced from EXPTRACK_EXPENSE joined to EXPTRACK_EXPENSE_REPORT (EXPENSE_REPORT = REPORT_ID), matching the records shown on exptrack_manage_approval_v2."
+    },
+    {
+      "id": "exptrack.5.11",
+      "title": "Payment Process Analysis Dashboard",
+      "parent_id": "exptrack.5",
+      "icon_image": "dashboard",
+      "description": "Analysis dashboard for the Payment Process (exptrack_payment_process_new) expense records, showing payment-process status breakdown, total expense amount, category breakdown, and payment method breakdown.",
+      "obj_name": "exptrack_payment_process_dashboard",
+      "obj_type": "D",
+      "menu_path": "exptrack.5.11",
+      "functional_specs": "Composed of 4 visuals: (1) exptrack_payment_process_status_count — bar chart of record count by PAYMENT_PROCESS_STATUS; (2) exptrack_payment_process_total_amount — KPI totaling TOTAL_AMOUNT from EXPTRACK_EXPENSE_REPORT; (3) exptrack_payment_process_by_category — bar chart of record count by Expense Category; (4) exptrack_payment_process_by_method — bar chart of record count by Payment Method."
+    }
+  ],
+  "auth": {
+    "providers": [
+      "project-users"
+    ],
+    "requireLogin": true,
+    "defaultRoles": [
+      "employee"
+    ],
+    "grants": [
+      {
+        "role": "employee",
+        "obj_name": "exptrack_employees",
+        "actions": [
+          "view"
+        ]
+      },
+      {
+        "role": "employee",
+        "obj_name": "exptrack_master_data",
+        "actions": [
+          "view"
+        ]
+      },
+      {
+        "role": "employee",
+        "obj_name": "exptrack_trip_management",
+        "actions": [
+          "view"
+        ]
+      },
+      {
+        "role": "employee",
+        "obj_name": "exptrack_expense_management",
+        "actions": [
+          "view"
+        ]
+      },
+      {
+        "role": "employee",
+        "obj_name": "exptrack_expense_report_management",
+        "actions": [
+          "view"
+        ]
+      },
+      {
+        "role": "employee",
+        "obj_name": "exptrack_expense",
+        "actions": [
+          "view",
+          "add",
+          "edit",
+          "delete"
+        ]
+      },
+      {
+        "role": "employee",
+        "obj_name": "exptrack_trip",
+        "actions": [
+          "view",
+          "add",
+          "edit",
+          "delete"
+        ]
+      },
+      {
+        "role": "employee",
+        "obj_name": "exptrack_expense_report",
+        "actions": [
+          "view",
+          "add",
+          "edit",
+          "delete"
+        ]
+      },
+      {
+        "role": "employee",
+        "obj_name": "exptrack_expense_category",
+        "actions": [
+          "view",
+          "add",
+          "edit",
+          "delete"
+        ]
+      },
+      {
+        "role": "employee",
+        "obj_name": "exptrack_payment_method",
+        "actions": [
+          "view",
+          "add",
+          "edit",
+          "delete"
+        ]
+      },
+      {
+        "role": "employee",
+        "obj_name": "exptrack_manage_expense",
+        "actions": [
+          "view",
+          "add",
+          "edit",
+          "delete"
+        ]
+      },
+      {
+        "role": "employee",
+        "obj_name": "exptrack_payment_policy_view",
+        "actions": [
+          "view"
+        ]
+      },
+      {
+        "role": "manager",
+        "obj_name": "exptrack_approve_expense_report",
+        "actions": [
+          "view",
+          "approve",
+          "reject"
+        ]
+      },
+      {
+        "role": "finance",
+        "obj_name": "exptrack_expense_report_pdf",
+        "actions": [
+          "view"
+        ]
+      },
+      {
+        "role": "administrator",
+        "obj_name": "exptrack_expense_category",
+        "actions": [
+          "view",
+          "add",
+          "edit",
+          "delete"
+        ]
+      },
+      {
+        "role": "administrator",
+        "obj_name": "exptrack_payment_method",
+        "actions": [
+          "view",
+          "add",
+          "edit",
+          "delete"
+        ]
+      },
+      {
+        "role": "finance",
+        "obj_name": "exptrack_expense_category",
+        "actions": [
+          "view",
+          "add",
+          "edit",
+          "delete"
+        ]
+      },
+      {
+        "role": "finance",
+        "obj_name": "exptrack_payment_method",
+        "actions": [
+          "view",
+          "add",
+          "edit",
+          "delete"
+        ]
+      }
+    ]
+  },
+  "referenced_projects": []
+}

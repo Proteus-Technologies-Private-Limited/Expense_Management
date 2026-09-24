@@ -1,0 +1,566 @@
+{
+  "transaction": {
+    "obj_name": "exptrack_payment_process",
+    "sql_models": [
+      {
+        "sql_model": {
+          "form_title": "Payment Process",
+          "form_descr": "Record and track payment processing against approved expense reports",
+          "form_no": "1",
+          "main_table": "EXPTRACK_PAYMENT_PROCESS",
+          "columns": [
+            {
+              "column": {
+                "name": "payment_id",
+                "db_name": "PAYMENT_ID",
+                "group_name": "Basic",
+                "col_type": "VARCHAR",
+                "heading": "Payment ID",
+                "descr": "System auto-generated unique identifier",
+                "key": true,
+                "default_value": "auto_generate()",
+                "protect": "1",
+                "mandatory": true,
+                "x": "10",
+                "y": "10",
+                "col_id": "1",
+                "table_name": "EXPTRACK_PAYMENT_PROCESS",
+                "table_display_name": "Payment process records",
+                "db_size": "20",
+                "width": 200,
+                "hidden": "",
+                "format": "",
+                "default_function": "",
+                "expression": "",
+                "edit_mask": "",
+                "validations": "",
+                "lookup": ""
+              }
+            },
+            {
+              "column": {
+                "name": "expense_report",
+                "db_name": "EXPENSE_REPORT",
+                "group_name": "Basic",
+                "col_type": "VARCHAR",
+                "heading": "Expense Report",
+                "descr": "The approved expense report being paid",
+                "mandatory": true,
+                "lookup": "EXPTRACK_EXPENSE_REPORT(REPORT_TITLE, REPORT_ID)",
+                "validations": [
+                  {
+                    "type": "builtin",
+                    "name": "Expense report exists",
+                    "message": "Expense Report not found.",
+                    "builtin": {
+                      "kind": "must_exist_in_master",
+                      "table": "EXPTRACK_EXPENSE_REPORT",
+                      "match_column": "REPORT_ID"
+                    }
+                  }
+                ],
+                "item_change": {
+                  "mode": "rule",
+                  "source_table": "EXPTRACK_EXPENSE_REPORT",
+                  "match_table_col": "REPORT_ID",
+                  "fill": [
+                    {
+                      "form_col": "report_title",
+                      "table_col": "REPORT_TITLE"
+                    },
+                    {
+                      "form_col": "report_employee",
+                      "table_col": "EMPLOYEE"
+                    },
+                    {
+                      "form_col": "report_total_amount",
+                      "table_col": "TOTAL_AMOUNT"
+                    },
+                    {
+                      "form_col": "report_status",
+                      "table_col": "STATUS"
+                    }
+                  ]
+                },
+                "x": "20",
+                "y": "20",
+                "col_id": "2",
+                "table_name": "EXPTRACK_PAYMENT_PROCESS",
+                "table_display_name": "Payment process records",
+                "db_size": "20",
+                "width": 200,
+                "key": false,
+                "hidden": "",
+                "format": "",
+                "default_function": "",
+                "default_value": "",
+                "expression": "",
+                "edit_mask": "",
+                "protect": ""
+              }
+            },
+            {
+              "column": {
+                "name": "expense_id",
+                "db_name": "EXPENSE_ID",
+                "group_name": "Basic",
+                "col_type": "VARCHAR",
+                "heading": "Expense ID",
+                "descr": "Source expense record this payment relates to, copied from Manage Approval",
+                "protect": "1",
+                "mandatory": true,
+                "table_name": "EXPTRACK_PAYMENT_PROCESS",
+                "db_size": "20",
+                "x": "30",
+                "y": "30",
+                "col_id": "3",
+                "table_display_name": "Payment process records",
+                "width": 200,
+                "key": false,
+                "hidden": "",
+                "format": "",
+                "default_function": "",
+                "default_value": "",
+                "expression": "",
+                "edit_mask": "",
+                "validations": "",
+                "lookup": ""
+              }
+            },
+            {
+              "column": {
+                "name": "trip",
+                "db_name": "TRIP",
+                "group_name": "Basic",
+                "col_type": "VARCHAR",
+                "heading": "Trip",
+                "descr": "Trip linked to the source expense, copied from Manage Approval",
+                "protect": "1",
+                "mandatory": true,
+                "table_name": "EXPTRACK_PAYMENT_PROCESS",
+                "db_size": "20",
+                "x": "40",
+                "y": "40",
+                "col_id": "4",
+                "table_display_name": "Payment process records",
+                "width": 200,
+                "key": false,
+                "hidden": "",
+                "format": "",
+                "default_function": "",
+                "default_value": "",
+                "expression": "",
+                "edit_mask": "",
+                "validations": "",
+                "lookup": ""
+              }
+            },
+            {
+              "column": {
+                "name": "category",
+                "db_name": "CATEGORY",
+                "group_name": "Basic",
+                "col_type": "VARCHAR",
+                "heading": "Category",
+                "descr": "Expense category, copied from Manage Approval",
+                "protect": "1",
+                "mandatory": true,
+                "table_name": "EXPTRACK_PAYMENT_PROCESS",
+                "db_size": "20",
+                "x": "50",
+                "y": "50",
+                "col_id": "5",
+                "table_display_name": "Payment process records",
+                "width": 200,
+                "key": false,
+                "hidden": "",
+                "format": "",
+                "default_function": "",
+                "default_value": "",
+                "expression": "",
+                "edit_mask": "",
+                "validations": "",
+                "lookup": ""
+              }
+            },
+            {
+              "column": {
+                "name": "expense_date",
+                "db_name": "EXPENSE_DATE",
+                "group_name": "Basic",
+                "col_type": "DATE",
+                "heading": "Expense Date",
+                "descr": "Date the source expense was incurred, copied from Manage Approval",
+                "protect": "1",
+                "mandatory": true,
+                "table_name": "EXPTRACK_PAYMENT_PROCESS",
+                "x": "60",
+                "y": "60",
+                "col_id": "6",
+                "table_display_name": "Payment process records",
+                "db_size": "",
+                "width": 50,
+                "key": false,
+                "hidden": "",
+                "format": "",
+                "default_function": "",
+                "default_value": "",
+                "expression": "",
+                "edit_mask": "",
+                "validations": "",
+                "lookup": ""
+              }
+            },
+            {
+              "column": {
+                "name": "payment_method",
+                "db_name": "PAYMENT_METHOD",
+                "group_name": "Basic",
+                "col_type": "VARCHAR",
+                "heading": "Payment Method",
+                "descr": "Payment method used for the expense, copied from Manage Approval",
+                "protect": "1",
+                "mandatory": true,
+                "table_name": "EXPTRACK_PAYMENT_PROCESS",
+                "db_size": "20",
+                "x": "70",
+                "y": "70",
+                "col_id": "7",
+                "table_display_name": "Payment process records",
+                "width": 200,
+                "key": false,
+                "hidden": "",
+                "format": "",
+                "default_function": "",
+                "default_value": "",
+                "expression": "",
+                "edit_mask": "",
+                "validations": "",
+                "lookup": ""
+              }
+            },
+            {
+              "column": {
+                "name": "report_title",
+                "db_name": "REPORT_TITLE",
+                "group_name": "Basic",
+                "col_type": "VARCHAR",
+                "heading": "Report Title",
+                "descr": "Reference detail auto-filled from the selected Expense Report",
+                "protect": "1",
+                "x": "80",
+                "y": "80",
+                "col_id": "8",
+                "table_name": "EXPTRACK_PAYMENT_PROCESS",
+                "table_display_name": "Payment process records",
+                "db_size": "150",
+                "width": 500,
+                "key": false,
+                "mandatory": false,
+                "hidden": "",
+                "format": "",
+                "default_function": "",
+                "default_value": "",
+                "expression": "",
+                "edit_mask": "",
+                "validations": "",
+                "lookup": ""
+              }
+            },
+            {
+              "column": {
+                "name": "report_employee",
+                "db_name": "REPORT_EMPLOYEE",
+                "group_name": "Basic",
+                "col_type": "VARCHAR",
+                "heading": "Employee",
+                "descr": "Reference detail auto-filled from the selected Expense Report",
+                "protect": "1",
+                "x": "90",
+                "y": "90",
+                "col_id": "9",
+                "table_name": "EXPTRACK_PAYMENT_PROCESS",
+                "table_display_name": "Payment process records",
+                "db_size": "10",
+                "width": 100,
+                "key": false,
+                "mandatory": true,
+                "hidden": "",
+                "format": "",
+                "default_function": "",
+                "default_value": "",
+                "expression": "",
+                "edit_mask": "",
+                "validations": "",
+                "lookup": ""
+              }
+            },
+            {
+              "column": {
+                "name": "report_total_amount",
+                "db_name": "REPORT_TOTAL_AMOUNT",
+                "group_name": "Basic",
+                "col_type": "NUMBER",
+                "heading": "Report Total Amount",
+                "descr": "Reference detail auto-filled from the selected Expense Report",
+                "protect": "1",
+                "x": "100",
+                "y": "100",
+                "col_id": "10",
+                "table_name": "EXPTRACK_PAYMENT_PROCESS",
+                "table_display_name": "Payment process records",
+                "db_size": "14,2",
+                "width": 150,
+                "key": false,
+                "mandatory": true,
+                "hidden": "",
+                "format": "",
+                "default_function": "",
+                "default_value": "",
+                "expression": "",
+                "edit_mask": "",
+                "validations": "",
+                "lookup": ""
+              }
+            },
+            {
+              "column": {
+                "name": "report_status",
+                "db_name": "REPORT_STATUS",
+                "group_name": "Basic",
+                "col_type": "VARCHAR",
+                "heading": "Report Status",
+                "descr": "Reference detail auto-filled from the selected Expense Report",
+                "protect": "1",
+                "x": "110",
+                "y": "110",
+                "col_id": "11",
+                "table_name": "EXPTRACK_PAYMENT_PROCESS",
+                "table_display_name": "Payment process records",
+                "db_size": "20",
+                "width": 200,
+                "key": false,
+                "mandatory": true,
+                "hidden": "",
+                "format": "",
+                "default_function": "",
+                "default_value": "",
+                "expression": "",
+                "edit_mask": "",
+                "validations": "",
+                "lookup": ""
+              }
+            },
+            {
+              "column": {
+                "name": "payment_date",
+                "db_name": "PAYMENT_DATE",
+                "group_name": "Basic",
+                "col_type": "DATE",
+                "heading": "Payment Date",
+                "descr": "Date the payment was processed",
+                "mandatory": true,
+                "x": "120",
+                "y": "120",
+                "col_id": "12",
+                "table_name": "EXPTRACK_PAYMENT_PROCESS",
+                "table_display_name": "Payment process records",
+                "db_size": "",
+                "width": 50,
+                "key": false,
+                "hidden": "",
+                "format": "",
+                "default_function": "",
+                "default_value": "",
+                "expression": "",
+                "edit_mask": "",
+                "protect": "",
+                "validations": "",
+                "lookup": ""
+              }
+            },
+            {
+              "column": {
+                "name": "payment_amount",
+                "db_name": "PAYMENT_AMOUNT",
+                "group_name": "Basic",
+                "col_type": "NUMBER",
+                "heading": "Payment Amount",
+                "descr": "Amount paid against the expense report",
+                "mandatory": true,
+                "validations": [
+                  {
+                    "type": "expression",
+                    "name": "Amount positive",
+                    "message": "Payment Amount must be greater than 0.",
+                    "expression": "{form.payment_amount} > 0"
+                  }
+                ],
+                "x": "130",
+                "y": "130",
+                "col_id": "13",
+                "table_name": "EXPTRACK_PAYMENT_PROCESS",
+                "table_display_name": "Payment process records",
+                "db_size": "14,2",
+                "width": 150,
+                "key": false,
+                "hidden": "",
+                "format": "",
+                "default_function": "",
+                "default_value": "",
+                "expression": "",
+                "edit_mask": "",
+                "protect": "",
+                "lookup": ""
+              }
+            },
+            {
+              "column": {
+                "name": "payment_reference",
+                "db_name": "PAYMENT_REFERENCE",
+                "group_name": "Basic",
+                "col_type": "VARCHAR",
+                "heading": "Payment Reference",
+                "descr": "Optional reference/transaction number for the payment",
+                "x": "140",
+                "y": "140",
+                "col_id": "14",
+                "table_name": "EXPTRACK_PAYMENT_PROCESS",
+                "table_display_name": "Payment process records",
+                "db_size": "100",
+                "width": 500,
+                "key": false,
+                "mandatory": false,
+                "hidden": "",
+                "format": "",
+                "default_function": "",
+                "default_value": "",
+                "expression": "",
+                "edit_mask": "",
+                "protect": "",
+                "validations": "",
+                "lookup": ""
+              }
+            },
+            {
+              "column": {
+                "name": "status",
+                "db_name": "STATUS",
+                "group_name": "Basic",
+                "col_type": "VARCHAR",
+                "heading": "Status",
+                "descr": "Payment processing status",
+                "default_value": "Pending",
+                "mandatory": true,
+                "edit_mask": {
+                  "mask": "ddlb",
+                  "values": [
+                    {
+                      "data": "Pending",
+                      "display": "Pending"
+                    },
+                    {
+                      "data": "Paid",
+                      "display": "Paid"
+                    },
+                    {
+                      "data": "Failed",
+                      "display": "Failed"
+                    }
+                  ]
+                },
+                "x": "150",
+                "y": "150",
+                "col_id": "15",
+                "table_name": "EXPTRACK_PAYMENT_PROCESS",
+                "table_display_name": "Payment process records",
+                "db_size": "20",
+                "width": 200,
+                "key": false,
+                "hidden": "",
+                "format": "",
+                "default_function": "",
+                "expression": "",
+                "protect": "",
+                "validations": "",
+                "lookup": ""
+              }
+            },
+            {
+              "column": {
+                "name": "created_by",
+                "db_name": "CREATED_BY",
+                "group_name": "Others",
+                "col_type": "VARCHAR",
+                "heading": "Created By",
+                "descr": "Logged-in user who created this payment record",
+                "default_value": ":audit_add_user",
+                "protect": "1",
+                "x": "160",
+                "y": "160",
+                "col_id": "16",
+                "table_name": "EXPTRACK_PAYMENT_PROCESS",
+                "table_display_name": "Payment process records",
+                "db_size": "10",
+                "width": 100,
+                "key": false,
+                "mandatory": false,
+                "hidden": "",
+                "format": "",
+                "default_function": "",
+                "expression": "",
+                "edit_mask": "",
+                "validations": "",
+                "lookup": ""
+              }
+            },
+            {
+              "column": {
+                "name": "created_date",
+                "db_name": "CREATED_DATE",
+                "group_name": "Others",
+                "col_type": "DATETIME",
+                "heading": "Created Date",
+                "descr": "Timestamp when this payment record was created",
+                "default_value": ":audit_add_date",
+                "protect": "1",
+                "x": "170",
+                "y": "170",
+                "col_id": "17",
+                "table_name": "EXPTRACK_PAYMENT_PROCESS",
+                "table_display_name": "Payment process records",
+                "db_size": "",
+                "width": 50,
+                "key": false,
+                "mandatory": false,
+                "hidden": "",
+                "format": "",
+                "default_function": "",
+                "expression": "",
+                "edit_mask": "",
+                "validations": "",
+                "lookup": ""
+              }
+            }
+          ],
+          "joins": {
+            "join_predicates": {
+              "joins": [
+                {
+                  "table": "EXPTRACK_PAYMENT_PROCESS",
+                  "main_table": true,
+                  "table_descr": "Payment process records"
+                }
+              ]
+            }
+          },
+          "validations": []
+        }
+      }
+    ],
+    "actions": [],
+    "cross_updates": [],
+    "attach_docs": [],
+    "follow_up_actions": []
+  }
+}

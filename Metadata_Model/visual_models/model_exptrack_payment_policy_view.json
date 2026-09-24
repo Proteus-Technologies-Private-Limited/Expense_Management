@@ -1,0 +1,453 @@
+{
+  "DATA_SOURCE_MODE": "sql",
+  "SQLMODEL": {
+    "SQLModel": {
+      "COLUMNS": [
+        {
+          "COLUMN": []
+        }
+      ]
+    },
+    "CRITERIA": {
+      "query": {
+        "rules": [
+          {
+            "id": "Criteria_1",
+            "field": "EXPTRACK_BUDGET_POLICY.STATUS",
+            "DBNAME": "STATUS",
+            "tableName": "EXPTRACK_BUDGET_POLICY",
+            "COLTYPE": "string",
+            "currentFieldType": "string",
+            "operator": "=",
+            "queryOption": "P",
+            "prevOption": "P",
+            "customValue": "FixedValue",
+            "promptLabel": "Status",
+            "promptVar": "status",
+            "value": "A",
+            "chipValue": [],
+            "options": [
+              {
+                "data": "A",
+                "display": "Active"
+              },
+              {
+                "data": "I",
+                "display": "Inactive"
+              }
+            ]
+          }
+        ],
+        "condition": "and"
+      }
+    },
+    "VISUAL_NAME": "Grid",
+    "SCHEMA_NAME": "EXPTRACK_PAYMENT_POLICY_VIEW",
+    "SCHEMA_DESCR": "Payment Policy - Spending Limit Tiers & Department Budget Caps",
+    "SCHEMA_TYPE": "S",
+    "OUTPUT_TYPE": "JSON",
+    "DATABASE_TYPE": "1",
+    "DATABASE_DETAIL": {
+      "DATABASE_NAME": "PostgreSQL",
+      "TYPE": 1
+    }
+  },
+  "LAYOUT_DATA": {
+    "visualLayout": {
+      "ID": "grid",
+      "VisualName": "Grid",
+      "VisualType": "Standard",
+      "VisualIcon": "Grid.svg",
+      "DisplayOrder": "8",
+      "className": "InsightGridTable",
+      "linkOptions": "",
+      "OutputType": "JSON",
+      "options": [
+        {
+          "optionId": 1,
+          "optionName": "showGrandTotals",
+          "optionHeading": "Show Grand Totals",
+          "dataType": "string",
+          "defaultValue": "off",
+          "listOfValues": "off,on",
+          "allowChange": "true",
+          "optionType": "inner"
+        },
+        {
+          "optionId": 2,
+          "optionName": "showTotals",
+          "optionHeading": "Show Totals",
+          "dataType": "string",
+          "defaultValue": "off",
+          "listOfValues": "off,on",
+          "allowChange": "true",
+          "optionType": "inner"
+        },
+        {
+          "optionId": 3,
+          "optionName": "type",
+          "optionHeading": "Layout Type",
+          "dataType": "string",
+          "defaultValue": "flat",
+          "listOfValues": "compact,flat,classic",
+          "allowChange": "true",
+          "optionType": "inner"
+        },
+        {
+          "optionId": 4,
+          "optionName": "sortingColumns",
+          "optionHeading": "Sorting Columns",
+          "dataType": "string",
+          "defaultValue": "",
+          "listOfValues": "",
+          "allowChange": "true",
+          "optionType": "inner"
+        },
+        {
+          "optionId": 5,
+          "optionName": "numberFormat",
+          "optionHeading": "Number Format",
+          "dataType": "string",
+          "defaultValue": "",
+          "listOfValues": "",
+          "allowChange": "true",
+          "optionType": "inner"
+        },
+        {
+          "optionId": 6,
+          "optionName": "configuratorButton",
+          "optionHeading": "Configurator Button",
+          "dataType": "boolean",
+          "defaultValue": "false",
+          "listOfValues": "true,false",
+          "allowChange": "true",
+          "optionType": "inner"
+        },
+        {
+          "optionId": 7,
+          "optionName": "showFilter",
+          "optionHeading": "Show Filter",
+          "dataType": "boolean",
+          "defaultValue": "false",
+          "listOfValues": "true,false",
+          "allowChange": "true",
+          "optionType": "inner"
+        },
+        {
+          "optionId": 8,
+          "optionName": "toolbar",
+          "optionHeading": "Toolbar",
+          "dataType": "boolean",
+          "defaultValue": "true",
+          "listOfValues": "true,false",
+          "allowChange": "true",
+          "optionType": "inner"
+        },
+        {
+          "optionId": 9,
+          "optionName": "multipleMeasures",
+          "optionHeading": "Multiple Measures",
+          "dataType": "boolean",
+          "defaultValue": "true",
+          "listOfValues": "true,false",
+          "allowChange": "true",
+          "optionType": "inner"
+        },
+        {
+          "optionId": 10,
+          "optionName": "showHeaders",
+          "optionHeading": "Show Headers",
+          "dataType": "boolean",
+          "defaultValue": "true",
+          "listOfValues": "true,false",
+          "allowChange": "true",
+          "optionType": "inner"
+        },
+        {
+          "optionId": 11,
+          "optionName": "chartBackgroundColor",
+          "optionHeading": "Background Color",
+          "dataType": "string",
+          "defaultValue": "Transparent",
+          "listOfValues": "White,Transparent",
+          "allowChange": "true",
+          "optionType": "inner"
+        },
+        {
+          "optionId": 12,
+          "optionName": "showDataLabels",
+          "optionHeading": "Show Data Labels",
+          "dataType": "boolean",
+          "defaultValue": "false",
+          "listOfValues": "true,false",
+          "allowChange": "true",
+          "optionType": "inner"
+        },
+        {
+          "optionId": 13,
+          "optionName": "columnEditing",
+          "optionHeading": "Column Editing",
+          "dataType": "boolean",
+          "defaultValue": "false",
+          "listOfValues": "true,false",
+          "allowChange": "true",
+          "optionType": "inner"
+        },
+        {
+          "optionId": 14,
+          "optionName": "MultiRowSelect",
+          "optionHeading": "Multi Row Select",
+          "dataType": "boolean",
+          "defaultValue": "false",
+          "listOfValues": "true,false",
+          "allowChange": "true",
+          "optionType": "inner"
+        },
+        {
+          "optionId": 15,
+          "optionName": "autoRefreshSeconds",
+          "optionHeading": "Auto Refresh Seconds",
+          "dataType": "number",
+          "defaultValue": "0",
+          "listOfValues": "",
+          "allowChange": "true",
+          "optionType": "inner"
+        }
+      ],
+      "ColumnGroups": [
+        {
+          "GroupID": 1,
+          "GroupName": "Columns",
+          "StandardName": "Columns",
+          "AllowedColumnTypes": "ANY",
+          "MinColumns": 0,
+          "MaxColumns": 0,
+          "COLUMNS": [
+            {
+              "COLID": 2,
+              "NAME": "DEPARTMENT",
+              "DBTABLE": "EXPTRACK_BUDGET_POLICY",
+              "DBNAME": "DEPARTMENT",
+              "tableName": "EXPTRACK_BUDGET_POLICY",
+              "tableDisplayName": "Budget Policy",
+              "content": "Department",
+              "name": "Department",
+              "descr": "Department name",
+              "type": "string",
+              "JAVATYPE": "java.lang.String",
+              "COLTYPE": "CHAR",
+              "NATIVETYPE": "AN",
+              "DBSIZE": 100,
+              "EXPRESSIONTYPE": "C",
+              "DEFAULTFUNCTION": "",
+              "FUNCTION": "",
+              "FEILD_TYPE": "TEXTBOX",
+              "ALIGNMENT": 1,
+              "alignment": "",
+              "WIDTH": 140,
+              "FONT": "TIMES NEW ROMAN",
+              "FONTSIZE": 12,
+              "FGCOLOR": "#000000",
+              "BGCOLOR": "",
+              "BOLD": 0,
+              "ITALIC": 0,
+              "UNDERLINE": 0,
+              "HIDDEN": "",
+              "KEY": false,
+              "CAPS": false,
+              "ADV_FORMAT": "",
+              "expression": "",
+              "value": "",
+              "groupName": "Columns",
+              "StandardName": "Columns",
+              "checked": true
+            },
+            {
+              "COLID": 3,
+              "NAME": "TIER_NAME",
+              "DBTABLE": "EXPTRACK_BUDGET_POLICY",
+              "DBNAME": "TIER_NAME",
+              "tableName": "EXPTRACK_BUDGET_POLICY",
+              "tableDisplayName": "Budget Policy",
+              "content": "Tier Name",
+              "name": "Tier Name",
+              "descr": "Spending limit tier name",
+              "type": "string",
+              "JAVATYPE": "java.lang.String",
+              "COLTYPE": "CHAR",
+              "NATIVETYPE": "AN",
+              "DBSIZE": 50,
+              "EXPRESSIONTYPE": "C",
+              "DEFAULTFUNCTION": "",
+              "FUNCTION": "",
+              "FEILD_TYPE": "TEXTBOX",
+              "ALIGNMENT": 1,
+              "alignment": "",
+              "WIDTH": 120,
+              "FONT": "TIMES NEW ROMAN",
+              "FONTSIZE": 12,
+              "FGCOLOR": "#000000",
+              "BGCOLOR": "",
+              "BOLD": 0,
+              "ITALIC": 0,
+              "UNDERLINE": 0,
+              "HIDDEN": "",
+              "KEY": false,
+              "CAPS": false,
+              "ADV_FORMAT": "",
+              "expression": "",
+              "value": "",
+              "groupName": "Columns",
+              "StandardName": "Columns",
+              "checked": true
+            },
+            {
+              "COLID": 7,
+              "NAME": "BUDGET_UTILIZED",
+              "DBTABLE": "EXPTRACK_BUDGET_POLICY",
+              "DBNAME": "BUDGET_UTILIZED",
+              "tableName": "EXPTRACK_BUDGET_POLICY",
+              "tableDisplayName": "Budget Policy",
+              "content": "Budget Utilized",
+              "name": "Budget Utilized",
+              "descr": "Manually entered utilized budget amount",
+              "type": "number",
+              "JAVATYPE": "java.math.BigDecimal",
+              "COLTYPE": "NUMBER",
+              "NATIVETYPE": "N",
+              "DBSIZE": 14,
+              "EXPRESSIONTYPE": "C",
+              "DEFAULTFUNCTION": "",
+              "FUNCTION": "",
+              "FEILD_TYPE": "TEXTBOX",
+              "ALIGNMENT": 2,
+              "alignment": "",
+              "WIDTH": 140,
+              "FONT": "TIMES NEW ROMAN",
+              "FONTSIZE": 12,
+              "FGCOLOR": "#000000",
+              "BGCOLOR": "",
+              "BOLD": 0,
+              "ITALIC": 0,
+              "UNDERLINE": 0,
+              "HIDDEN": "",
+              "KEY": false,
+              "CAPS": false,
+              "ADV_FORMAT": "",
+              "expression": "",
+              "value": "",
+              "display": {
+                "type": "number",
+                "numberStyle": "currency",
+                "currency": "INR",
+                "decimals": 0
+              },
+              "groupName": "Columns",
+              "StandardName": "Columns",
+              "checked": true
+            },
+            {
+              "COLID": 9,
+              "NAME": "STATUS",
+              "DBTABLE": "EXPTRACK_BUDGET_POLICY",
+              "DBNAME": "STATUS",
+              "tableName": "EXPTRACK_BUDGET_POLICY",
+              "tableDisplayName": "Budget Policy",
+              "content": "Status",
+              "name": "Status",
+              "descr": "Active / Inactive",
+              "type": "string",
+              "JAVATYPE": "java.lang.String",
+              "COLTYPE": "CHAR",
+              "NATIVETYPE": "AN",
+              "DBSIZE": 1,
+              "EXPRESSIONTYPE": "C",
+              "DEFAULTFUNCTION": "",
+              "FUNCTION": "",
+              "FEILD_TYPE": "TEXTBOX",
+              "ALIGNMENT": 1,
+              "alignment": "",
+              "WIDTH": 100,
+              "FONT": "TIMES NEW ROMAN",
+              "FONTSIZE": 12,
+              "FGCOLOR": "#000000",
+              "BGCOLOR": "",
+              "BOLD": 0,
+              "ITALIC": 0,
+              "UNDERLINE": 0,
+              "HIDDEN": "",
+              "KEY": false,
+              "CAPS": false,
+              "ADV_FORMAT": "",
+              "expression": "",
+              "value": "",
+              "display": {
+                "type": "status_tag",
+                "map": [
+                  {
+                    "when": "A",
+                    "color": "green",
+                    "label": "Active"
+                  },
+                  {
+                    "when": "I",
+                    "color": "gray",
+                    "label": "Inactive"
+                  }
+                ]
+              },
+              "groupName": "Columns",
+              "StandardName": "Columns",
+              "checked": true
+            },
+            {
+              "COLID": 10,
+              "NAME": "BUDGET_POLICY_DOCUMENT",
+              "DBTABLE": "EXPTRACK_BUDGET_POLICY",
+              "DBNAME": "BUDGET_POLICY_DOCUMENT",
+              "tableName": "EXPTRACK_BUDGET_POLICY",
+              "tableDisplayName": "Budget Policy",
+              "content": "Budget Policy Document",
+              "name": "Budget Policy Document",
+              "descr": "Uploaded policy document file path (read-only, Finance-managed)",
+              "type": "string",
+              "JAVATYPE": "java.lang.String",
+              "COLTYPE": "CHAR",
+              "NATIVETYPE": "AN",
+              "DBSIZE": 500,
+              "EXPRESSIONTYPE": "C",
+              "DEFAULTFUNCTION": "",
+              "FUNCTION": "",
+              "FEILD_TYPE": "TEXTBOX",
+              "ALIGNMENT": 1,
+              "alignment": "",
+              "WIDTH": 140,
+              "FONT": "TIMES NEW ROMAN",
+              "FONTSIZE": 12,
+              "FGCOLOR": "#000000",
+              "BGCOLOR": "",
+              "BOLD": 0,
+              "ITALIC": 0,
+              "UNDERLINE": 0,
+              "HIDDEN": "",
+              "KEY": false,
+              "CAPS": false,
+              "ADV_FORMAT": "",
+              "expression": "",
+              "value": "",
+              "display": {
+                "type": "file",
+                "label": "View Document"
+              },
+              "groupName": "Columns",
+              "StandardName": "Columns",
+              "checked": true
+            }
+          ]
+        }
+      ]
+    },
+    "layoutdata": {}
+  },
+  "SOURCE_SQL": "SELECT department AS DEPARTMENT, tier_name AS TIER_NAME, budget_utilized AS BUDGET_UTILIZED, status AS STATUS, budget_policy_document AS BUDGET_POLICY_DOCUMENT FROM exptrack_budget_policy WHERE status = ?.status ORDER BY department, tier_name"
+}

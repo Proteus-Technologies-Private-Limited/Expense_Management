@@ -1,0 +1,27 @@
+{
+  "table_name": "EXPTRACK_APPROVAL_RULES",
+  "objects": [
+    {
+      "object_name": "exptrack_approval_rules",
+      "form_no": "1",
+      "usage_type": "M",
+      "referred_columns": [
+        "MIN_AMOUNT",
+        "STATUS",
+        "CREATED_BY",
+        "MAX_AMOUNT",
+        "RULE_ID",
+        "APPROVER_ROLE",
+        "CATEGORY",
+        "CREATED_DATE",
+        "CHG_DATE",
+        "CHG_USER"
+      ],
+      "join_info": {
+        "column": "CATEGORY",
+        "join_table": "EXPTRACK_EXPENSE_CATEGORY",
+        "join_column": "CATEGORY_CODE"
+      }
+    }
+  ]
+}

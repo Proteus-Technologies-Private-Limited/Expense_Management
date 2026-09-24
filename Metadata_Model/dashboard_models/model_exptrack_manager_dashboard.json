@@ -1,0 +1,116 @@
+{
+  "DASHBOARD": {
+    "DASHBOARD_ID": "EXPTRACK_MANAGER_DASHBOARD",
+    "DASHBOARD_TYPE": "S",
+    "DASHBOARD_NAME": "Manager Dashboard",
+    "DASHBOARD_DESCR": "Approval workload and team expense analytics",
+    "CREATED_BY": "admin",
+    "CREATED_DATE": "2026-08-19",
+    "REFRESH_INTERVAL_SECONDS": 0,
+
+    "GLOBAL_CRITERIA": [
+      {
+        "PARAM_NAME": "FROM_DATE",
+        "PROMPT_LABEL": "From Date",
+        "DEFAULT_VALUE": ":calendar_month_start",
+        "DATA_TYPE": "date",
+        "OPERATOR": ">=",
+        "BROADCAST_TO": ["VIS_APPROVED_THIS_PERIOD", "VIS_REJECTED_THIS_PERIOD", "VIS_TURNAROUND_TREND", "VIS_REPORTS_BY_STATUS", "VIS_TEAM_EXPENSE_BY_CATEGORY"]
+      },
+      {
+        "PARAM_NAME": "TO_DATE",
+        "PROMPT_LABEL": "To Date",
+        "DEFAULT_VALUE": ":calendar_today",
+        "DATA_TYPE": "date",
+        "OPERATOR": "<=",
+        "BROADCAST_TO": ["VIS_APPROVED_THIS_PERIOD", "VIS_REJECTED_THIS_PERIOD", "VIS_TURNAROUND_TREND", "VIS_REPORTS_BY_STATUS", "VIS_TEAM_EXPENSE_BY_CATEGORY"]
+      },
+      {
+        "PARAM_NAME": "EMPLOYEE",
+        "PROMPT_LABEL": "Employee",
+        "DEFAULT_VALUE": "%",
+        "DATA_TYPE": "string",
+        "OPERATOR": "like",
+        "BROADCAST_TO": ["VIS_PENDING_APPROVALS", "VIS_APPROVED_THIS_PERIOD", "VIS_REJECTED_THIS_PERIOD", "VIS_TURNAROUND_TREND", "VIS_REPORTS_BY_STATUS", "VIS_TEAM_EXPENSE_BY_CATEGORY", "VIS_PENDING_APPROVALS_LIST"]
+      }
+    ],
+
+    "VISUALS": [
+      {
+        "VISUAL_ID": "VIS_PENDING_APPROVALS",
+        "VISUAL_NAME": "Pending Approvals",
+        "POSITION": { "X": 0, "Y": 0, "WIDTH": 3, "HEIGHT": 2 },
+        "VISUAL_CONFIG_REF": "model_exptrack_pending_approvals.json",
+        "CRITERIA_BINDINGS": [
+          { "VISUAL_PARAM": "employee", "BIND_TYPE": "global", "GLOBAL_PARAM": "EMPLOYEE" }
+        ]
+      },
+      {
+        "VISUAL_ID": "VIS_APPROVED_THIS_PERIOD",
+        "VISUAL_NAME": "Approved This Period",
+        "POSITION": { "X": 3, "Y": 0, "WIDTH": 3, "HEIGHT": 2 },
+        "VISUAL_CONFIG_REF": "model_exptrack_approved_this_period.json",
+        "CRITERIA_BINDINGS": [
+          { "VISUAL_PARAM": "from_date", "BIND_TYPE": "global", "GLOBAL_PARAM": "FROM_DATE" },
+          { "VISUAL_PARAM": "to_date", "BIND_TYPE": "global", "GLOBAL_PARAM": "TO_DATE" },
+          { "VISUAL_PARAM": "employee", "BIND_TYPE": "global", "GLOBAL_PARAM": "EMPLOYEE" }
+        ]
+      },
+      {
+        "VISUAL_ID": "VIS_REJECTED_THIS_PERIOD",
+        "VISUAL_NAME": "Rejected This Period",
+        "POSITION": { "X": 6, "Y": 0, "WIDTH": 3, "HEIGHT": 2 },
+        "VISUAL_CONFIG_REF": "model_exptrack_rejected_this_period.json",
+        "CRITERIA_BINDINGS": [
+          { "VISUAL_PARAM": "from_date", "BIND_TYPE": "global", "GLOBAL_PARAM": "FROM_DATE" },
+          { "VISUAL_PARAM": "to_date", "BIND_TYPE": "global", "GLOBAL_PARAM": "TO_DATE" },
+          { "VISUAL_PARAM": "employee", "BIND_TYPE": "global", "GLOBAL_PARAM": "EMPLOYEE" }
+        ]
+      },
+      {
+        "VISUAL_ID": "VIS_TURNAROUND_TREND",
+        "VISUAL_NAME": "Approval Turnaround Trend",
+        "POSITION": { "X": 0, "Y": 2, "WIDTH": 6, "HEIGHT": 4 },
+        "VISUAL_CONFIG_REF": "model_exptrack_approval_turnaround_trend.json",
+        "CRITERIA_BINDINGS": [
+          { "VISUAL_PARAM": "from_date", "BIND_TYPE": "global", "GLOBAL_PARAM": "FROM_DATE" },
+          { "VISUAL_PARAM": "to_date", "BIND_TYPE": "global", "GLOBAL_PARAM": "TO_DATE" },
+          { "VISUAL_PARAM": "employee", "BIND_TYPE": "global", "GLOBAL_PARAM": "EMPLOYEE" }
+        ]
+      },
+      {
+        "VISUAL_ID": "VIS_REPORTS_BY_STATUS",
+        "VISUAL_NAME": "Reports by Status",
+        "POSITION": { "X": 6, "Y": 2, "WIDTH": 6, "HEIGHT": 4 },
+        "VISUAL_CONFIG_REF": "model_exptrack_reports_by_status.json",
+        "CRITERIA_BINDINGS": [
+          { "VISUAL_PARAM": "from_date", "BIND_TYPE": "global", "GLOBAL_PARAM": "FROM_DATE" },
+          { "VISUAL_PARAM": "to_date", "BIND_TYPE": "global", "GLOBAL_PARAM": "TO_DATE" },
+          { "VISUAL_PARAM": "employee", "BIND_TYPE": "global", "GLOBAL_PARAM": "EMPLOYEE" }
+        ]
+      },
+      {
+        "VISUAL_ID": "VIS_TEAM_EXPENSE_BY_CATEGORY",
+        "VISUAL_NAME": "Team Expense by Category",
+        "POSITION": { "X": 0, "Y": 6, "WIDTH": 6, "HEIGHT": 4 },
+        "VISUAL_CONFIG_REF": "model_exptrack_team_expense_by_category.json",
+        "CRITERIA_BINDINGS": [
+          { "VISUAL_PARAM": "from_date", "BIND_TYPE": "global", "GLOBAL_PARAM": "FROM_DATE" },
+          { "VISUAL_PARAM": "to_date", "BIND_TYPE": "global", "GLOBAL_PARAM": "TO_DATE" },
+          { "VISUAL_PARAM": "employee", "BIND_TYPE": "global", "GLOBAL_PARAM": "EMPLOYEE" }
+        ]
+      },
+      {
+        "VISUAL_ID": "VIS_PENDING_APPROVALS_LIST",
+        "VISUAL_NAME": "Pending Approvals List",
+        "POSITION": { "X": 0, "Y": 10, "WIDTH": 12, "HEIGHT": 5 },
+        "VISUAL_CONFIG_REF": "model_exptrack_pending_approvals_list.json",
+        "CRITERIA_BINDINGS": [
+          { "VISUAL_PARAM": "employee", "BIND_TYPE": "global", "GLOBAL_PARAM": "EMPLOYEE" }
+        ]
+      }
+    ],
+
+    "DRILL_THROUGH": []
+  }
+}

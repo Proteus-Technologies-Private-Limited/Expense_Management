@@ -1,0 +1,153 @@
+{
+  "DASHBOARD": {
+    "DASHBOARD_ID": "EXPTRACK_EXPENSE",
+    "DASHBOARD_TYPE": "S",
+    "DASHBOARD_NAME": "Approval Activity Log",
+    "DASHBOARD_DESCR": "Org-wide read-only audit trail of approve/reject decisions on expense reports, with headline approval KPIs and turnaround trend.",
+    "CREATED_BY": "admin",
+    "CREATED_DATE": "2026-09-10",
+    "REFRESH_INTERVAL_SECONDS": 0,
+    "GLOBAL_CRITERIA": [
+      {
+        "PARAM_NAME": "FROM_DATE",
+        "PROMPT_LABEL": "From Date",
+        "DEFAULT_VALUE": ":calendar_year_start",
+        "DATA_TYPE": "date",
+        "OPERATOR": ">=",
+        "BROADCAST_TO": [
+          "VIS_REPORTS_APPROVED",
+          "VIS_TOTAL_APPROVED_AMOUNT",
+          "VIS_TURNAROUND_TREND",
+          "VIS_APPROVAL_ACTIVITY_LOG"
+        ]
+      },
+      {
+        "PARAM_NAME": "TO_DATE",
+        "PROMPT_LABEL": "To Date",
+        "DEFAULT_VALUE": ":calendar_today",
+        "DATA_TYPE": "date",
+        "OPERATOR": "<=",
+        "BROADCAST_TO": [
+          "VIS_REPORTS_APPROVED",
+          "VIS_TOTAL_APPROVED_AMOUNT",
+          "VIS_TURNAROUND_TREND",
+          "VIS_APPROVAL_ACTIVITY_LOG"
+        ]
+      },
+      {
+        "PARAM_NAME": "EMPLOYEE",
+        "PROMPT_LABEL": "Approver",
+        "DEFAULT_VALUE": "%",
+        "DATA_TYPE": "string",
+        "OPERATOR": "like",
+        "BROADCAST_TO": [
+          "VIS_TURNAROUND_TREND"
+        ]
+      }
+    ],
+    "VISUALS": [
+      {
+        "VISUAL_ID": "VIS_REPORTS_APPROVED",
+        "VISUAL_NAME": "Reports Approved",
+        "POSITION": {
+          "X": 0,
+          "Y": 0,
+          "WIDTH": 3,
+          "HEIGHT": 2
+        },
+        "VISUAL_CONFIG_REF": "model_exptrack_reports_approved.json",
+        "CRITERIA_BINDINGS": [
+          {
+            "VISUAL_PARAM": "from_date",
+            "BIND_TYPE": "global",
+            "GLOBAL_PARAM": "FROM_DATE"
+          },
+          {
+            "VISUAL_PARAM": "to_date",
+            "BIND_TYPE": "global",
+            "GLOBAL_PARAM": "TO_DATE"
+          }
+        ]
+      },
+      {
+        "VISUAL_ID": "VIS_TOTAL_APPROVED_AMOUNT",
+        "VISUAL_NAME": "Total Approved Expense Amount",
+        "POSITION": {
+          "X": 3,
+          "Y": 0,
+          "WIDTH": 3,
+          "HEIGHT": 2
+        },
+        "VISUAL_CONFIG_REF": "model_exptrack_total_approved_expense.json",
+        "CRITERIA_BINDINGS": [
+          {
+            "VISUAL_PARAM": "from_date",
+            "BIND_TYPE": "global",
+            "GLOBAL_PARAM": "FROM_DATE"
+          },
+          {
+            "VISUAL_PARAM": "to_date",
+            "BIND_TYPE": "global",
+            "GLOBAL_PARAM": "TO_DATE"
+          }
+        ]
+      },
+      {
+        "VISUAL_ID": "VIS_TURNAROUND_TREND",
+        "VISUAL_NAME": "Approval Turnaround Trend",
+        "POSITION": {
+          "X": 6,
+          "Y": 0,
+          "WIDTH": 6,
+          "HEIGHT": 4
+        },
+        "VISUAL_CONFIG_REF": "model_exptrack_approval_turnaround_trend.json",
+        "CRITERIA_BINDINGS": [
+          {
+            "VISUAL_PARAM": "from_date",
+            "BIND_TYPE": "global",
+            "GLOBAL_PARAM": "FROM_DATE"
+          },
+          {
+            "VISUAL_PARAM": "to_date",
+            "BIND_TYPE": "global",
+            "GLOBAL_PARAM": "TO_DATE"
+          },
+          {
+            "VISUAL_PARAM": "employee",
+            "BIND_TYPE": "global",
+            "GLOBAL_PARAM": "EMPLOYEE"
+          }
+        ]
+      },
+      {
+        "VISUAL_ID": "VIS_APPROVAL_ACTIVITY_LOG",
+        "VISUAL_NAME": "Approval Activity Log",
+        "POSITION": {
+          "X": 0,
+          "Y": 4,
+          "WIDTH": 12,
+          "HEIGHT": 6
+        },
+        "VISUAL_CONFIG_REF": "model_exptrack_approval_activity_log.json",
+        "CRITERIA_BINDINGS": [
+          {
+            "VISUAL_PARAM": "from_date",
+            "BIND_TYPE": "global",
+            "GLOBAL_PARAM": "FROM_DATE"
+          },
+          {
+            "VISUAL_PARAM": "to_date",
+            "BIND_TYPE": "global",
+            "GLOBAL_PARAM": "TO_DATE"
+          },
+          {
+            "VISUAL_PARAM": "status",
+            "BIND_TYPE": "unbound"
+          }
+        ]
+      }
+    ],
+    "DRILL_THROUGH": []
+  }
+}

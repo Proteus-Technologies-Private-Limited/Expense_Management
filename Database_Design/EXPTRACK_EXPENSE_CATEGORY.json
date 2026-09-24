@@ -1,0 +1,68 @@
+{
+  "table_name": "EXPTRACK_EXPENSE_CATEGORY",
+  "table_description": "",
+  "project": "Expense_Management",
+  "columns": [
+    {
+      "column_name": "CATEGORY_CODE",
+      "data_type": "VARCHAR",
+      "size": "20",
+      "key": true,
+      "description": "Unique code identifying the expense category",
+      "sequence": 1,
+      "mandatory": true
+    },
+    {
+      "column_name": "CATEGORY_NAME",
+      "data_type": "VARCHAR",
+      "size": "100",
+      "key": false,
+      "description": "Name of the expense category (e.g. Travel, Lodging, Meals)",
+      "sequence": 2,
+      "mandatory": true
+    },
+    {
+      "column_name": "DESCRIPTION",
+      "data_type": "VARCHAR",
+      "size": "250",
+      "key": false,
+      "description": "Optional additional detail about this category",
+      "sequence": 3
+    },
+    {
+      "column_name": "STATUS",
+      "data_type": "VARCHAR",
+      "size": "1",
+      "key": false,
+      "description": "Active categories are selectable on Manage Expense; Inactive categories are retired but remain visible on historical records and Visuals",
+      "sequence": 4,
+      "mandatory": true,
+      "allowed_values": [
+        {
+          "value": "A",
+          "label": "Active"
+        },
+        {
+          "value": "I",
+          "label": "Inactive"
+        }
+      ]
+    },
+    {
+      "column_name": "CREATED_BY",
+      "data_type": "VARCHAR",
+      "size": "10",
+      "key": false,
+      "description": "User who created this category record",
+      "sequence": 5
+    },
+    {
+      "column_name": "CREATED_DATE",
+      "data_type": "DATETIME",
+      "size": "",
+      "key": false,
+      "description": "Date/time this category record was created",
+      "sequence": 6
+    }
+  ]
+}

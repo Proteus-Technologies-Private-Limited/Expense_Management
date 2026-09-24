@@ -1,0 +1,111 @@
+{
+  "table_name": "EXPTRACK_APPROVAL_RULES",
+  "table_description": "",
+  "project": "Expense_Management",
+  "columns": [
+    {
+      "column_name": "RULE_ID",
+      "data_type": "VARCHAR",
+      "size": "20",
+      "key": true,
+      "description": "System auto-generated rule identifier",
+      "sequence": 1,
+      "mandatory": true
+    },
+    {
+      "column_name": "CATEGORY",
+      "data_type": "VARCHAR",
+      "size": "20",
+      "key": false,
+      "description": "Optional expense category this rule applies to; blank applies to all categories",
+      "sequence": 2,
+      "lookup": {
+        "table": "EXPTRACK_EXPENSE_CATEGORY",
+        "display_column": "CATEGORY_NAME",
+        "value_column": "CATEGORY_CODE"
+      }
+    },
+    {
+      "column_name": "MIN_AMOUNT",
+      "data_type": "NUMBER",
+      "size": "14,2",
+      "key": false,
+      "description": "Optional minimum amount threshold for this rule",
+      "sequence": 3
+    },
+    {
+      "column_name": "MAX_AMOUNT",
+      "data_type": "NUMBER",
+      "size": "14,2",
+      "key": false,
+      "description": "Optional maximum amount threshold; must be >= Min Amount when both set",
+      "sequence": 4
+    },
+    {
+      "column_name": "APPROVER_ROLE",
+      "data_type": "VARCHAR",
+      "size": "20",
+      "key": false,
+      "description": "Role that approves reports matching this rule",
+      "sequence": 5,
+      "mandatory": true,
+      "allowed_values": [
+        {
+          "value": "Manager",
+          "label": "Manager"
+        }
+      ]
+    },
+    {
+      "column_name": "STATUS",
+      "data_type": "VARCHAR",
+      "size": "1",
+      "key": false,
+      "description": "Rule status",
+      "sequence": 6,
+      "mandatory": true,
+      "allowed_values": [
+        {
+          "value": "A",
+          "label": "Active"
+        },
+        {
+          "value": "I",
+          "label": "Inactive"
+        }
+      ]
+    },
+    {
+      "column_name": "CREATED_BY",
+      "data_type": "VARCHAR",
+      "size": "10",
+      "key": false,
+      "description": "User who created this rule",
+      "sequence": 7
+    },
+    {
+      "column_name": "CREATED_DATE",
+      "data_type": "DATETIME",
+      "size": "",
+      "key": false,
+      "description": "Date/time this rule was created",
+      "sequence": 8
+    },
+    {
+      "column_name": "CHG_USER",
+      "data_type": "VARCHAR",
+      "size": "10",
+      "key": false,
+      "description": "User who last changed this rule",
+      "sequence": 9
+    },
+    {
+      "column_name": "CHG_DATE",
+      "data_type": "DATETIME",
+      "size": "",
+      "key": false,
+      "description": "Date/time this rule was last changed",
+      "sequence": 10
+    }
+  ]
+}

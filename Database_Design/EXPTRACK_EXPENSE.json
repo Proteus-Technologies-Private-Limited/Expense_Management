@@ -1,0 +1,246 @@
+{
+  "table_name": "EXPTRACK_EXPENSE",
+  "table_description": "",
+  "project": "Expense_Management",
+  "columns": [
+    {
+      "column_name": "EXPENSE_ID",
+      "data_type": "VARCHAR",
+      "size": "20",
+      "key": true,
+      "description": "System-generated unique expense identifier",
+      "sequence": 1,
+      "mandatory": true
+    },
+    {
+      "column_name": "EXPENSE_REPORT",
+      "data_type": "VARCHAR",
+      "size": "20",
+      "key": false,
+      "description": "Linked expense report (EXPTRACK_EXPENSE_REPORT.REPORT_ID); stamped when the expense is submitted",
+      "sequence": 9,
+      "lookup": {
+        "table": "EXPTRACK_EXPENSE_REPORT",
+        "display_column": "REPORT_TITLE",
+        "value_column": "REPORT_ID"
+      }
+    },
+    {
+      "column_name": "EXPENSE_DATE",
+      "data_type": "DATE",
+      "size": "",
+      "key": false,
+      "description": "Date the expense was incurred; cannot be a future date",
+      "sequence": 4,
+      "mandatory": true
+    },
+    {
+      "column_name": "CATEGORY",
+      "data_type": "VARCHAR",
+      "size": "20",
+      "key": false,
+      "description": "Expense category; must exist in the Expense Category master",
+      "sequence": 3,
+      "mandatory": true,
+      "lookup": {
+        "table": "EXPTRACK_EXPENSE_CATEGORY",
+        "display_column": "CATEGORY_NAME",
+        "value_column": "CATEGORY_CODE"
+      }
+    },
+    {
+      "column_name": "AMOUNT",
+      "data_type": "NUMBER",
+      "size": "14,2",
+      "key": false,
+      "description": "Expense amount; must be greater than 0",
+      "sequence": 7,
+      "mandatory": true
+    },
+    {
+      "column_name": "PAYMENT_METHOD",
+      "data_type": "VARCHAR",
+      "size": "20",
+      "key": false,
+      "description": "How the expense was paid; must exist in the Payment Method master",
+      "sequence": 5,
+      "mandatory": true,
+      "lookup": {
+        "table": "EXPTRACK_PAYMENT_METHOD",
+        "display_column": "PAYMENT_METHOD_NAME",
+        "value_column": "PAYMENT_METHOD_CODE"
+      }
+    },
+    {
+      "column_name": "DESCRIPTION",
+      "data_type": "VARCHAR",
+      "size": "250",
+      "key": false,
+      "description": "Free-text description of the expense",
+      "sequence": 5
+    },
+    {
+      "column_name": "CURRENCY",
+      "data_type": "VARCHAR",
+      "size": "10",
+      "key": false,
+      "description": "Currency the amount is denominated in",
+      "sequence": 8,
+      "mandatory": true,
+      "allowed_values": [
+        {
+          "value": "INR",
+          "label": "Indian Rupee"
+        },
+        {
+          "value": "USD",
+          "label": "US Dollar"
+        },
+        {
+          "value": "EUR",
+          "label": "Euro"
+        },
+        {
+          "value": "GBP",
+          "label": "British Pound Sterling"
+        }
+      ]
+    },
+    {
+      "column_name": "RECEIPT_ATTACHMENT",
+      "data_type": "VARCHAR",
+      "size": "500",
+      "key": false,
+      "description": "Uploaded supporting receipt the approver reviews before deciding",
+      "sequence": 8
+    },
+    {
+      "column_name": "APPROVAL_STATUS",
+      "data_type": "VARCHAR",
+      "size": "20",
+      "key": false,
+      "description": "Approval state of this expense line (read-only)",
+      "sequence": 11,
+      "allowed_values": [
+        {
+          "value": "Pending",
+          "label": "Pending"
+        },
+        {
+          "value": "Approved",
+          "label": "Approved"
+        },
+        {
+          "value": "Rejected",
+          "label": "Rejected"
+        }
+      ],
+      "mandatory": true
+    },
+    {
+      "column_name": "STATUS",
+      "data_type": "VARCHAR",
+      "size": "20",
+      "key": false,
+      "description": "Line status \u2014 set to Approved/Rejected by Submit to mirror the report decision (read-only)",
+      "sequence": 6,
+      "mandatory": true,
+      "allowed_values": [
+        {
+          "value": "Approved",
+          "label": "Approved"
+        },
+        {
+          "value": "Reject",
+          "label": "Reject"
+        }
+      ]
+    },
+    {
+      "column_name": "EMPLOYEE",
+      "data_type": "VARCHAR",
+      "size": "10",
+      "key": false,
+      "description": "Employee who incurred the expense (read-only)",
+      "sequence": 2,
+      "mandatory": true
+    },
+    {
+      "column_name": "APPROVER",
+      "data_type": "VARCHAR",
+      "size": "100",
+      "key": false,
+      "description": "Approver stamped onto the line by Submit (read-only)",
+      "sequence": 7,
+      "mandatory": true
+    },
+    {
+      "column_name": "APPROVER_COMMENTS",
+      "data_type": "VARCHAR",
+      "size": "500",
+      "key": false,
+      "description": "Comments carried onto the line (read-only)",
+      "sequence": 14
+    },
+    {
+      "column_name": "CHG_DATE",
+      "data_type": "DATETIME",
+      "size": "",
+      "key": false,
+      "description": "Audit \u2014 stamped to the current date/time when the decision propagates to this line",
+      "sequence": 12
+    },
+    {
+      "column_name": "CHG_USER",
+      "data_type": "VARCHAR",
+      "size": "10",
+      "key": false,
+      "description": "Audit \u2014 last changing user",
+      "sequence": 13
+    },
+    {
+      "column_name": "CHG_TERM",
+      "data_type": "VARCHAR",
+      "size": "15",
+      "key": false,
+      "description": "Audit \u2014 last changing terminal",
+      "sequence": 14
+    },
+    {
+      "column_name": "ADD_DATE",
+      "data_type": "DATETIME",
+      "size": "",
+      "key": false,
+      "description": "Record creation timestamp",
+      "sequence": 11
+    },
+    {
+      "column_name": "FINANCE_NAME",
+      "data_type": "VARCHAR",
+      "size": "100",
+      "key": false,
+      "description": "Name of the finance processor entering/recording the payment",
+      "sequence": 9,
+      "mandatory": true
+    },
+    {
+      "column_name": "PAYMENT_PROCESS_STATUS",
+      "data_type": "VARCHAR",
+      "size": "20",
+      "key": false,
+      "description": "Outcome selected by the finance processor when processing this expense's payment",
+      "sequence": 10,
+      "mandatory": true,
+      "allowed_values": [
+        {
+          "value": "Proceed",
+          "label": "Proceed"
+        },
+        {
+          "value": "Not Proceed",
+          "label": "Not Proceed"
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,1 @@
+[1] Payment Method: payment_method_code(V20), payment_method_name(V100), type(V20), category_code(V20), category_name(V100), description(V250), status(V1), created_by(V10), created_date(DT), chg_user(V10), chg_date(DT)

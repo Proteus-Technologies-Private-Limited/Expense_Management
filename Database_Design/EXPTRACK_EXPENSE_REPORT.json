@@ -1,0 +1,380 @@
+{
+  "table_name": "EXPTRACK_EXPENSE_REPORT",
+  "table_description": "",
+  "project": "Expense_Management",
+  "columns": [
+    {
+      "column_name": "REPORT_ID",
+      "data_type": "VARCHAR",
+      "size": "20",
+      "key": true,
+      "description": "System-generated unique expense report identifier",
+      "sequence": 1,
+      "mandatory": true
+    },
+    {
+      "column_name": "EMPLOYEE",
+      "data_type": "VARCHAR",
+      "size": "10",
+      "key": false,
+      "description": "Employee who owns this expense report",
+      "sequence": 3,
+      "mandatory": true
+    },
+    {
+      "column_name": "REPORT_DATE",
+      "data_type": "DATE",
+      "size": "",
+      "key": false,
+      "description": "Date the expense report was created",
+      "sequence": 4,
+      "mandatory": true
+    },
+    {
+      "column_name": "STATUS",
+      "data_type": "VARCHAR",
+      "size": "20",
+      "key": false,
+      "description": "Current expense report status",
+      "sequence": 9,
+      "mandatory": true,
+      "allowed_values": [
+        {
+          "value": "Pending",
+          "label": "Pending"
+        },
+        {
+          "value": "Approved",
+          "label": "Approved"
+        },
+        {
+          "value": "Rejected",
+          "label": "Rejected"
+        }
+      ]
+    },
+    {
+      "column_name": "TOTAL_AMOUNT",
+      "data_type": "NUMBER",
+      "size": "14,2",
+      "key": false,
+      "description": "Sum of AMOUNT across all expense lines included in this report; recalculated on line add/remove",
+      "sequence": 3,
+      "mandatory": true
+    },
+    {
+      "column_name": "APPROVER",
+      "data_type": "VARCHAR",
+      "size": "10",
+      "key": false,
+      "description": "The single designated approver for this report",
+      "sequence": 11,
+      "mandatory": true
+    },
+    {
+      "column_name": "APPROVAL_DATE",
+      "data_type": "DATETIME",
+      "size": "",
+      "key": false,
+      "description": "Date/time the approver recorded their decision",
+      "sequence": 13
+    },
+    {
+      "column_name": "APPROVER_COMMENTS",
+      "data_type": "VARCHAR",
+      "size": "500",
+      "key": false,
+      "description": "Comments recorded by the approver (mandatory on reject); cleared on resubmission after rejection",
+      "sequence": 12
+    },
+    {
+      "column_name": "REPORT_TITLE",
+      "data_type": "VARCHAR",
+      "size": "150",
+      "key": false,
+      "description": "Short title identifying this expense report",
+      "sequence": 2,
+      "mandatory": true
+    },
+    {
+      "column_name": "TRIP",
+      "data_type": "VARCHAR",
+      "size": "20",
+      "key": false,
+      "description": "Optional trip this expense report relates to",
+      "sequence": 2,
+      "lookup": {
+        "table": "EXPTRACK_TRIP",
+        "display_column": "TRIP_NAME",
+        "value_column": "TRIP_ID"
+      },
+      "mandatory": true
+    },
+    {
+      "column_name": "PERIOD_FROM",
+      "data_type": "DATE",
+      "size": "",
+      "key": false,
+      "description": "Start date of the period this report covers",
+      "sequence": 5
+    },
+    {
+      "column_name": "PERIOD_TO",
+      "data_type": "DATE",
+      "size": "",
+      "key": false,
+      "description": "End date of the period this report covers; must not be before Period From",
+      "sequence": 6
+    },
+    {
+      "column_name": "ADD_DATE",
+      "data_type": "DATETIME",
+      "size": "",
+      "key": false,
+      "description": "Date the record was created",
+      "sequence": 31
+    },
+    {
+      "column_name": "ADD_USER",
+      "data_type": "VARCHAR",
+      "size": "10",
+      "key": false,
+      "description": "User who created the record",
+      "sequence": 32
+    },
+    {
+      "column_name": "ADD_TERM",
+      "data_type": "VARCHAR",
+      "size": "15",
+      "key": false,
+      "description": "Terminal/IP that created the record",
+      "sequence": 33
+    },
+    {
+      "column_name": "CHG_DATE",
+      "data_type": "DATETIME",
+      "size": "",
+      "key": false,
+      "description": "Date the record was last changed",
+      "sequence": 34
+    },
+    {
+      "column_name": "CHG_USER",
+      "data_type": "VARCHAR",
+      "size": "10",
+      "key": false,
+      "description": "User who last changed the record",
+      "sequence": 35
+    },
+    {
+      "column_name": "CHG_TERM",
+      "data_type": "VARCHAR",
+      "size": "15",
+      "key": false,
+      "description": "Terminal/IP that last changed the record",
+      "sequence": 36
+    },
+    {
+      "column_name": "PAYMENT_STATUS",
+      "data_type": "VARCHAR",
+      "size": "20",
+      "key": false,
+      "description": "Payment status of this report; set by Finance on the exptrack_finance_payment screen",
+      "sequence": 14,
+      "allowed_values": [
+        {
+          "value": "Pending",
+          "label": "Pending"
+        },
+        {
+          "value": "Paid",
+          "label": "Paid"
+        }
+      ],
+      "mandatory": true
+    },
+    {
+      "column_name": "PAYMENT_DATE",
+      "data_type": "DATE",
+      "size": "",
+      "key": false,
+      "description": "Date Finance recorded payment for this report; set on the exptrack_finance_payment screen",
+      "sequence": 29
+    },
+    {
+      "column_name": "PAYMENT_REFERENCE",
+      "data_type": "VARCHAR",
+      "size": "100",
+      "key": false,
+      "description": "Payment reference/transaction number; set by Finance on the exptrack_finance_payment screen",
+      "sequence": 30
+    },
+    {
+      "column_name": "CATEGORY_NAME",
+      "data_type": "VARCHAR",
+      "size": "100",
+      "key": false,
+      "description": "Expense category name, copied from the source expense at submission",
+      "sequence": 16
+    },
+    {
+      "column_name": "PAYMENT_METHOD_NAME",
+      "data_type": "VARCHAR",
+      "size": "100",
+      "key": false,
+      "description": "Payment method name, copied from the source expense at submission",
+      "sequence": 17
+    },
+    {
+      "column_name": "CURRENCY",
+      "data_type": "VARCHAR",
+      "size": "10",
+      "key": false,
+      "description": "Currency the Total Amount is denominated in, copied from the source expense",
+      "sequence": 8,
+      "allowed_values": [
+        {
+          "value": "INR",
+          "label": "Indian Rupee"
+        },
+        {
+          "value": "USD",
+          "label": "US Dollar"
+        },
+        {
+          "value": "EUR",
+          "label": "Euro"
+        },
+        {
+          "value": "GBP",
+          "label": "British Pound Sterling"
+        }
+      ]
+    },
+    {
+      "column_name": "RECEIPT_ATTACHMENT",
+      "data_type": "VARCHAR",
+      "size": "500",
+      "key": false,
+      "description": "Receipt document copied from the source expense",
+      "sequence": 25
+    },
+    {
+      "column_name": "DESCRIPTION",
+      "data_type": "VARCHAR",
+      "size": "250",
+      "key": false,
+      "description": "Description copied from the source expense",
+      "sequence": 24
+    },
+    {
+      "column_name": "PROCESSING_STATUS",
+      "data_type": "VARCHAR",
+      "size": "20",
+      "key": false,
+      "description": "Finance processing state of the approved report. NOT NULL with a stored default of 'Pending' - the default is applied by the engine on save, not pre-populated into the blank form on open.",
+      "sequence": 15,
+      "mandatory": true,
+      "allowed_values": [
+        {
+          "value": "Pending",
+          "label": "Pending"
+        },
+        {
+          "value": "In Progress",
+          "label": "In Progress"
+        },
+        {
+          "value": "Processed",
+          "label": "Processed"
+        },
+        {
+          "value": "On Hold",
+          "label": "On Hold"
+        }
+      ]
+    },
+    {
+      "column_name": "PROCESSED_DATE",
+      "data_type": "DATE",
+      "size": "",
+      "key": false,
+      "description": "Stamped automatically by the Process action when the report is marked Processed; cleared when the status moves away from Processed",
+      "sequence": 26
+    },
+    {
+      "column_name": "PROCESSED_BY",
+      "data_type": "VARCHAR",
+      "size": "10",
+      "key": false,
+      "description": "Finance user who marked the report Processed; stamped automatically by the Process action",
+      "sequence": 27
+    },
+    {
+      "column_name": "PROCESSING_REMARKS",
+      "data_type": "VARCHAR",
+      "size": "250",
+      "key": false,
+      "description": "Finance remarks on the processing state. Mandatory when PROCESSING_STATUS = 'On Hold'.",
+      "sequence": 28
+    },
+    {
+      "column_name": "CURRENT_STATUS",
+      "data_type": "VARCHAR",
+      "size": "30",
+      "key": false,
+      "description": "Display-only derived status: Draft -> Draft; Submitted -> Pending Approval; Rejected -> Rejected; Cancelled -> Cancelled; Approved + Payment Pending -> Approved; Approved + Paid -> Payment Processed; otherwise the raw STATUS value.",
+      "sequence": 10
+    },
+    {
+      "column_name": "EXPENSE_ID",
+      "data_type": "VARCHAR",
+      "size": "20",
+      "key": false,
+      "description": "Source expense record - selecting it auto-populates the expense details below",
+      "sequence": 18,
+      "mandatory": true,
+      "lookup": {
+        "table": "EXPTRACK_EXPENSE",
+        "display_column": "EXPENSE_ID",
+        "value_column": "EXPENSE_ID"
+      }
+    },
+    {
+      "column_name": "CATEGORY",
+      "data_type": "VARCHAR",
+      "size": "20",
+      "key": false,
+      "description": "Expense category code - auto-populated from the selected Expense ID",
+      "sequence": 19,
+      "mandatory": true
+    },
+    {
+      "column_name": "EXPENSE_DATE",
+      "data_type": "DATE",
+      "size": "",
+      "key": false,
+      "description": "Date the expense was incurred - auto-populated from the selected Expense ID",
+      "sequence": 20,
+      "mandatory": true
+    },
+    {
+      "column_name": "AMOUNT",
+      "data_type": "NUMBER",
+      "size": "14,2",
+      "key": false,
+      "description": "Expense amount - auto-populated from the selected Expense ID",
+      "sequence": 21,
+      "mandatory": true
+    },
+    {
+      "column_name": "PAYMENT_METHOD",
+      "data_type": "VARCHAR",
+      "size": "20",
+      "key": false,
+      "description": "Payment method code - auto-populated from the selected Expense ID",
+      "sequence": 22,
+      "mandatory": true
+    }
+  ]
+}

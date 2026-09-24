@@ -1,0 +1,443 @@
+{
+  "transaction": {
+    "obj_name": "exptrack_payment_method",
+    "sql_models": [
+      {
+        "sql_model": {
+          "form_title": "Payment Method",
+          "form_descr": "Maintain list of payment methods used to record expenses",
+          "form_no": "1",
+          "main_table": "EXPTRACK_PAYMENT_METHOD",
+          "columns": [
+            {
+              "column": {
+                "name": "payment_method_code",
+                "db_name": "PAYMENT_METHOD_CODE",
+                "group_name": "Basic",
+                "col_type": "VARCHAR",
+                "heading": "Payment Method Code",
+                "descr": "Unique code identifying the payment method",
+                "key": true,
+                "mandatory": true,
+                "validations": [
+                  {
+                    "type": "builtin",
+                    "name": "Payment method code unique",
+                    "error_code": "PM_CODE_DUP",
+                    "message": "Payment Method Code {form.payment_method_code} already exists.",
+                    "builtin": {
+                      "kind": "must_be_unique"
+                    }
+                  }
+                ],
+                "x": "10",
+                "y": "10",
+                "col_id": "1",
+                "table_name": "EXPTRACK_PAYMENT_METHOD",
+                "table_display_name": "Payment method main table",
+                "db_size": "20",
+                "width": 200,
+                "hidden": "",
+                "format": "",
+                "default_function": "",
+                "default_value": "",
+                "expression": "",
+                "edit_mask": "",
+                "protect": "",
+                "lookup": ""
+              }
+            },
+            {
+              "column": {
+                "name": "payment_method_name",
+                "db_name": "PAYMENT_METHOD_NAME",
+                "group_name": "Basic",
+                "col_type": "VARCHAR",
+                "heading": "Payment Method Name",
+                "descr": "Name of the payment method",
+                "mandatory": true,
+                "x": "20",
+                "y": "20",
+                "col_id": "2",
+                "table_name": "EXPTRACK_PAYMENT_METHOD",
+                "table_display_name": "Payment method main table",
+                "db_size": "100",
+                "width": 500,
+                "key": false,
+                "hidden": "",
+                "format": "",
+                "default_function": "",
+                "default_value": "",
+                "expression": "",
+                "edit_mask": "",
+                "protect": "",
+                "validations": "",
+                "lookup": ""
+              }
+            },
+            {
+              "column": {
+                "name": "type",
+                "db_name": "TYPE",
+                "group_name": "Basic",
+                "col_type": "VARCHAR",
+                "heading": "Type",
+                "descr": "Type of payment method",
+                "mandatory": true,
+                "edit_mask": {
+                  "mask": "ddlb",
+                  "values": [
+                    {
+                      "data": "CASH",
+                      "display": "Cash"
+                    },
+                    {
+                      "data": "CARD",
+                      "display": "Card"
+                    },
+                    {
+                      "data": "BANK_TRANSFER",
+                      "display": "Bank Transfer"
+                    }
+                  ]
+                },
+                "x": "30",
+                "y": "30",
+                "col_id": "3",
+                "table_name": "EXPTRACK_PAYMENT_METHOD",
+                "table_display_name": "Payment method main table",
+                "db_size": "20",
+                "width": 200,
+                "key": false,
+                "hidden": "",
+                "format": "",
+                "default_function": "",
+                "default_value": "",
+                "expression": "",
+                "protect": "",
+                "validations": "",
+                "lookup": ""
+              }
+            },
+            {
+              "column": {
+                "name": "category_code",
+                "db_name": "CATEGORY_CODE",
+                "group_name": "Basic",
+                "col_type": "VARCHAR",
+                "heading": "Category Code",
+                "descr": "Expense category this payment method is linked to",
+                "mandatory": true,
+                "lookup": "EXPTRACK_EXPENSE_CATEGORY(CATEGORY_NAME, CATEGORY_CODE)",
+                "must_exist_in": "EXPTRACK_EXPENSE_CATEGORY",
+                "validations": [
+                  {
+                    "type": "builtin",
+                    "name": "Category must exist",
+                    "error_code": "PM_CAT_MISSING",
+                    "message": "Category Code {form.category_code} does not exist in the Manage Expense Category master.",
+                    "builtin": {
+                      "kind": "must_exist_in_master",
+                      "table": "EXPTRACK_EXPENSE_CATEGORY",
+                      "match_column": "CATEGORY_CODE"
+                    }
+                  }
+                ],
+                "item_change": {
+                  "mode": "rule",
+                  "source_table": "EXPTRACK_EXPENSE_CATEGORY",
+                  "match_table_col": "CATEGORY_CODE",
+                  "fill": [
+                    {
+                      "form_col": "category_name",
+                      "table_col": "CATEGORY_NAME"
+                    }
+                  ],
+                  "on_no_match": "clear",
+                  "on_multi_match": "first"
+                },
+                "x": "40",
+                "y": "40",
+                "col_id": "4",
+                "table_name": "EXPTRACK_PAYMENT_METHOD",
+                "table_display_name": "Payment method main table",
+                "db_size": "20",
+                "width": 200,
+                "key": false,
+                "hidden": "",
+                "format": "",
+                "default_function": "",
+                "default_value": "",
+                "expression": "",
+                "edit_mask": "",
+                "protect": ""
+              }
+            },
+            {
+              "column": {
+                "name": "category_name",
+                "db_name": "CATEGORY_NAME",
+                "group_name": "Basic",
+                "col_type": "VARCHAR",
+                "heading": "Category Name",
+                "descr": "Auto-filled category name from the linked Expense Category master",
+                "mandatory": true,
+                "protect": "1",
+                "x": "50",
+                "y": "50",
+                "col_id": "5",
+                "table_name": "EXPTRACK_PAYMENT_METHOD",
+                "table_display_name": "Payment method main table",
+                "db_size": "100",
+                "width": 500,
+                "key": false,
+                "hidden": "",
+                "format": "",
+                "default_function": "",
+                "default_value": "",
+                "expression": "",
+                "edit_mask": "",
+                "validations": "",
+                "lookup": ""
+              }
+            },
+            {
+              "column": {
+                "name": "description",
+                "db_name": "DESCRIPTION",
+                "group_name": "Basic",
+                "col_type": "VARCHAR",
+                "heading": "Description",
+                "descr": "Optional description of the payment method",
+                "x": "60",
+                "y": "60",
+                "col_id": "6",
+                "table_name": "EXPTRACK_PAYMENT_METHOD",
+                "table_display_name": "Payment method main table",
+                "db_size": "250",
+                "width": 500,
+                "key": false,
+                "mandatory": false,
+                "hidden": "",
+                "format": "",
+                "default_function": "",
+                "default_value": "",
+                "expression": "",
+                "edit_mask": "",
+                "protect": "",
+                "validations": "",
+                "lookup": ""
+              }
+            },
+            {
+              "column": {
+                "name": "status",
+                "db_name": "STATUS",
+                "group_name": "Basic",
+                "col_type": "VARCHAR",
+                "heading": "Status",
+                "descr": "Active payment methods appear in the picker on Manage Expense; Inactive ones are hidden there but remain visible on historical records and Visuals",
+                "default_value": "A",
+                "mandatory": true,
+                "edit_mask": {
+                  "mask": "ddlb",
+                  "values": [
+                    {
+                      "data": "A",
+                      "display": "Active"
+                    },
+                    {
+                      "data": "I",
+                      "display": "Inactive"
+                    }
+                  ]
+                },
+                "x": "70",
+                "y": "70",
+                "col_id": "7",
+                "table_name": "EXPTRACK_PAYMENT_METHOD",
+                "table_display_name": "Payment method main table",
+                "db_size": "1",
+                "width": 50,
+                "key": false,
+                "hidden": "",
+                "format": "",
+                "default_function": "",
+                "expression": "",
+                "protect": "",
+                "validations": "",
+                "lookup": ""
+              }
+            },
+            {
+              "column": {
+                "name": "created_by",
+                "db_name": "CREATED_BY",
+                "group_name": "Others",
+                "col_type": "VARCHAR",
+                "heading": "Created By",
+                "descr": "User who created this payment method",
+                "default_value": ":audit_add_user",
+                "protect": "1",
+                "x": "80",
+                "y": "80",
+                "col_id": "8",
+                "table_name": "EXPTRACK_PAYMENT_METHOD",
+                "table_display_name": "Payment method main table",
+                "db_size": "10",
+                "width": 100,
+                "key": false,
+                "mandatory": false,
+                "hidden": "",
+                "format": "",
+                "default_function": "",
+                "expression": "",
+                "edit_mask": "",
+                "validations": "",
+                "lookup": ""
+              }
+            },
+            {
+              "column": {
+                "name": "created_date",
+                "db_name": "CREATED_DATE",
+                "group_name": "Others",
+                "col_type": "DATETIME",
+                "heading": "Created Date",
+                "descr": "Date the payment method was created",
+                "default_value": ":audit_add_date",
+                "protect": "1",
+                "x": "90",
+                "y": "90",
+                "col_id": "9",
+                "table_name": "EXPTRACK_PAYMENT_METHOD",
+                "table_display_name": "Payment method main table",
+                "db_size": "",
+                "width": 50,
+                "key": false,
+                "mandatory": false,
+                "hidden": "",
+                "format": "",
+                "default_function": "",
+                "expression": "",
+                "edit_mask": "",
+                "validations": "",
+                "lookup": ""
+              }
+            },
+            {
+              "column": {
+                "name": "chg_user",
+                "db_name": "CHG_USER",
+                "group_name": "Others",
+                "col_type": "VARCHAR",
+                "heading": "Changed By",
+                "descr": "User who last changed this payment method",
+                "default_value": ":audit_chg_user",
+                "protect": "1",
+                "x": "100",
+                "y": "100",
+                "col_id": "10",
+                "table_name": "EXPTRACK_PAYMENT_METHOD",
+                "table_display_name": "Payment method main table",
+                "db_size": "10",
+                "width": 100,
+                "key": false,
+                "mandatory": false,
+                "hidden": "",
+                "format": "",
+                "default_function": "",
+                "expression": "",
+                "edit_mask": "",
+                "validations": "",
+                "lookup": ""
+              }
+            },
+            {
+              "column": {
+                "name": "chg_date",
+                "db_name": "CHG_DATE",
+                "group_name": "Others",
+                "col_type": "DATETIME",
+                "heading": "Changed Date",
+                "descr": "Date the payment method was last changed",
+                "default_value": ":audit_chg_date",
+                "protect": "1",
+                "x": "110",
+                "y": "110",
+                "col_id": "11",
+                "table_name": "EXPTRACK_PAYMENT_METHOD",
+                "table_display_name": "Payment method main table",
+                "db_size": "",
+                "width": 50,
+                "key": false,
+                "mandatory": false,
+                "hidden": "",
+                "format": "",
+                "default_function": "",
+                "expression": "",
+                "edit_mask": "",
+                "validations": "",
+                "lookup": ""
+              }
+            }
+          ],
+          "joins": {
+            "join_predicates": {
+              "joins": [
+                {
+                  "table": "EXPTRACK_PAYMENT_METHOD",
+                  "main_table": true,
+                  "table_descr": "Payment method main table"
+                },
+                {
+                  "table": "EXPTRACK_EXPENSE_CATEGORY",
+                  "main_table": false,
+                  "table_descr": "Expense Category master (lookup for CATEGORY_CODE)",
+                  "column": "CATEGORY_CODE",
+                  "join_table": "EXPTRACK_PAYMENT_METHOD",
+                  "join_column": "CATEGORY_CODE",
+                  "join_type": "left"
+                }
+              ]
+            }
+          },
+          "actions": [],
+          "validations": [
+            {
+              "type": "business_logic",
+              "name": "Block delete if referenced by an Expense",
+              "disabled": true,
+              "business_logic": {
+                "method": "check_payment_method_not_referenced",
+                "description": "Prevent delete of a payment method referenced by an Expense",
+                "spec": "Given the payment_method_code of the record being deleted, check EXPTRACK_EXPENSE for any row where PAYMENT_METHOD equals this code. If at least one such row exists, return an error message stating the payment method is referenced by an Expense and can only be set Inactive, not deleted. Otherwise return no error."
+              }
+            }
+          ]
+        }
+      }
+    ],
+    "actions": [],
+    "cross_updates": [],
+    "pre_commit": [],
+    "post_commit": [],
+    "attach_docs": [],
+    "follow_up_actions": [],
+    "vector_search": {
+      "enabled": true,
+      "columns": [
+        "payment_method_name",
+        "category_code",
+        "type",
+        "category_name",
+        "status"
+      ],
+      "key_column": "payment_method_code",
+      "display_column": "payment_method_name",
+      "allow_alias": true,
+      "auto": true,
+      "reason": "looked up by exptrack_expense, exptrack_manage_expense; searched by payment_method_name plus category_code, type, category_name, status so same-named records stay distinguishable"
+    }
+  }
+}

@@ -1,0 +1,1 @@
+[1] Manage Trip: trip_id(V20), trip_name(V100), destination(V100), purpose(V250), start_date(D), end_date(D), employee(V10), status(V20), serial_no(N), s_no(N), total_expense_amount(N14,2), created_date(DT), add_user(V10), add_term(V15), chg_date(DT), chg_user(V10), chg_term(V15)

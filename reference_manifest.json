@@ -1,0 +1,331 @@
+{
+  "project_name": "Expense Tracking and Approval System",
+  "project_description": "Application to record employee expenses, group them into trips and expense reports, route reports for single-approver approval, and provide analytics and activity audit trail across roles.",
+  "generated_at": "2026-09-24T06:45:29.631748+00:00",
+  "owner_user_id": "",
+  "navigation_summary": [
+    {
+      "obj_name": "exptrack_expense_category",
+      "obj_type": "T",
+      "title": " Expense Category",
+      "description": "Maintain standard list of expense categories"
+    },
+    {
+      "obj_name": "exptrack_payment_method",
+      "obj_type": "T",
+      "title": " Payment Method",
+      "description": "Maintain list of payment methods. Each Payment Method requires a mandatory CATEGORY_CODE linked to the Manage Expense Ca"
+    },
+    {
+      "obj_name": "exptrack_trip",
+      "obj_type": "T",
+      "title": "Manage Trip",
+      "description": "Record a business trip grouping related expenses"
+    },
+    {
+      "obj_name": "exptrack_budget_limitation",
+      "obj_type": "T",
+      "title": "Budget and Limitation",
+      "description": "Record finance budget and limitation details: Finance Name, Department, and an uploaded Budget Document. All three field"
+    },
+    {
+      "obj_name": "exptrack_expense",
+      "obj_type": "T",
+      "title": "Manage Expense",
+      "description": "Capture an individual expense with category, trip, payment method and a receipt upload field. Submitting an expense crea"
+    },
+    {
+      "obj_name": "exptrack_manage_approval_v2",
+      "obj_type": "T",
+      "title": "Manage Approval",
+      "description": "List of existing submitted expense records for reference in the Management folder \u2014 displays Expense ID, Employee, Trip,"
+    },
+    {
+      "obj_name": "exptrack_payment_process_new",
+      "obj_type": "T",
+      "title": "Payment process",
+      "description": "View submitted expense records for payment processing. Displays Expense ID, Employee, Trip, Category, Expense Date, Tota"
+    },
+    {
+      "obj_name": "exptrack_budget_limitation",
+      "obj_type": "T",
+      "title": "Budget and Limitation",
+      "description": "Record finance budget and limitation details: Finance Name, Department, and an uploaded Budget Document. All three field"
+    },
+    {
+      "obj_name": "exptrack_txn_analysis_dashboard",
+      "obj_type": "D",
+      "title": "Employee Transaction Analysis Dashboard",
+      "description": "Analysis dashboard for all expense transactions in EXPTRACK_EXPENSE, showing total expense amount, expense count by cate"
+    },
+    {
+      "obj_name": "exptrack_approval_status_count",
+      "obj_type": "V",
+      "title": "Expense Approval Status Count",
+      "description": "Bar chart showing the count of submitted expense records (from Manage Approval \u2014 EXPTRACK_EXPENSE) grouped by STATUS (Ap"
+    },
+    {
+      "obj_name": "exptrack_approval_total_amount",
+      "obj_type": "V",
+      "title": "Total Approved Expense Amount",
+      "description": "Single KPI totaling TOTAL_AMOUNT across all submitted expense reports linked to Manage Approval records."
+    },
+    {
+      "obj_name": "exptrack_approval_by_category",
+      "obj_type": "V",
+      "title": "Approval by Category",
+      "description": "Bar chart of Manage Approval expense record count grouped by Expense Category."
+    },
+    {
+      "obj_name": "exptrack_approval_by_approver",
+      "obj_type": "V",
+      "title": "Approval by Approver",
+      "description": "Bar chart of Manage Approval expense record count grouped by Approver."
+    },
+    {
+      "obj_name": "exptrack_manage_approval_dashboard",
+      "obj_type": "D",
+      "title": "Manage Approval Analysis Dashboard",
+      "description": "Analysis dashboard for the Manage Approval (exptrack_manage_approval_v2) submitted expense records, showing approval sta"
+    }
+  ],
+  "tables": [
+    {
+      "table_name": "EXPTRACK_APPROVAL_RULES",
+      "description": "",
+      "key_columns": [
+        "RULE_ID VARCHAR"
+      ],
+      "other_columns": [
+        "CATEGORY VARCHAR",
+        "MIN_AMOUNT NUMBER",
+        "MAX_AMOUNT NUMBER",
+        "APPROVER_ROLE VARCHAR",
+        "STATUS VARCHAR",
+        "CREATED_BY VARCHAR",
+        "CREATED_DATE DATETIME",
+        "CHG_USER VARCHAR",
+        "CHG_DATE DATETIME"
+      ]
+    },
+    {
+      "table_name": "EXPTRACK_BUDGET_LIMITATION",
+      "description": "",
+      "key_columns": [
+        "BUDGET_LIMITATION_ID VARCHAR"
+      ],
+      "other_columns": [
+        "FINANCE_NAME VARCHAR",
+        "DEPARTMENT VARCHAR",
+        "BUDGET_DOCUMENT VARCHAR",
+        "ADD_DATE DATETIME",
+        "ADD_USER VARCHAR",
+        "ADD_TERM VARCHAR",
+        "CHG_DATE DATETIME",
+        "CHG_USER VARCHAR",
+        "CHG_TERM VARCHAR"
+      ]
+    },
+    {
+      "table_name": "EXPTRACK_BUDGET_POLICY",
+      "description": "",
+      "key_columns": [
+        "BUDGET_POLICY_ID VARCHAR"
+      ],
+      "other_columns": [
+        "DEPARTMENT VARCHAR",
+        "TIER_NAME VARCHAR",
+        "STATUS VARCHAR",
+        "BUDGET_POLICY_DOCUMENT VARCHAR",
+        "BUDGET_UTILIZED NUMBER",
+        "CREATED_BY VARCHAR",
+        "CREATED_DATE DATETIME",
+        "ADD_DATE DATETIME",
+        "ADD_USER VARCHAR",
+        "ADD_TERM VARCHAR",
+        "CHG_DATE DATETIME",
+        "CHG_USER VARCHAR",
+        "CHG_TERM VARCHAR"
+      ]
+    },
+    {
+      "table_name": "EXPTRACK_EXPENSE",
+      "description": "",
+      "key_columns": [
+        "EXPENSE_ID VARCHAR"
+      ],
+      "other_columns": [
+        "EMPLOYEE VARCHAR",
+        "CATEGORY VARCHAR",
+        "EXPENSE_DATE DATE",
+        "PAYMENT_METHOD VARCHAR",
+        "DESCRIPTION VARCHAR",
+        "STATUS VARCHAR",
+        "AMOUNT NUMBER",
+        "APPROVER VARCHAR",
+        "CURRENCY VARCHAR",
+        "RECEIPT_ATTACHMENT VARCHAR",
+        "EXPENSE_REPORT VARCHAR",
+        "FINANCE_NAME VARCHAR",
+        "PAYMENT_PROCESS_STATUS VARCHAR",
+        "APPROVAL_STATUS VARCHAR",
+        "ADD_DATE DATETIME",
+        "CHG_DATE DATETIME",
+        "CHG_USER VARCHAR",
+        "APPROVER_COMMENTS VARCHAR",
+        "CHG_TERM VARCHAR"
+      ]
+    },
+    {
+      "table_name": "EXPTRACK_EXPENSE_CATEGORY",
+      "description": "",
+      "key_columns": [
+        "CATEGORY_CODE VARCHAR"
+      ],
+      "other_columns": [
+        "CATEGORY_NAME VARCHAR",
+        "DESCRIPTION VARCHAR",
+        "STATUS VARCHAR",
+        "CREATED_BY VARCHAR",
+        "CREATED_DATE DATETIME"
+      ]
+    },
+    {
+      "table_name": "EXPTRACK_EXPENSE_REPORT",
+      "description": "",
+      "key_columns": [
+        "REPORT_ID VARCHAR"
+      ],
+      "other_columns": [
+        "REPORT_TITLE VARCHAR",
+        "TRIP VARCHAR",
+        "EMPLOYEE VARCHAR",
+        "TOTAL_AMOUNT NUMBER",
+        "REPORT_DATE DATE",
+        "PERIOD_FROM DATE",
+        "PERIOD_TO DATE",
+        "CURRENCY VARCHAR",
+        "STATUS VARCHAR",
+        "CURRENT_STATUS VARCHAR",
+        "APPROVER VARCHAR",
+        "APPROVER_COMMENTS VARCHAR",
+        "APPROVAL_DATE DATETIME",
+        "PAYMENT_STATUS VARCHAR",
+        "PROCESSING_STATUS VARCHAR",
+        "CATEGORY_NAME VARCHAR",
+        "PAYMENT_METHOD_NAME VARCHAR",
+        "EXPENSE_ID VARCHAR",
+        "CATEGORY VARCHAR",
+        "EXPENSE_DATE DATE",
+        "AMOUNT NUMBER",
+        "PAYMENT_METHOD VARCHAR",
+        "DESCRIPTION VARCHAR",
+        "RECEIPT_ATTACHMENT VARCHAR",
+        "PROCESSED_DATE DATE",
+        "PROCESSED_BY VARCHAR",
+        "PROCESSING_REMARKS VARCHAR",
+        "PAYMENT_DATE DATE",
+        "PAYMENT_REFERENCE VARCHAR",
+        "ADD_DATE DATETIME",
+        "ADD_USER VARCHAR",
+        "ADD_TERM VARCHAR",
+        "CHG_DATE DATETIME",
+        "CHG_USER VARCHAR",
+        "CHG_TERM VARCHAR"
+      ]
+    },
+    {
+      "table_name": "EXPTRACK_MANAGE_APPROVAL_NEW_TXN",
+      "description": "",
+      "key_columns": [
+        "RECORD_ID VARCHAR"
+      ],
+      "other_columns": [
+        "EXPENSE_ID VARCHAR",
+        "EMPLOYEE VARCHAR",
+        "TRIP VARCHAR",
+        "CATEGORY VARCHAR",
+        "EXPENSE_DATE DATE",
+        "TOTAL_EXPENSE_AMOUNT NUMBER",
+        "PAYMENT_METHOD VARCHAR",
+        "STATUS VARCHAR",
+        "APPROVER_NAME VARCHAR",
+        "ADD_DATE DATETIME",
+        "ADD_USER VARCHAR",
+        "ADD_TERM VARCHAR",
+        "CHG_DATE DATETIME",
+        "CHG_USER VARCHAR",
+        "CHG_TERM VARCHAR"
+      ]
+    },
+    {
+      "table_name": "EXPTRACK_PAYMENT_METHOD",
+      "description": "",
+      "key_columns": [
+        "PAYMENT_METHOD_CODE VARCHAR"
+      ],
+      "other_columns": [
+        "PAYMENT_METHOD_NAME VARCHAR",
+        "TYPE VARCHAR",
+        "CATEGORY_CODE VARCHAR",
+        "CATEGORY_NAME VARCHAR",
+        "DESCRIPTION VARCHAR",
+        "STATUS VARCHAR",
+        "CREATED_BY VARCHAR",
+        "CREATED_DATE DATETIME",
+        "CHG_USER VARCHAR",
+        "CHG_DATE DATETIME"
+      ]
+    },
+    {
+      "table_name": "EXPTRACK_PAYMENT_PROCESS",
+      "description": "",
+      "key_columns": [
+        "PAYMENT_ID VARCHAR"
+      ],
+      "other_columns": [
+        "EXPENSE_REPORT VARCHAR",
+        "EXPENSE_ID VARCHAR",
+        "TRIP VARCHAR",
+        "CATEGORY VARCHAR",
+        "EXPENSE_DATE DATE",
+        "PAYMENT_METHOD VARCHAR",
+        "REPORT_TITLE VARCHAR",
+        "REPORT_EMPLOYEE VARCHAR",
+        "REPORT_TOTAL_AMOUNT NUMBER",
+        "REPORT_STATUS VARCHAR",
+        "PAYMENT_DATE DATE",
+        "PAYMENT_AMOUNT NUMBER",
+        "PAYMENT_REFERENCE VARCHAR",
+        "STATUS VARCHAR",
+        "CREATED_BY VARCHAR",
+        "CREATED_DATE DATETIME"
+      ]
+    },
+    {
+      "table_name": "EXPTRACK_TRIP",
+      "description": "",
+      "key_columns": [
+        "TRIP_ID VARCHAR"
+      ],
+      "other_columns": [
+        "TRIP_NAME VARCHAR",
+        "DESTINATION VARCHAR",
+        "PURPOSE VARCHAR",
+        "START_DATE DATE",
+        "END_DATE DATE",
+        "EMPLOYEE VARCHAR",
+        "STATUS VARCHAR",
+        "SERIAL_NO NUMBER",
+        "S_NO NUMBER",
+        "TOTAL_EXPENSE_AMOUNT NUMBER",
+        "CREATED_DATE DATETIME",
+        "ADD_USER VARCHAR",
+        "ADD_TERM VARCHAR",
+        "CHG_DATE DATETIME",
+        "CHG_USER VARCHAR",
+        "CHG_TERM VARCHAR"
+      ]
+    }
+  ]
+}

@@ -1,0 +1,121 @@
+{
+  "DASHBOARD": {
+    "DASHBOARD_ID": "EXPTRACK_APPROVAL_ACTIVITY_REPORT",
+    "DASHBOARD_TYPE": "S",
+    "DASHBOARD_NAME": "Activity Report",
+    "DASHBOARD_DESCR": "Read-only approval activity analytics over EXPTRACK_EXPENSE_REPORT - KPI cards for Pending Approvals, Approved/Rejected This Period and Total Pending Approval Vouchers, an Approval Turnaround Trend line chart, an Approved vs Rejected doughnut and a read-only Approval Activity Log grid. Date Range defaults to month-start..today (the platform's supported calendar tokens - the nearest available default to the FRS 'last 30 days'); Approver is optional and scopes the approver-owned KPI/trend tiles. No add/edit/delete.",
+    "CREATED_BY": "admin",
+    "CREATED_DATE": "2026-09-17",
+    "REFRESH_INTERVAL_SECONDS": 0,
+
+    "GLOBAL_CRITERIA": [
+      {
+        "PARAM_NAME": "FROM_DATE",
+        "PROMPT_LABEL": "From Date",
+        "DEFAULT_VALUE": ":calendar_month_start",
+        "DATA_TYPE": "date",
+        "OPERATOR": ">=",
+        "BROADCAST_TO": ["VIS_APPROVED_THIS_PERIOD", "VIS_REJECTED_THIS_PERIOD", "VIS_TURNAROUND_TREND", "VIS_APPROVED_VS_REJECTED", "VIS_ACTIVITY_LOG"]
+      },
+      {
+        "PARAM_NAME": "TO_DATE",
+        "PROMPT_LABEL": "To Date",
+        "DEFAULT_VALUE": ":calendar_today",
+        "DATA_TYPE": "date",
+        "OPERATOR": "<=",
+        "BROADCAST_TO": ["VIS_APPROVED_THIS_PERIOD", "VIS_REJECTED_THIS_PERIOD", "VIS_TURNAROUND_TREND", "VIS_APPROVED_VS_REJECTED", "VIS_ACTIVITY_LOG"]
+      },
+      {
+        "PARAM_NAME": "EMPLOYEE",
+        "PROMPT_LABEL": "Approver",
+        "DEFAULT_VALUE": "%",
+        "DATA_TYPE": "string",
+        "OPERATOR": "like",
+        "BROADCAST_TO": ["VIS_PENDING_APPROVALS", "VIS_APPROVED_THIS_PERIOD", "VIS_REJECTED_THIS_PERIOD", "VIS_TURNAROUND_TREND"]
+      }
+    ],
+
+    "VISUALS": [
+      {
+        "VISUAL_ID": "VIS_PENDING_APPROVALS",
+        "VISUAL_NAME": "Pending Approvals",
+        "POSITION": { "X": 0, "Y": 0, "WIDTH": 3, "HEIGHT": 2 },
+        "VISUAL_CONFIG_REF": "model_exptrack_pending_approvals.json",
+        "CRITERIA_BINDINGS": [
+          { "VISUAL_PARAM": "employee", "BIND_TYPE": "global", "GLOBAL_PARAM": "EMPLOYEE" }
+        ]
+      },
+      {
+        "VISUAL_ID": "VIS_APPROVED_THIS_PERIOD",
+        "VISUAL_NAME": "Approved This Period",
+        "POSITION": { "X": 3, "Y": 0, "WIDTH": 3, "HEIGHT": 2 },
+        "VISUAL_CONFIG_REF": "model_exptrack_approved_this_period.json",
+        "CRITERIA_BINDINGS": [
+          { "VISUAL_PARAM": "from_date", "BIND_TYPE": "global", "GLOBAL_PARAM": "FROM_DATE" },
+          { "VISUAL_PARAM": "to_date", "BIND_TYPE": "global", "GLOBAL_PARAM": "TO_DATE" },
+          { "VISUAL_PARAM": "employee", "BIND_TYPE": "global", "GLOBAL_PARAM": "EMPLOYEE" }
+        ]
+      },
+      {
+        "VISUAL_ID": "VIS_REJECTED_THIS_PERIOD",
+        "VISUAL_NAME": "Rejected This Period",
+        "POSITION": { "X": 6, "Y": 0, "WIDTH": 3, "HEIGHT": 2 },
+        "VISUAL_CONFIG_REF": "model_exptrack_rejected_this_period.json",
+        "CRITERIA_BINDINGS": [
+          { "VISUAL_PARAM": "from_date", "BIND_TYPE": "global", "GLOBAL_PARAM": "FROM_DATE" },
+          { "VISUAL_PARAM": "to_date", "BIND_TYPE": "global", "GLOBAL_PARAM": "TO_DATE" },
+          { "VISUAL_PARAM": "employee", "BIND_TYPE": "global", "GLOBAL_PARAM": "EMPLOYEE" }
+        ]
+      },
+      {
+        "VISUAL_ID": "VIS_PENDING_VOUCHERS",
+        "VISUAL_NAME": "Total Pending Approval Vouchers",
+        "POSITION": { "X": 9, "Y": 0, "WIDTH": 3, "HEIGHT": 2 },
+        "VISUAL_CONFIG_REF": "model_exptrack_pending_approval_vouchers.json",
+        "CRITERIA_BINDINGS": []
+      },
+      {
+        "VISUAL_ID": "VIS_TURNAROUND_TREND",
+        "VISUAL_NAME": "Approval Turnaround Trend",
+        "POSITION": { "X": 0, "Y": 2, "WIDTH": 6, "HEIGHT": 4 },
+        "VISUAL_CONFIG_REF": "model_exptrack_approval_turnaround_trend.json",
+        "CRITERIA_BINDINGS": [
+          { "VISUAL_PARAM": "from_date", "BIND_TYPE": "global", "GLOBAL_PARAM": "FROM_DATE" },
+          { "VISUAL_PARAM": "to_date", "BIND_TYPE": "global", "GLOBAL_PARAM": "TO_DATE" },
+          { "VISUAL_PARAM": "employee", "BIND_TYPE": "global", "GLOBAL_PARAM": "EMPLOYEE" }
+        ]
+      },
+      {
+        "VISUAL_ID": "VIS_APPROVED_VS_REJECTED",
+        "VISUAL_NAME": "Approved vs Rejected",
+        "POSITION": { "X": 6, "Y": 2, "WIDTH": 6, "HEIGHT": 4 },
+        "VISUAL_CONFIG_REF": "model_exptrack_approved_vs_rejected.json",
+        "CRITERIA_BINDINGS": [
+          { "VISUAL_PARAM": "from_date", "BIND_TYPE": "global", "GLOBAL_PARAM": "FROM_DATE" },
+          { "VISUAL_PARAM": "to_date", "BIND_TYPE": "global", "GLOBAL_PARAM": "TO_DATE" },
+          { "VISUAL_PARAM": "trip_id", "BIND_TYPE": "constant", "CONSTANT_VALUE": "%" }
+        ]
+      },
+      {
+        "VISUAL_ID": "VIS_ACTIVITY_LOG",
+        "VISUAL_NAME": "Approval Activity Log",
+        "POSITION": { "X": 0, "Y": 6, "WIDTH": 12, "HEIGHT": 5 },
+        "VISUAL_CONFIG_REF": "model_exptrack_approval_activity_log.json",
+        "CRITERIA_BINDINGS": [
+          { "VISUAL_PARAM": "from_date", "BIND_TYPE": "global", "GLOBAL_PARAM": "FROM_DATE" },
+          { "VISUAL_PARAM": "to_date", "BIND_TYPE": "global", "GLOBAL_PARAM": "TO_DATE" },
+          { "VISUAL_PARAM": "status", "BIND_TYPE": "unbound" }
+        ]
+      }
+    ],
+
+    "DRILL_THROUGH": [
+      {
+        "SOURCE_VISUAL_ID": "VIS_APPROVED_VS_REJECTED",
+        "TARGET_TYPE": "visual",
+        "TARGET_VISUAL_ID": "exptrack_approval_activity_log",
+        "PARAM_MAPPING": { "STATUS": "status" }
+      }
+    ]
+  }
+}

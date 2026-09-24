@@ -1,0 +1,164 @@
+{
+  "table_name": "EXPTRACK_TRIP",
+  "table_description": "",
+  "project": "Expense_Management",
+  "columns": [
+    {
+      "column_name": "TRIP_ID",
+      "data_type": "VARCHAR",
+      "size": "20",
+      "key": true,
+      "description": "System-generated unique trip identifier",
+      "sequence": 1,
+      "mandatory": true
+    },
+    {
+      "column_name": "TRIP_NAME",
+      "data_type": "VARCHAR",
+      "size": "100",
+      "key": false,
+      "description": "Short name for the trip",
+      "sequence": 2,
+      "mandatory": true
+    },
+    {
+      "column_name": "DESTINATION",
+      "data_type": "VARCHAR",
+      "size": "100",
+      "key": false,
+      "description": "Destination of the trip",
+      "sequence": 3,
+      "mandatory": true
+    },
+    {
+      "column_name": "PURPOSE",
+      "data_type": "VARCHAR",
+      "size": "250",
+      "key": false,
+      "description": "Purpose of the trip",
+      "sequence": 4
+    },
+    {
+      "column_name": "START_DATE",
+      "data_type": "DATE",
+      "size": "",
+      "key": false,
+      "description": "Trip start date",
+      "sequence": 5,
+      "mandatory": true
+    },
+    {
+      "column_name": "END_DATE",
+      "data_type": "DATE",
+      "size": "",
+      "key": false,
+      "description": "Trip end date",
+      "sequence": 6,
+      "mandatory": true
+    },
+    {
+      "column_name": "EMPLOYEE",
+      "data_type": "VARCHAR",
+      "size": "10",
+      "key": false,
+      "description": "Employee the trip belongs to",
+      "sequence": 7,
+      "mandatory": true
+    },
+    {
+      "column_name": "STATUS",
+      "data_type": "VARCHAR",
+      "size": "20",
+      "key": false,
+      "description": "Trip status (Planned / Upcoming / Completed). Closed is system-only, applied only by the Close-trip action.",
+      "sequence": 8,
+      "mandatory": true,
+      "allowed_values": [
+        {
+          "value": "Planned",
+          "label": "Planned"
+        },
+        {
+          "value": "Upcoming",
+          "label": "Upcoming"
+        },
+        {
+          "value": "Completed",
+          "label": "Completed"
+        }
+      ]
+    },
+    {
+      "column_name": "SERIAL_NO",
+      "data_type": "NUMBER",
+      "size": "",
+      "key": false,
+      "description": "Serial number entered manually by the user (not auto-generated)",
+      "sequence": 9
+    },
+    {
+      "column_name": "S_NO",
+      "data_type": "NUMBER",
+      "size": "",
+      "key": false,
+      "description": "Internal sequence number",
+      "sequence": 10
+    },
+    {
+      "column_name": "TOTAL_EXPENSE_AMOUNT",
+      "data_type": "NUMBER",
+      "size": "14,2",
+      "key": false,
+      "description": "Total expense amount for the trip. No longer auto-calculated (trip-expense linking removed).",
+      "sequence": 11
+    },
+    {
+      "column_name": "CREATED_DATE",
+      "data_type": "DATETIME",
+      "size": "",
+      "key": false,
+      "description": "Date the trip record was created",
+      "sequence": 12
+    },
+    {
+      "column_name": "ADD_USER",
+      "data_type": "VARCHAR",
+      "size": "10",
+      "key": false,
+      "description": "",
+      "sequence": 13
+    },
+    {
+      "column_name": "ADD_TERM",
+      "data_type": "VARCHAR",
+      "size": "15",
+      "key": false,
+      "description": "",
+      "sequence": 14
+    },
+    {
+      "column_name": "CHG_DATE",
+      "data_type": "DATETIME",
+      "size": "",
+      "key": false,
+      "description": "",
+      "sequence": 15
+    },
+    {
+      "column_name": "CHG_USER",
+      "data_type": "VARCHAR",
+      "size": "10",
+      "key": false,
+      "description": "",
+      "sequence": 16
+    },
+    {
+      "column_name": "CHG_TERM",
+      "data_type": "VARCHAR",
+      "size": "15",
+      "key": false,
+      "description": "",
+      "sequence": 17
+    }
+  ]
+}
